@@ -1,203 +1,179 @@
-import { Box, Card, CardContent, Chip, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, Chip, Divider, Typography } from "@mui/material";
+import { CustomAppBar } from "../components/CustomAppBar";
 import { Layout } from "../shared/Layout";
-import StoreIcon from "@mui/icons-material/Store";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import PeopleIcon from "@mui/icons-material/People";
-import SellIcon from "@mui/icons-material/Sell";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import StoreIcon from "@mui/icons-material/Store";
+import PeopleIcon from "@mui/icons-material/People";
+import SellIcon from "@mui/icons-material/Sell";
 
 export function Dashboard() {
   return (
     <Layout>
-      <Grid
-        marginTop={11.75}
-        container
-        columns={3}
-        spacing={3.75}
-        padding={3.75}
+      <CustomAppBar title="Dashboard" />
+      <Box
+        display={"flex"}
+        gap={3.75}
+        marginTop={12.5}
       >
-        <Grid
-          item
-          xl={1}
-          lg={1}
-          md={1}
+        <Card
+          elevation={3}
+          sx={{ flex: 1 }}
         >
-          <Card>
-            <CardContent>
-              <Box
-                display={"flex"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-              >
-                <Typography
-                  sx={{ display: "flex", alignItems: "center", gap: "8px", color: "#A5A5A5" }}
-                  variant="subtitle1"
-                  fontSize={18}
-                  fontWeight={500}
-                >
-                  <StoreIcon
-                    fontSize="large"
-                    color="action"
-                  />
-                  Supermercados cadastrados
-                </Typography>
-                <ArrowOutwardIcon
-                  fontSize="large"
-                  color="warning"
-                />
-              </Box>
+          <CardContent>
+            <Box
+              display={"flex"}
+              justifyContent={"space-between"}
+            >
               <Typography
-                variant="subtitle2"
-                fontSize={44}
-                fontWeight={600}
-              >
-                15
-              </Typography>
-              <Box
+                variant="h2"
+                fontSize={18}
                 display={"flex"}
-                justifyContent={"space-between"}
                 alignItems={"center"}
+                gap={1.5}
               >
-                <Typography
-                  sx={{ color: "#A5A5A5" }}
-                  variant="subtitle1"
-                  fontSize={18}
-                  fontWeight={500}
-                >
-                  Nesse mês
-                </Typography>
-                <Chip
-                  label={"12.69%"}
-                  variant="outlined"
-                  color="success"
-                  icon={<ArrowUpwardIcon />}
-                />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid
-          item
-          xl={1}
-          lg={1}
-          md={1}
+                <StoreIcon />
+                Supermercados
+              </Typography>
+              <ArrowOutwardIcon color="warning" />
+            </Box>
+            <Typography
+              variant="caption"
+              fontSize={44}
+              fontWeight={700}
+            >
+              15
+            </Typography>
+            <Divider />
+            <Box
+              marginTop={2.5}
+              display={"flex"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+            >
+              <Typography
+                variant="caption"
+                fontSize={18}
+                fontWeight={500}
+              >
+                Nesse mês
+              </Typography>
+              <Chip
+                label="12.69%"
+                variant="filled"
+                color="success"
+                size="small"
+                icon={<ArrowUpwardIcon />}
+              />
+            </Box>
+          </CardContent>
+        </Card>
+        <Card
+          elevation={3}
+          sx={{ flex: 1 }}
         >
-          <Card>
-            <CardContent>
-              <Box
-                display={"flex"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-              >
-                <Typography
-                  sx={{ display: "flex", alignItems: "center", gap: "8px", color: "#A5A5A5" }}
-                  variant="subtitle1"
-                  fontSize={18}
-                  fontWeight={500}
-                >
-                  <PeopleIcon
-                    fontSize="large"
-                    color="action"
-                  />
-                  Usuários cadastrados
-                </Typography>
-                <ArrowOutwardIcon
-                  fontSize="large"
-                  color="warning"
-                />
-              </Box>
+          <CardContent>
+            <Box
+              display={"flex"}
+              justifyContent={"space-between"}
+            >
               <Typography
-                variant="subtitle2"
-                fontSize={44}
-                fontWeight={600}
-              >
-                658
-              </Typography>
-              <Box
+                variant="h2"
+                fontSize={18}
                 display={"flex"}
-                justifyContent={"space-between"}
                 alignItems={"center"}
+                gap={1.5}
               >
-                <Typography
-                  sx={{ color: "#A5A5A5" }}
-                  variant="subtitle1"
-                  fontSize={18}
-                  fontWeight={500}
-                >
-                  Nesse mês
-                </Typography>
-                <Chip
-                  label={"12.69%"}
-                  variant="outlined"
-                  color="error"
-                  icon={<ArrowDownwardIcon />}
-                />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid
-          item
-          xl={1}
-          lg={1}
-          md={1}
+                <PeopleIcon />
+                Usuários
+              </Typography>
+              <ArrowOutwardIcon color="warning" />
+            </Box>
+            <Typography
+              variant="caption"
+              fontSize={44}
+              fontWeight={700}
+            >
+              658
+            </Typography>
+            <Divider />
+            <Box
+              marginTop={2.5}
+              display={"flex"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+            >
+              <Typography
+                variant="caption"
+                fontSize={18}
+                fontWeight={500}
+              >
+                Nesse mês
+              </Typography>
+              <Chip
+                label="12.69%"
+                variant="filled"
+                color="error"
+                size="small"
+                icon={<ArrowDownwardIcon />}
+              />
+            </Box>
+          </CardContent>
+        </Card>
+        <Card
+          elevation={3}
+          sx={{ flex: 1 }}
         >
-          <Card>
-            <CardContent>
-              <Box
-                display={"flex"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-              >
-                <Typography
-                  sx={{ display: "flex", alignItems: "center", gap: "8px", color: "#A5A5A5" }}
-                  variant="subtitle1"
-                  fontSize={18}
-                  fontWeight={500}
-                >
-                  <SellIcon
-                    fontSize="large"
-                    color="action"
-                  />
-                  Compras realizadas
-                </Typography>
-                <ArrowOutwardIcon
-                  fontSize="large"
-                  color="warning"
-                />
-              </Box>
+          <CardContent>
+            <Box
+              display={"flex"}
+              justifyContent={"space-between"}
+            >
               <Typography
-                variant="subtitle2"
-                fontSize={44}
-                fontWeight={600}
-              >
-                42
-              </Typography>
-              <Box
+                variant="h2"
+                fontSize={18}
                 display={"flex"}
-                justifyContent={"space-between"}
                 alignItems={"center"}
+                gap={1.5}
               >
-                <Typography
-                  sx={{ color: "#A5A5A5" }}
-                  variant="subtitle1"
-                  fontSize={18}
-                  fontWeight={500}
-                >
-                  Nesse mês
-                </Typography>
-                <Chip
-                  label={"12.69%"}
-                  variant="outlined"
-                  color="success"
-                  icon={<ArrowUpwardIcon />}
-                />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+                <SellIcon />
+                Vendas
+              </Typography>
+              <ArrowOutwardIcon color="warning" />
+            </Box>
+            <Typography
+              variant="caption"
+              fontSize={44}
+              fontWeight={700}
+            >
+              42
+            </Typography>
+            <Divider />
+            <Box
+              marginTop={2.5}
+              display={"flex"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+            >
+              <Typography
+                variant="caption"
+                fontSize={18}
+                fontWeight={500}
+              >
+                Hoje
+              </Typography>
+              <Chip
+                label="12.69%"
+                variant="filled"
+                color="success"
+                size="small"
+                icon={<ArrowUpwardIcon />}
+              />
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
     </Layout>
   );
 }

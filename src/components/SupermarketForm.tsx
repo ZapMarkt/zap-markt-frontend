@@ -2,7 +2,6 @@ import { Box, Button, Grid, IconButton, TextField, Typography } from "@mui/mater
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
-import { useValidateSupermarketForm } from "../hooks/useValidateSupermarketForm";
 import { SupermarketFormSchema } from "../types/SupermarketFormSchema";
 import axios from "axios";
 import { CNPJMask } from "../libs/imask/CNPJMask";
@@ -10,30 +9,67 @@ import { PhoneMask } from "../libs/imask/PhoneMask";
 import { CEPMask } from "../libs/imask/CEPMask";
 import { BackgroundUploadButton } from "./BackgroundUploadButton";
 import { ProfileUploadButton } from "./ProfileUploadButton";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { supermarketFormSchema } from "../libs/zod/SupermarketFormSchema";
 
 export function SupermarketForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmationPassword, setShowConfirmationPassword] = useState(false);
 
   const {
-    ref,
+    register,
     handleSubmit,
     setValue,
-    fieldValue,
+    watch,
+    setError,
+    clearErrors,
     formState: { errors },
-    handleBluePasswordConfirmationField,
-  } = useValidateSupermarketForm();
-
-  const { cep } = fieldValue;
+  } = useForm<SupermarketFormSchema>({
+    resolver: zodResolver(supermarketFormSchema),
+    defaultValues: {
+      stablishmentName: "",
+      cnpj: "",
+      stateRegistration: "",
+      cellPhone: "",
+      telephone: "",
+      email: "",
+      cep: "",
+      street: "",
+      number: "",
+      neighborhood: "",
+      city: "",
+      state: "",
+      password: "",
+      confirmationPassword: "",
+    },
+  });
 
   function onSubmitForm(data: SupermarketFormSchema) {
     console.log(data);
   }
 
-  async function handleBlur() {
+  const cep = watch("cep");
+  const password = watch("password");
+  const confirmationPassword = watch("confirmationPassword");
+  const city = watch("city");
+  const state = watch("state");
+
+  async function handleBlurCepField() {
     const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
     setValue("city", response.data.localidade);
     setValue("state", response.data.uf);
+  }
+
+  function handleBlurPasswordConfirmationField() {
+    if ((!password && !confirmationPassword) || !password) {
+      return;
+    }
+    if (password !== confirmationPassword) {
+      setError("confirmationPassword", { message: "As senhas não coincidem" });
+      return;
+    }
+    clearErrors("confirmationPassword");
   }
 
   return (
@@ -43,10 +79,17 @@ export function SupermarketForm() {
         marginBottom={15.62}
       >
         <BackgroundUploadButton
-          {...ref("backdrop")}
+          {...register("backdrop")}
           onChange={(ev) => console.log(ev)}
         />
-        <ProfileUploadButton {...ref("profile")} />
+        <ProfileUploadButton
+          {...register("profile")}
+          sx={{
+            position: "absolute",
+            bottom: -94,
+            right: 648,
+          }}
+        />
       </Box>
       <Box marginBottom={3.75}>
         <Typography
@@ -71,7 +114,7 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("stablishmentName")}
+              {...register("stablishmentName")}
               color={errors.stablishmentName ? "error" : "success"}
               helperText={errors.stablishmentName?.message}
               error={!!errors.stablishmentName?.message}
@@ -86,7 +129,7 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("cnpj")}
+              {...register("cnpj")}
               color={errors.cnpj ? "error" : "success"}
               helperText={errors.cnpj?.message}
               error={!!errors.cnpj?.message}
@@ -104,7 +147,7 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("stateRegistration")}
+              {...register("stateRegistration")}
               color={errors.stateRegistration ? "error" : "success"}
               helperText={errors.stateRegistration?.message}
               error={!!errors.stateRegistration?.message}
@@ -135,7 +178,7 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("cellPhone")}
+              {...register("cellPhone")}
               color={errors.cellPhone ? "error" : "success"}
               helperText={errors.cellPhone?.message}
               error={!!errors.cellPhone?.message}
@@ -153,7 +196,7 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("telephone")}
+              {...register("telephone")}
               color={errors.telephone ? "error" : "success"}
               helperText={errors.telephone?.message}
               error={!!errors.telephone?.message}
@@ -171,7 +214,7 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("email")}
+              {...register("email")}
               color={errors.email ? "error" : "success"}
               helperText={errors.email?.message}
               error={!!errors.email?.message}
@@ -202,8 +245,8 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("cep")}
-              onBlur={handleBlur}
+              {...register("cep")}
+              onBlur={handleBlurCepField}
               color={errors.cep ? "error" : "success"}
               helperText={errors.cep?.message}
               error={!!errors.cep?.message}
@@ -221,7 +264,7 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("street")}
+              {...register("street")}
               color={errors.street ? "error" : "success"}
               helperText={errors.street?.message}
               error={!!errors.street?.message}
@@ -236,7 +279,7 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("number")}
+              {...register("number")}
               color={errors.number ? "error" : "success"}
               helperText={errors.number?.message}
               error={!!errors.number?.message}
@@ -251,7 +294,7 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("neighborhood")}
+              {...register("neighborhood")}
               color={errors.neighborhood ? "error" : "success"}
               helperText={errors.neighborhood?.message}
               error={!!errors.neighborhood?.message}
@@ -266,10 +309,13 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("city")}
+              {...register("city")}
               color={errors.city ? "error" : "success"}
               helperText={errors.city?.message}
               error={!!errors.city?.message}
+              InputProps={{
+                value: city,
+              }}
             />
           </Grid>
           <Grid
@@ -281,10 +327,13 @@ export function SupermarketForm() {
               variant="filled"
               size="small"
               fullWidth
-              {...ref("state")}
+              {...register("state")}
               color={errors.state ? "error" : "success"}
               helperText={errors.state?.message}
               error={!!errors.state?.message}
+              InputProps={{
+                value: state,
+              }}
             />
           </Grid>
         </Grid>
@@ -320,7 +369,7 @@ export function SupermarketForm() {
                   </IconButton>
                 ),
               }}
-              {...ref("password")}
+              {...register("password")}
               color={errors.password ? "error" : "success"}
               helperText={errors.password?.message}
               error={!!errors.password?.message}
@@ -337,7 +386,7 @@ export function SupermarketForm() {
               fullWidth
               type={showConfirmationPassword ? "text" : "password"}
               InputProps={{
-                onBlur: handleBluePasswordConfirmationField,
+                onBlur: handleBlurPasswordConfirmationField,
                 endAdornment: (
                   <IconButton onClick={() => setShowConfirmationPassword((prev) => !prev)}>
                     {showConfirmationPassword ? (
@@ -348,7 +397,7 @@ export function SupermarketForm() {
                   </IconButton>
                 ),
               }}
-              {...ref("confirmationPassword")}
+              {...register("confirmationPassword")}
               color={errors.confirmationPassword ? "error" : "success"}
               helperText={errors.confirmationPassword?.message}
               error={!!errors.confirmationPassword?.message}

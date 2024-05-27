@@ -37,9 +37,9 @@ export function AdminUserTable() {
           color="primary"
           startIcon={<PeopleIcon />}
           component={Link}
-          to="/supermercados/dados-cadastrais"
+          to="/novo-usuario-administrador"
         >
-          Novo usuário
+          Novo usuário administrador
         </Button>
       </Box>
       <TableContainer>

@@ -8,6 +8,7 @@ import { Users } from "../pages/Users";
 import { UserDetails } from "../pages/UserDetails";
 import { UserConfiguration } from "../pages/UserConfiguration";
 import { Configurations } from "../pages/Configurations";
+import { AdminUserFormPage } from "../pages/AdminUserFormPage";
 
 export const router = createBrowserRouter([
   {
@@ -49,5 +50,9 @@ export const router = createBrowserRouter([
   {
     path: "/configuracoes",
     element: <Configurations />,
+  },
+  {
+    path: "/novo-usuario-administrador",
+    element: <AdminUserFormPage />,
   },
 ]);

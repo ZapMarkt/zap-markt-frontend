@@ -1,10 +1,19 @@
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import {
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+} from "@mui/material";
 import { ReactNode } from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import StoreIcon from "@mui/icons-material/Store";
 import PeopleIcon from "@mui/icons-material/People";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { NavLink } from "react-router-dom";
 import { grey } from "@mui/material/colors";
 
@@ -12,7 +21,7 @@ type LayoutProps = {
   children: ReactNode;
 };
 
-const links = [
+const menuLinks = [
   {
     primary: "Dashboard",
     to: "/",
@@ -30,9 +39,9 @@ const links = [
     icon: <PeopleIcon />,
   },
   {
-    primary: "Configurações",
-    to: "/configuracoes",
-    icon: <SettingsIcon />,
+    primary: "Produtos compartilhados",
+    to: "/produtos-compartilhados",
+    icon: <ShoppingBasketIcon />,
   },
 ];
 
@@ -65,7 +74,10 @@ export function Layout({ children }: LayoutProps) {
           sx={{ width: 340 }}
           disablePadding
         >
-          {links.map((link, index) => (
+          <ListSubheader sx={{ backgroundColor: grey[900], color: grey[500], fontSize: 18 }}>
+            MENU
+          </ListSubheader>
+          {menuLinks.map((link, index) => (
             <ListItem
               key={index}
               button
@@ -76,6 +88,19 @@ export function Layout({ children }: LayoutProps) {
               <ListItemText primary={link.primary} />
             </ListItem>
           ))}
+          <ListSubheader sx={{ backgroundColor: grey[900], color: grey[500], fontSize: 18 }}>
+            SISTEMA
+          </ListSubheader>
+          <ListItem
+            button
+            component={NavLink}
+            to="/configuracoes"
+          >
+            <ListItemIcon color="gray">
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Configurações" />
+          </ListItem>
           <ListItem button>
             <ListItemIcon color="gray">
               <LogoutIcon />

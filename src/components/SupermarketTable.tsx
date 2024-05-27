@@ -65,7 +65,7 @@ export function SupermarketTable() {
           component={Link}
           to="/supermercados/dados-cadastrais"
         >
-          Novo mercado
+          Novo supermercado
         </Button>
       </Box>
       <TableContainer>

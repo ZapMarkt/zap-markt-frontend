@@ -41,6 +41,8 @@ export const theme = createTheme({
           ...(ownerState.variant === "filled" &&
             ownerState.color === "success" && {
               backgroundColor: green[50],
+              borderTopLeftRadius: 5,
+              borderTopRightRadius: 5,
             }),
           ...(ownerState.variant === "outlined" && {
             backgroundColor: grey[300],

@@ -2,12 +2,12 @@ import { forwardRef } from "react";
 import { IMaskInput } from "react-imask";
 import { IMaskProps } from "../../types/IMaskProps";
 
-export const PhoneMask = forwardRef<HTMLInputElement, IMaskProps>(
+export const CPFMask = forwardRef<HTMLInputElement, IMaskProps>(
   ({ onChange, name, ...rest }, ref) => {
     return (
       <IMaskInput
         {...rest}
-        mask="(00) 0 0000-0000"
+        mask="000.000.000-00"
         definitions={{
           "#": /[1-9]/,
         }}

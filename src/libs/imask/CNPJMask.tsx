@@ -13,7 +13,6 @@ export const CNPJMask = forwardRef<HTMLInputElement, IMaskProps>(
         }}
         inputRef={ref}
         onAccept={(value: any) => onChange({ target: { name, value } })}
-        overwrite
       />
     );
   }

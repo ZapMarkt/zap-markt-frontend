@@ -4,6 +4,7 @@ import { Supermarkets } from "../pages/Supermarkets";
 import { SupermarketFormPage } from "../pages/SupermarketFormPage";
 import { SubscriptionPlan } from "../pages/SubscriptionPlan";
 import { SupermarketConfiguration } from "../pages/SupermarketConfiguration";
+import { Users } from "../pages/Users";
 
 export const router = createBrowserRouter([
   {
@@ -29,5 +30,9 @@ export const router = createBrowserRouter([
   {
     path: "/supermercados/configuracoes",
     element: <SupermarketConfiguration />,
+  },
+  {
+    path: "/usuarios",
+    element: <Users />,
   },
 ]);

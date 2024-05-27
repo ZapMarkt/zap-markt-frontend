@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db-supermarket:
+    container_name: db-supermarket
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment: 
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: StrongPassword@
+    networks:
+      - auth
+    ports:
+      - "1433:1433"
+
+  api-supermarket:
+    image: rsoar/api-supermarket:1.3
+    container_name: api-supermarket
+    depends_on: 
+      - db-supermarket
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:5000"
+    networks:
+      - auth
+networks:
+  auth:
+    driver: bridge

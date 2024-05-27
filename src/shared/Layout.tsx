@@ -65,8 +65,9 @@ export function Layout({ children }: LayoutProps) {
           sx={{ width: 340 }}
           disablePadding
         >
-          {links.map((link) => (
+          {links.map((link, index) => (
             <ListItem
+              key={index}
               button
               component={NavLink}
               to={link.to}

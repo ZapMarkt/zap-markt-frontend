@@ -8,7 +8,7 @@ export const VisuallyHiddenInput = styled("input")<InputHTMLAttributes<HTMLInput
   height: 1,
   overflow: "hidden",
   position: "absolute",
-  bottom: 0,
+  bottom: 0, 
   left: 0,
   whiteSpace: "nowrap",
   width: 1,

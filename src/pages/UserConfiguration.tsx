@@ -1,13 +1,13 @@
 import { Box, FormControlLabel, Link, Switch, Typography } from "@mui/material";
 import { CustomAppBar } from "../components/CustomAppBar";
-import { CustomTabs } from "../components/CustomTabs";
 import { Layout } from "../shared/Layout";
+import { CustomUserTabs } from "../components/CustomUserTabs";
 
 export function UserConfiguration() {
   return (
     <Layout>
       <CustomAppBar title="Christopher" />
-      <CustomTabs />
+      <CustomUserTabs />
       <Box
         display={"flex"}
         alignItems={"center"}

@@ -7,6 +7,7 @@ import { SupermarketConfiguration } from "../pages/SupermarketConfiguration";
 import { Users } from "../pages/Users";
 import { UserDetails } from "../pages/UserDetails";
 import { UserConfiguration } from "../pages/UserConfiguration";
+import { Configurations } from "../pages/Configurations";
 
 export const router = createBrowserRouter([
   {
@@ -44,5 +45,9 @@ export const router = createBrowserRouter([
   {
     path: "/usuario/1/configuracoes",
     element: <UserConfiguration />,
+  },
+  {
+    path: "/configuracoes",
+    element: <Configurations />,
   },
 ]);

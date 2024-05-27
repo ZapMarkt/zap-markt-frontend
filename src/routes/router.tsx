@@ -3,6 +3,7 @@ import { Dashboard } from "../pages/Dashboard";
 import { Supermarkets } from "../pages/Supermarkets";
 import { SupermarketFormPage } from "../pages/SupermarketFormPage";
 import { SubscriptionPlan } from "../pages/SubscriptionPlan";
+import { SupermarketConfiguration } from "../pages/SupermarketConfiguration";
 
 export const router = createBrowserRouter([
   {
@@ -20,5 +21,13 @@ export const router = createBrowserRouter([
   {
     path: "/supermercados/plano-assinatura",
     element: <SubscriptionPlan />,
+  },
+  {
+    path: "/supermercados/plano-assinatura",
+    element: <SubscriptionPlan />,
+  },
+  {
+    path: "/supermercados/configuracoes",
+    element: <SupermarketConfiguration />,
   },
 ]);

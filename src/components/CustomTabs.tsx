@@ -23,7 +23,12 @@ export function CustomTabs() {
           component={Link}
           to="/supermercados/plano-assinatura"
         />
-        <Tab label="Configurações" />
+        <Tab
+          label="Configurações"
+          value="/supermercados/configuracoes"
+          component={Link}
+          to="/supermercados/configuracoes"
+        />
       </Tabs>
       <Divider />
     </Box>

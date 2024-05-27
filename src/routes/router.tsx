@@ -6,6 +6,7 @@ import { SubscriptionPlan } from "../pages/SubscriptionPlan";
 import { SupermarketConfiguration } from "../pages/SupermarketConfiguration";
 import { Users } from "../pages/Users";
 import { UserDetails } from "../pages/UserDetails";
+import { UserConfiguration } from "../pages/UserConfiguration";
 
 export const router = createBrowserRouter([
   {
@@ -39,5 +40,9 @@ export const router = createBrowserRouter([
   {
     path: "/usuario/1",
     element: <UserDetails />,
+  },
+  {
+    path: "/usuario/1/configuracoes",
+    element: <UserConfiguration />,
   },
 ]);

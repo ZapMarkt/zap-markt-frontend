@@ -9,6 +9,7 @@ import { UserDetails } from "../pages/UserDetails";
 import { UserConfiguration } from "../pages/UserConfiguration";
 import { Configurations } from "../pages/Configurations";
 import { AdminUserFormPage } from "../pages/AdminUserFormPage";
+import { Login } from "../pages/Login";
 
 export const router = createBrowserRouter([
   {
@@ -54,5 +55,9 @@ export const router = createBrowserRouter([
   {
     path: "/novo-usuario-administrador",
     element: <AdminUserFormPage />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);

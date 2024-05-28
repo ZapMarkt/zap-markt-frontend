@@ -16,6 +16,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { NavLink } from "react-router-dom";
 import { grey } from "@mui/material/colors";
+import logo from "../../public/logo.png";
 
 type LayoutProps = {
   children: ReactNode;
@@ -65,7 +66,7 @@ export function Layout({ children }: LayoutProps) {
           marginTop={5}
         >
           <img
-            src="./logo.png"
+            src={logo}
             loading="lazy"
             width={280}
           />

@@ -10,6 +10,7 @@ import { UserConfiguration } from "../pages/UserConfiguration";
 import { Configurations } from "../pages/Configurations";
 import { AdminUserFormPage } from "../pages/AdminUserFormPage";
 import { Login } from "../pages/Login";
+import { SharedProducts } from "../pages/SharedProducts";
 
 export const router = createBrowserRouter([
   {
@@ -59,5 +60,9 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/produtos-compartilhados",
+    element: <SharedProducts />,
   },
 ]);

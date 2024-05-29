@@ -44,9 +44,6 @@ export const theme = createTheme({
               borderTopLeftRadius: 5,
               borderTopRightRadius: 5,
             }),
-          ...(ownerState.variant === "outlined" && {
-            backgroundColor: grey[300],
-          }),
         }),
       },
     },

@@ -6,7 +6,7 @@ const Configuration = {
     "type-enum": [
       2,
       "always",
-      ["build", "ci", "docs", "feat", "fix", "perf", "refactor", "style", "test"],
+      ["chore", "build", "ci", "docs", "feat", "fix", "perf", "refactor", "style", "test"],
     ],
   },
 };

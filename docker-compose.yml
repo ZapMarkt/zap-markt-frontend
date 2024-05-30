@@ -13,7 +13,7 @@ services:
       - "1433:1433"
 
   api-supermarket:
-    image: rsoar/api-supermarket:1.3
+    image: rsoar/api-supermarket:latest
     container_name: api-supermarket
     depends_on: 
       - db-supermarket

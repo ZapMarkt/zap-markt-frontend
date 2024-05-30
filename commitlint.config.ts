@@ -3,17 +3,11 @@ const Configuration = {
   parserPreset: "conventional-changelog-atom",
   formatter: "@commitlint/format",
   rules: {
-    "type-enum": [2, "always", ["foo"]],
-  },
-  ignores: [(commit) => commit === ""],
-  defaultIgnores: true,
-  prompt: {
-    messages: {},
-    questions: {
-      type: {
-        description: "please input type:",
-      },
-    },
+    "type-enum": [
+      2,
+      "always",
+      ["build", "ci", "docs", "feat", "fix", "perf", "refactor", "style", "test"],
+    ],
   },
 };
 

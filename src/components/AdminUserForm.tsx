@@ -1,5 +1,8 @@
 import {
+  Backdrop,
   Box,
+  Button,
+  CircularProgress,
   FormControl,
   Grid,
   IconButton,
@@ -9,137 +12,143 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { PhoneMask } from "../libs/imask/PhoneMask";
 import { ProfileUploadButton } from "./ProfileUploadButton";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useState } from "react";
+import { useAdminUserFormContainer } from "../hooks/useAdminUserFormContainer";
 
 export function AdminUserForm() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmationPassword, setShowConfirmationPassword] = useState(false);
+  const {
+    showPassword,
+    setShowPassword,
+    setRole,
+    register,
+    handleSubmit,
+    errors,
+    query,
+    mutation,
+    onSubmit,
+  } = useAdminUserFormContainer();
 
   return (
-    <form>
-      <Box
-        marginBottom={3.75}
-        marginTop={12.5}
-      >
-        <Typography
-          variant="h2"
-          fontSize={24}
-          fontWeight={600}
-          marginBottom={3.25}
-        >
-          Dados do usuário
-        </Typography>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Box
-          display={"flex"}
-          justifyContent={"center"}
           marginBottom={3.75}
+          marginTop={12.5}
         >
-          <ProfileUploadButton />
-        </Box>
-        <Grid
-          container
-          rowSpacing={2.5}
-          columnSpacing={5}
-        >
-          <Grid
-            item
-            xl={6}
+          <Typography
+            variant="h2"
+            fontSize={24}
+            fontWeight={600}
+            marginBottom={3.25}
           >
-            <TextField
-              label="Nome"
-              variant="filled"
-              size="small"
-              fullWidth
-            />
-          </Grid>
-          <Grid
-            item
-            xl={6}
+            Dados do usuário
+          </Typography>
+          <Box
+            display={"flex"}
+            justifyContent={"center"}
+            marginBottom={3.75}
           >
-            <TextField
-              label="Celular"
-              variant="filled"
-              size="small"
-              fullWidth
-              InputProps={{
-                inputComponent: PhoneMask as any,
-              }}
-            />
-          </Grid>
+            <ProfileUploadButton />
+          </Box>
           <Grid
-            item
-            xl={6}
+            container
+            rowSpacing={2.5}
+            columnSpacing={5}
+            marginBottom={3.75}
           >
-            <TextField
-              label="Email"
-              variant="filled"
-              size="small"
-              fullWidth
-            />
-          </Grid>
-          <Grid
-            item
-            xl={6}
-          >
-            <FormControl
-              fullWidth
-              size="small"
-              variant="filled"
+            <Grid
+              item
+              xl={6}
             >
-              <InputLabel>Cargo</InputLabel>
-              <Select>
-                <MenuItem value="administrador">Administrador</MenuItem>
-              </Select>
-            </FormControl>
+              <TextField
+                label="Nome"
+                variant="outlined"
+                fullWidth
+                {...register("name")}
+                error={!!errors.name}
+                color={!!errors.name ? "error" : "primary"}
+                helperText={errors.name?.message}
+              />
+            </Grid>
+            <Grid
+              item
+              xl={6}
+            >
+              <TextField
+                label="Email"
+                variant="outlined"
+                fullWidth
+                {...register("email")}
+                error={!!errors.email}
+                color={!!errors.email ? "error" : "primary"}
+                helperText={errors.email?.message}
+              />
+            </Grid>
+            <Grid
+              item
+              xl={6}
+            >
+              <FormControl
+                fullWidth
+                variant="outlined"
+              >
+                <InputLabel>Cargo</InputLabel>
+                <Select
+                  label="Cargo"
+                  onChange={(ev) => setRole(ev.target.value as number)}
+                >
+                  {query.data?.map((role) => (
+                    <MenuItem
+                      key={role.id}
+                      value={role.id}
+                    >
+                      {role.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid
+              item
+              xl={6}
+            >
+              <TextField
+                label="Senha"
+                variant="outlined"
+                fullWidth
+                type={showPassword ? "text" : "password"}
+                {...register("password")}
+                error={!!errors.password}
+                color={!!errors.password ? "error" : "primary"}
+                helperText={errors.password?.message}
+                InputProps={{
+                  endAdornment: (
+                    <IconButton onClick={() => setShowPassword((prev) => !prev)}>
+                      {showPassword ? <VisibilityIcon color="action" /> : <VisibilityOffIcon />}
+                    </IconButton>
+                  ),
+                }}
+              />
+            </Grid>
           </Grid>
-          <Grid
-            item
-            xl={6}
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            type="submit"
           >
-            <TextField
-              label="Senha"
-              variant="filled"
-              size="small"
-              fullWidth
-              type={showPassword ? "text" : "password"}
-              InputProps={{
-                endAdornment: (
-                  <IconButton onClick={() => setShowPassword((prev) => !prev)}>
-                    {showPassword ? <VisibilityIcon color="action" /> : <VisibilityOffIcon />}
-                  </IconButton>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid
-            item
-            xl={6}
-          >
-            <TextField
-              label="Senha"
-              variant="filled"
-              size="small"
-              fullWidth
-              type={showPassword ? "text" : "password"}
-              InputProps={{
-                endAdornment: (
-                  <IconButton onClick={() => setShowConfirmationPassword((prev) => !prev)}>
-                    {showConfirmationPassword ? (
-                      <VisibilityIcon color="action" />
-                    ) : (
-                      <VisibilityOffIcon />
-                    )}
-                  </IconButton>
-                ),
-              }}
-            />
-          </Grid>
-        </Grid>
-      </Box>
-    </form>
+            Salvar
+          </Button>
+        </Box>
+      </form>
+      <Backdrop
+        open={mutation.isPending}
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
+        <CircularProgress />
+      </Backdrop>
+    </>
   );
 }

@@ -8,6 +8,7 @@ import Tomate from '../../../../../assets/tomate.jpeg';
 import { Order, Product } from '../../../../../types/Order';
 import { formatCurrency } from '../../../../../utils/formatCurrency';
 import { formatQuantity } from '../../../../../utils/formatQuantity';
+import CancelProductModal from './CancelProductModal';
 import ChangeQuantityModal from './ChangeQuantityModal';
 
 interface DrawerProductListProps {
@@ -47,6 +48,8 @@ const DrawerProductList: React.FC<DrawerProductListProps> = ({
     selectedOrder?.status === 'Cancelado';
 
   const [openModalQuantify, setOpenModalQuantify] = useState(false);
+  const [openCancelProductModal, setOpenCancelProductModal] = useState(false);
+
   const handleOpenModalQuantify = () => {
     setOpenModalQuantify(true);
     setProductStates((prevState) =>
@@ -60,6 +63,20 @@ const DrawerProductList: React.FC<DrawerProductListProps> = ({
   };
 
   const handleCloseModalQuantify = () => setOpenModalQuantify(false);
+
+  const handleOpenCancelProductModal = () => {
+    setOpenCancelProductModal(true);
+    setProductStates((prevState) =>
+      Object.fromEntries(
+        Object.entries(prevState).map(([key, state]) => [
+          key,
+          { ...state, open: false },
+        ]),
+      ),
+    );
+  };
+
+  const handleCloseCancelProductModal = () => setOpenCancelProductModal(false);
 
   const handleClick = (
     event: React.MouseEvent<HTMLElement>,
@@ -187,7 +204,7 @@ const DrawerProductList: React.FC<DrawerProductListProps> = ({
                   gap: '10px',
                   color: '#909090',
                 }}
-                onClick={() => console.log(product.id)}
+                onClick={handleOpenCancelProductModal}
               >
                 <DeleteForeverOutlinedIcon />
                 <Typography
@@ -206,6 +223,10 @@ const DrawerProductList: React.FC<DrawerProductListProps> = ({
       <ChangeQuantityModal
         open={openModalQuantify}
         onClose={handleCloseModalQuantify}
+      />
+      <CancelProductModal
+        open={openCancelProductModal}
+        onClose={handleCloseCancelProductModal}
       />
     </Box>
   );

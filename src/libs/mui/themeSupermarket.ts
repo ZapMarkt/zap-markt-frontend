@@ -38,7 +38,7 @@ export const theme = createTheme({
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          backgroundColor: secondaryColor,
+          backgroundColor: primaryColor,
           padding: '12px 16px',
           fontSize: '14px',
           color: common.white,
@@ -47,7 +47,7 @@ export const theme = createTheme({
           letterSpacing: '0.05em',
         },
         arrow: {
-          color: secondaryColor,
+          color: primaryColor,
         },
       },
     },

@@ -1,7 +1,7 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PrintIcon from '@mui/icons-material/Print';
 import { Box, Button, Divider, IconButton, Typography } from '@mui/material';
-import { Order } from '../../../../../../types/Order';
+import { Order } from '../../../../../types/Order';
 
 interface DrawerHeaderProps {
   onClick: () => void;

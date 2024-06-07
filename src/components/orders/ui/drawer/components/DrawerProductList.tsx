@@ -212,7 +212,7 @@ const DrawerProductList: React.FC<DrawerProductListProps> = ({
                   fontSize={'18px'}
                   fontWeight={400}
                 >
-                  Cancela produto
+                  Cancelar produto
                 </Typography>
               </MenuItem>
             </Menu>

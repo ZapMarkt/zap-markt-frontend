@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { Order } from '../../../../../../types/Order';
+import { Order } from '../../../../../types/Order';
 import DrawerAdressDetails from './DrawerAdressDetails';
 import DrawerClientDetails from './DrawerClientDetails';
 import DrawerOrderDetails from './DrawerOrderDetails';

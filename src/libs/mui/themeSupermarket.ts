@@ -194,5 +194,12 @@ export const theme = createTheme({
         },
       },
     },
+    MuiAlert: {
+      styleOverrides: {
+        root: {
+          background: primaryColor,
+        },
+      },
+    },
   },
 });

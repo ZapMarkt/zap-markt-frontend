@@ -1,6 +1,6 @@
 import { Drawer } from '@mui/material';
 import React, { ReactNode } from 'react';
-import { Order } from '../../../../../types/Order';
+import { Order } from '../../../../types/Order';
 import DrawerActionButtons from './components/DrawerActionButtons';
 import DrawerHeader from './components/DrawerHeader';
 

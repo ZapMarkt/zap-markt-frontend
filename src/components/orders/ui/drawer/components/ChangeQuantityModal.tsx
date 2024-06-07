@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Dialog,
@@ -6,9 +7,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Snackbar,
   TextField,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface ChangeQuantityModalProps {
   open: boolean;
@@ -19,106 +21,146 @@ const ChangeQuantityModal: React.FC<ChangeQuantityModalProps> = ({
   open,
   onClose,
 }) => {
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
   const handleEditProductQuantify = () => {
     // TODO: Adicionar requisição para edição de quantidade
-    alert('Quantidade editada');
+
+    handleOpenSnackbar();
     onClose();
   };
+
+  const handleOpenSnackbar = () => {
+    setOpenSnackbar(true);
+  };
+
+  const handleCloseSnackbar = (
+    _event?: React.SyntheticEvent | Event,
+    reason?: string,
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
   return (
-    <Dialog
-      open={open}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
-      <DialogTitle
-        fontSize={24}
-        fontWeight={600}
-        maxWidth={596}
-        marginBottom={'4px'}
-        padding={'24px 24px 0 24px'}
-        id="alert-dialog-title"
+    <>
+      <Dialog
+        open={open}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
-        Edição de quantidade
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText
-          id="alert-dialog-description"
-          fontSize={18}
-          color={'#5F7880'}
-          marginBottom={'24px'}
+        <DialogTitle
+          fontSize={24}
+          fontWeight={600}
+          maxWidth={596}
+          marginBottom={'4px'}
+          padding={'24px 24px 0 24px'}
+          id="alert-dialog-title"
         >
-          Edite a quantidade de um produto sem precisa exclui-lo.
-        </DialogContentText>
-        <Box component="form" display={'flex'} gap={'20px'}>
-          <TextField
-            required
-            id="outlined-required"
-            label="Preço total"
-            defaultValue={'R$ 8,70'}
-            disabled
-            sx={{
-              background: '#D9D9D9',
-              border: '1px solid #5F7880',
-              borderRadius: '5px',
-              maxWidth: '264px',
-              '& input': {
+          Edição de quantidade
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            fontSize={18}
+            color={'#5F7880'}
+            marginBottom={'24px'}
+          >
+            Edite a quantidade de um produto sem precisa exclui-lo.
+          </DialogContentText>
+          <Box component="form" display={'flex'} gap={'20px'}>
+            <TextField
+              required
+              id="outlined-required"
+              label="Preço total"
+              defaultValue={'R$ 8,70'}
+              disabled
+              sx={{
                 background: '#D9D9D9',
-                color: 'primary',
-                fontWeight: 500,
-                fontSize: '18px',
-                WebkitTextFillColor: 'rgba(17, 11, 10, 0.65) !important',
-              },
-              '& .MuiFormLabel-root': {
-                color: 'rgba(17, 11, 10, 0.65)',
-                fontWeight: 600,
-              },
-            }}
-          />
-          <TextField
-            required
-            id="outlined-required"
-            label="Quantidade"
-            defaultValue={'1,200 Kg'}
-            sx={{
-              background: '#FFF',
-              border: '1px solid #5F7880',
-              borderRadius: '5px',
-              maxWidth: '264px',
-              '& input': {
-                color: 'primary.contrastText',
-                fontWeight: 500,
-                fontSize: '18px',
-              },
-              '& .MuiFormLabel-root': {
-                color: 'primary.contrastText',
-                fontWeight: 600,
+                border: '1px solid #5F7880',
+                borderRadius: '5px',
+                maxWidth: '264px',
+                '& input': {
+                  background: '#D9D9D9',
+                  color: 'primary',
+                  fontWeight: 500,
+                  fontSize: '18px',
+                  WebkitTextFillColor: 'rgba(17, 11, 10, 0.65) !important',
+                },
+                '& .MuiFormLabel-root': {
+                  color: 'rgba(17, 11, 10, 0.65)',
+                  fontWeight: 600,
+                },
+              }}
+            />
+            <TextField
+              required
+              id="outlined-required"
+              label="Quantidade"
+              defaultValue={'1,200 Kg'}
+              sx={{
                 background: '#FFF',
-              },
-            }}
-          />
-        </Box>
-      </DialogContent>
-      <DialogActions
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          gap: '20px',
-          padding: '0 24px 24px 24px',
-        }}
-      >
-        <Button size="lg" variant="secondary" fullWidth onClick={onClose}>
-          Voltar
-        </Button>
-        <Button
-          variant="primary"
-          fullWidth
-          size="lg"
-          onClick={handleEditProductQuantify}
+                border: '1px solid #5F7880',
+                borderRadius: '5px',
+                maxWidth: '264px',
+                '& input': {
+                  color: 'primary.contrastText',
+                  fontWeight: 500,
+                  fontSize: '18px',
+                },
+                '& .MuiFormLabel-root': {
+                  color: 'primary.contrastText',
+                  fontWeight: 600,
+                  background: '#FFF',
+                },
+              }}
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            gap: '20px',
+            padding: '0 24px 24px 24px',
+          }}
         >
-          Salvar
-        </Button>
-      </DialogActions>
-    </Dialog>
+          <Button size="lg" variant="secondary" fullWidth onClick={onClose}>
+            Voltar
+          </Button>
+          <Button
+            variant="primary"
+            fullWidth
+            size="lg"
+            onClick={handleEditProductQuantify}
+          >
+            Salvar
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={2000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          severity="success"
+          variant="filled"
+          sx={{
+            width: '100%',
+            fontSize: '18px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: ' center',
+          }}
+          onClose={handleCloseSnackbar}
+        >
+          Quantidade alterada com sucesso!
+        </Alert>
+      </Snackbar>
+    </>
   );
 };
 

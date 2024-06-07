@@ -1,12 +1,15 @@
-import { Box, Button, IconButton, TextField } from "@mui/material";
-import { useState } from "react";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import logo from "../../public/logo-dark.png";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginFormSchema } from "../libs/zod/LoginFormSchema";
-import { LoginFormSchema } from "../types/LoginFormSchema";
+import { zodResolver } from '@hookform/resolvers/zod';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Box, Button, IconButton, TextField } from '@mui/material';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import logo from '../../public/logo-dark.png';
+import { loginFormSchema } from '../libs/zod/LoginFormSchema';
+import { authService } from '../services/AuthService';
+import { LoginFormSchema } from '../types/LoginFormSchema';
 
 export function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,8 +22,17 @@ export function Login() {
     resolver: zodResolver(loginFormSchema),
   });
 
-  function onSubmit(inputData: LoginFormSchema) {
-    console.log(inputData);
+  const mutation = useMutation({
+    mutationFn: authService.authenticateAdminUser,
+    onSuccess: async () => {
+      const response = await axios.get('http://localhost:8080/api/role/me');
+      console.log(response.data);
+    },
+  });
+
+  async function onSubmit(data: LoginFormSchema) {
+    await mutation.mutateAsync(data);
+    console.log(mutation.data);
   }
 
   return (
@@ -29,15 +41,15 @@ export function Login() {
       justifyContent="center"
       alignItems="center"
       sx={{
-        width: "100%",
-        height: "98dvh",
+        width: '100%',
+        height: '98dvh',
       }}
     >
       <Box
         component="form"
         onSubmit={handleSubmit(onSubmit)}
         sx={{
-          width: "642px",
+          width: '642px',
         }}
         display="flex"
         flexDirection="column"
@@ -45,36 +57,34 @@ export function Login() {
         gap={1.5}
       >
         <Box marginBottom={5.75}>
-          <img
-            src={logo}
-            loading="lazy"
-            width="500px"
-          />
+          <img src={logo} loading="lazy" width="500px" />
         </Box>
         <TextField
           label="Email"
-          variant="filled"
+          variant="outlined"
           fullWidth
-          size="small"
-          {...register("email")}
+          {...register('email')}
           error={!!errors.email}
-          color={!!errors.email ? "error" : "success"}
+          color={!!errors.email ? 'error' : 'primary'}
           helperText={errors.email?.message}
         />
         <TextField
           label="Senha"
-          variant="filled"
+          variant="outlined"
           fullWidth
-          type={showPassword ? "text" : "password"}
-          size="small"
-          {...register("password")}
+          type={showPassword ? 'text' : 'password'}
+          {...register('password')}
           error={!!errors.password}
-          color={!!errors.password ? "error" : "success"}
+          color={!!errors.password ? 'error' : 'primary'}
           helperText={errors.password?.message}
           InputProps={{
             endAdornment: (
               <IconButton onClick={() => setShowPassword((prev) => !prev)}>
-                {showPassword ? <VisibilityIcon color="action" /> : <VisibilityOffIcon />}
+                {showPassword ? (
+                  <VisibilityIcon color="action" />
+                ) : (
+                  <VisibilityOffIcon />
+                )}
               </IconButton>
             ),
           }}
@@ -83,6 +93,7 @@ export function Login() {
           variant="contained"
           color="primary"
           type="submit"
+          size="large"
           fullWidth
         >
           Entrar

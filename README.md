@@ -1,6 +1,6 @@
 # ZapMarkt
 
-Não faça merge nesta branch, branch para desenvolvimento. Faça os merges das demais branchs sempre neste branch
+Faça merge nesta branch, branch para desenvolvimento. Faça os merges das demais branchs sempre neste branch
 
 ## Como Inicializar o Projeto
 1. Instale as dependências

@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFormSchema } from "../libs/zod/LoginFormSchema";
 import { LoginFormSchema } from "../types/LoginFormSchema";
+import { useMutation } from "@tanstack/react-query";
+import { authService } from "../services/AuthService";
+import axios from "axios";
 
 export function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,8 +22,17 @@ export function Login() {
     resolver: zodResolver(loginFormSchema),
   });
 
-  function onSubmit(inputData: LoginFormSchema) {
-    console.log(inputData);
+  const mutation = useMutation({
+    mutationFn: authService.authenticateAdminUser,
+    onSuccess: async () => {
+      const response = await axios.get("http://localhost:8080/api/role/me");
+      console.log(response.data);
+    },
+  });
+
+  async function onSubmit(data: LoginFormSchema) {
+    await mutation.mutateAsync(data);
+    console.log(mutation.data);
   }
 
   return (
@@ -53,23 +65,21 @@ export function Login() {
         </Box>
         <TextField
           label="Email"
-          variant="filled"
+          variant="outlined"
           fullWidth
-          size="small"
           {...register("email")}
           error={!!errors.email}
-          color={!!errors.email ? "error" : "success"}
+          color={!!errors.email ? "error" : "primary"}
           helperText={errors.email?.message}
         />
         <TextField
           label="Senha"
-          variant="filled"
+          variant="outlined"
           fullWidth
           type={showPassword ? "text" : "password"}
-          size="small"
           {...register("password")}
           error={!!errors.password}
-          color={!!errors.password ? "error" : "success"}
+          color={!!errors.password ? "error" : "primary"}
           helperText={errors.password?.message}
           InputProps={{
             endAdornment: (
@@ -83,6 +93,7 @@ export function Login() {
           variant="contained"
           color="primary"
           type="submit"
+          size="large"
           fullWidth
         >
           Entrar

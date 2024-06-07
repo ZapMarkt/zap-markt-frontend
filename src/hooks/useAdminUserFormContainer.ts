@@ -39,9 +39,7 @@ export function useAdminUserFormContainer() {
   return {
     showPassword,
     setShowPassword,
-    role,
     setRole,
-    navigate,
     register,
     handleSubmit,
     errors,

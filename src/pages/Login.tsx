@@ -1,15 +1,15 @@
-import { Box, Button, IconButton, TextField } from "@mui/material";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import logo from "../../public/logo-dark.png";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginFormSchema } from "../libs/zod/LoginFormSchema";
-import { LoginFormSchema } from "../types/LoginFormSchema";
+import { Box, Button, IconButton, TextField } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
-import { authService } from "../services/AuthService";
-import axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import logo from "../../public/logo-dark.png";
+import { loginFormSchema } from "../libs/zod/LoginFormSchema";
+import { adminService } from "../services/AdminService";
+import { rolesService } from "../services/RolesServices";
+import { LoginFormSchema } from "../types/LoginFormSchema";
 
 export function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,16 +23,15 @@ export function Login() {
   });
 
   const mutation = useMutation({
-    mutationFn: authService.authenticateAdminUser,
+    mutationFn: adminService.authenticate,
     onSuccess: async () => {
-      const response = await axios.get("http://localhost:8080/api/role/me");
-      console.log(response.data);
+      const response = await rolesService.getMyInfo();
+      console.log(response);
     },
   });
 
   async function onSubmit(data: LoginFormSchema) {
     await mutation.mutateAsync(data);
-    console.log(mutation.data);
   }
 
   return (
@@ -57,11 +56,7 @@ export function Login() {
         gap={1.5}
       >
         <Box marginBottom={5.75}>
-          <img
-            src={logo}
-            loading="lazy"
-            width="500px"
-          />
+          <img src={logo} loading="lazy" width="500px" />
         </Box>
         <TextField
           label="Email"
@@ -84,7 +79,11 @@ export function Login() {
           InputProps={{
             endAdornment: (
               <IconButton onClick={() => setShowPassword((prev) => !prev)}>
-                {showPassword ? <VisibilityIcon color="action" /> : <VisibilityOffIcon />}
+                {showPassword ? (
+                  <VisibilityIcon color="action" />
+                ) : (
+                  <VisibilityOffIcon />
+                )}
               </IconButton>
             ),
           }}

@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import logo from "../../public/logo-dark.png";
 import { loginFormSchema } from "../libs/zod/LoginFormSchema";
 import { adminService } from "../services/AdminService";
-import { rolesService } from "../services/RolesServices";
 import { LoginFormSchema } from "../types/LoginFormSchema";
 
 export function Login() {
@@ -24,10 +23,6 @@ export function Login() {
 
   const mutation = useMutation({
     mutationFn: adminService.authenticate,
-    onSuccess: async () => {
-      const response = await rolesService.getMyInfo();
-      console.log(response);
-    },
   });
 
   async function onSubmit(data: LoginFormSchema) {
@@ -56,7 +51,11 @@ export function Login() {
         gap={1.5}
       >
         <Box marginBottom={5.75}>
-          <img src={logo} loading="lazy" width="500px" />
+          <img
+            src={logo}
+            loading="lazy"
+            width="500px"
+          />
         </Box>
         <TextField
           label="Email"
@@ -79,11 +78,7 @@ export function Login() {
           InputProps={{
             endAdornment: (
               <IconButton onClick={() => setShowPassword((prev) => !prev)}>
-                {showPassword ? (
-                  <VisibilityIcon color="action" />
-                ) : (
-                  <VisibilityOffIcon />
-                )}
+                {showPassword ? <VisibilityIcon color="action" /> : <VisibilityOffIcon />}
               </IconButton>
             ),
           }}

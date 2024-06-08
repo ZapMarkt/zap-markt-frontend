@@ -6,7 +6,7 @@ type SignIn = {
   password: string;
 };
 
-type SignInResponse = {
+export type SignInResponse = {
   uSession: string;
   uIdentifier: string;
 };

@@ -11,58 +11,107 @@ import { Configurations } from "../pages/Configurations";
 import { AdminUserFormPage } from "../pages/AdminUserFormPage";
 import { Login } from "../pages/Login";
 import { SharedProducts } from "../pages/SharedProducts";
+import { PrivateRoute } from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
     index: true,
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/supermercados",
-    element: <Supermarkets />,
+    element: (
+      <PrivateRoute>
+        <Supermarkets />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/supermercados/dados-cadastrais",
-    element: <SupermarketFormPage />,
+    element: (
+      <PrivateRoute>
+        <SupermarketFormPage />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/supermercados/plano-assinatura",
-    element: <SubscriptionPlan />,
+    element: (
+      <PrivateRoute>
+        <SubscriptionPlan />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/supermercados/plano-assinatura",
-    element: <SubscriptionPlan />,
+    element: (
+      <PrivateRoute>
+        <SubscriptionPlan />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/supermercados/configuracoes",
-    element: <SupermarketConfiguration />,
+    element: (
+      <PrivateRoute>
+        <SupermarketConfiguration />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/usuarios",
-    element: <Users />,
+    element: (
+      <PrivateRoute>
+        <Users />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/usuario/1",
-    element: <UserDetails />,
+    element: (
+      <PrivateRoute>
+        <UserDetails />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/usuario/1/configuracoes",
-    element: <UserConfiguration />,
+    element: (
+      <PrivateRoute>
+        <UserConfiguration />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/configuracoes",
-    element: <Configurations />,
+    element: (
+      <PrivateRoute>
+        <Configurations />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/novo-usuario-administrador",
-    element: <AdminUserFormPage />,
+    element: (
+      <PrivateRoute>
+        <AdminUserFormPage />,
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/produtos-compartilhados",
+    element: (
+      <PrivateRoute>
+        <SharedProducts />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/login",
     element: <Login />,
-  },
-  {
-    path: "/produtos-compartilhados",
-    element: <SharedProducts />,
   },
 ]);

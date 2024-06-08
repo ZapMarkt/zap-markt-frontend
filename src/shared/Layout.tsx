@@ -17,6 +17,9 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { NavLink } from "react-router-dom";
 import { grey } from "@mui/material/colors";
 import logo from "../../public/logo.png";
+import { useMutation } from "@tanstack/react-query";
+import { adminService } from "../services/AdminService";
+import { useUserSessionStore } from "../stores/userSessionStore";
 
 type LayoutProps = {
   children: ReactNode;
@@ -47,6 +50,9 @@ const menuLinks = [
 ];
 
 export function Layout({ children }: LayoutProps) {
+  const mutation = useMutation({ mutationFn: adminService.signOut });
+  const userSession = useUserSessionStore((state) => state.userSession);
+
   return (
     <Box display={"flex"}>
       <Drawer

@@ -22,7 +22,7 @@ export function useAdminUserFormContainer() {
     formState: { errors },
   } = useForm<AdminUserFormSchema>({ resolver: zodResolver(adminUserFormSchema) });
 
-  const query = useQuery({ queryKey: ["roles"], queryFn: rolesService.getRoles });
+  const query = useQuery({ queryKey: ["roles"], queryFn: rolesService.getAll });
 
   const mutation = useMutation({
     mutationFn: adminUserService.createAdminUser,
@@ -39,9 +39,7 @@ export function useAdminUserFormContainer() {
   return {
     showPassword,
     setShowPassword,
-    role,
     setRole,
-    navigate,
     register,
     handleSubmit,
     errors,

@@ -1,11 +1,13 @@
-import { Box, Button, IconButton, TextField } from "@mui/material";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import logo from "../../public/logo-dark.png";
+import { Box, Button, IconButton, TextField } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import logo from "../../public/logo-dark.png";
 import { loginFormSchema } from "../libs/zod/LoginFormSchema";
+import { adminService } from "../services/AdminService";
 import { LoginFormSchema } from "../types/LoginFormSchema";
 
 export function Login() {
@@ -19,8 +21,12 @@ export function Login() {
     resolver: zodResolver(loginFormSchema),
   });
 
-  function onSubmit(inputData: LoginFormSchema) {
-    console.log(inputData);
+  const mutation = useMutation({
+    mutationFn: adminService.authenticate,
+  });
+
+  async function onSubmit(data: LoginFormSchema) {
+    await mutation.mutateAsync(data);
   }
 
   return (
@@ -53,23 +59,21 @@ export function Login() {
         </Box>
         <TextField
           label="Email"
-          variant="filled"
+          variant="outlined"
           fullWidth
-          size="small"
           {...register("email")}
           error={!!errors.email}
-          color={!!errors.email ? "error" : "success"}
+          color={!!errors.email ? "error" : "primary"}
           helperText={errors.email?.message}
         />
         <TextField
           label="Senha"
-          variant="filled"
+          variant="outlined"
           fullWidth
           type={showPassword ? "text" : "password"}
-          size="small"
           {...register("password")}
           error={!!errors.password}
-          color={!!errors.password ? "error" : "success"}
+          color={!!errors.password ? "error" : "primary"}
           helperText={errors.password?.message}
           InputProps={{
             endAdornment: (
@@ -83,6 +87,7 @@ export function Login() {
           variant="contained"
           color="primary"
           type="submit"
+          size="large"
           fullWidth
         >
           Entrar

@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import { AxiosService } from "./AxiosService";
+import { Admin } from "../types/Admin/Admin";
 
 type SignIn = {
   email: string;
@@ -18,6 +19,11 @@ class AdminService extends AxiosService {
       data
     );
 
+    return response.data;
+  };
+
+  getAll = async () => {
+    const response: AxiosResponse<Admin[]> = await this.httpClient.get("/admin");
     return response.data;
   };
 }

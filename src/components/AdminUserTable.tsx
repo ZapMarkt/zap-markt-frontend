@@ -10,11 +10,14 @@ import {
   TextField,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { formatCellPhone } from "../utils/formatCellPhone";
 import SearchIcon from "@mui/icons-material/Search";
 import PeopleIcon from "@mui/icons-material/People";
+import { useQuery } from "@tanstack/react-query";
+import { adminService } from "../services/AdminService";
 
 export function AdminUserTable() {
+  const query = useQuery({ queryFn: adminService.getAll, queryKey: ["all-admins"] });
+
   return (
     <>
       <Box
@@ -47,19 +50,20 @@ export function AdminUserTable() {
           <TableHead>
             <TableCell>Nome</TableCell>
             <TableCell>Email</TableCell>
-            <TableCell>Celular</TableCell>
             <TableCell>Cargo</TableCell>
           </TableHead>
           <TableBody>
-            <TableRow
-              component={Link}
-              to="/usuario-administrador/configuracoes/1"
-            >
-              <TableCell>Christofher Lucas</TableCell>
-              <TableCell>christofher@gmail.com</TableCell>
-              <TableCell>{formatCellPhone("8291485912")}</TableCell>
-              <TableCell>Administrador</TableCell>
-            </TableRow>
+            {query.data?.map((userAdmin) => (
+              <TableRow
+                key={userAdmin.uuid}
+                component={Link}
+                to={`/usuario-administrador/configuracoes/${userAdmin.uuid}`}
+              >
+                <TableCell>{userAdmin.name}</TableCell>
+                <TableCell>{userAdmin.email}</TableCell>
+                <TableCell>{userAdmin.role.name}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

@@ -22,6 +22,8 @@ module.exports = {
           secondary: '#FFD8AA',
           error: '#BF1818',
           black: '#110B0A',
+          gray1: '#EAECEA',
+          gray2: '#DADADA',
         },
         statusMkt: {
           pendent: '#EEBE10',

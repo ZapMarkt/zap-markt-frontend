@@ -1,6 +1,7 @@
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { CPFMask } from "../libs/imask/CPFMask";
 import { PhoneMask } from "../libs/imask/PhoneMask";
+import { TextField } from "./TextField";
 
 export function UserForm() {
   return (
@@ -24,10 +25,7 @@ export function UserForm() {
             xl={6}
           >
             <TextField
-              label="Nome"
-              variant="filled"
-              size="small"
-              fullWidth
+              placeholder="Nome"
               disabled
             />
           </Grid>
@@ -36,14 +34,8 @@ export function UserForm() {
             xl={6}
           >
             <TextField
-              label="CPF"
-              variant="filled"
-              size="small"
-              fullWidth
+              placeholder="CPF"
               disabled
-              InputProps={{
-                inputComponent: CPFMask as any,
-              }}
             />
           </Grid>
         </Grid>
@@ -67,13 +59,7 @@ export function UserForm() {
             xl={6}
           >
             <TextField
-              label="Celular"
-              variant="filled"
-              size="small"
-              fullWidth
-              InputProps={{
-                inputComponent: PhoneMask as any,
-              }}
+              placeholder="Celular"
               disabled
             />
           </Grid>
@@ -82,10 +68,7 @@ export function UserForm() {
             xl={6}
           >
             <TextField
-              label="Email"
-              variant="filled"
-              size="small"
-              fullWidth
+              placeholder="Email"
               disabled
             />
           </Grid>
@@ -94,10 +77,7 @@ export function UserForm() {
             xl={6}
           >
             <TextField
-              label="Origem do cadastro"
-              variant="filled"
-              size="small"
-              fullWidth
+              placeholder="Origem do cadastro"
               disabled
             />
           </Grid>

@@ -1,15 +1,13 @@
+import Layout from '@/common/components/supermarket/Layout';
 import { Box, Typography } from '@mui/material';
-import Header from '../../components/header/Header';
-import LayoutSupermarket from '../../shared/LayoutSupermarket';
 
 const DashboardSupermarketPage = () => {
   return (
-    <LayoutSupermarket>
-      <Header title="Dashboard" />
+    <Layout title="Produtos">
       <Box sx={{ padding: '136px 30px 33px 124px' }}>
-        <Typography variant="h1">Home</Typography>
+        <Typography variant="h1">Dashboard</Typography>
       </Box>
-    </LayoutSupermarket>
+    </Layout>
   );
 };
 

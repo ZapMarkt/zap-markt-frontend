@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from "react";
 import {
   Avatar,
   Box,
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -13,11 +12,12 @@ import {
   TableRow,
   TextField,
 } from "@mui/material";
-import StoreIcon from "@mui/icons-material/Store";
 import { formatCnpj } from "../utils/formatCnpj";
 import SearchIcon from "@mui/icons-material/Search";
 import { Supermarket } from "../types/Supermarket";
+import { RiShoppingBasket2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { Button } from "./Button";
 
 export function SupermarketTable() {
   const [supermarkets, setSupermarkets] = useState<Supermarket[]>([]);
@@ -58,15 +58,9 @@ export function SupermarketTable() {
             endAdornment: <SearchIcon />,
           }}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<StoreIcon />}
-          component={Link}
-          to="/supermercados/dados-cadastrais"
-        >
-          Novo supermercado
-        </Button>
+        <Link to="/supermercados/dados-cadastrais">
+          <Button startIcon={() => <RiShoppingBasket2Fill size={24} />}>Novo supermercado</Button>
+        </Link>
       </Box>
       <TableContainer>
         <Table>

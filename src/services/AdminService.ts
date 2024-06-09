@@ -18,13 +18,17 @@ class AdminService extends AxiosService {
       "/admin/sign-in",
       data
     );
-
+  
     return response.data;
   };
 
   getAll = async () => {
     const response: AxiosResponse<Admin[]> = await this.httpClient.get("/admin");
     return response.data;
+  };
+
+  signOut = async () => {
+    await this.httpClient.post("/admin/sign-out");
   };
 }
 

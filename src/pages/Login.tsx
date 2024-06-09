@@ -9,9 +9,14 @@ import logo from "../../public/logo-dark.png";
 import { loginFormSchema } from "../libs/zod/LoginFormSchema";
 import { adminService } from "../services/AdminService";
 import { LoginFormSchema } from "../types/LoginFormSchema";
+import { useUserSessionStore } from "../stores/userSessionStore";
+import { useNavigate } from "react-router-dom";
+import { Loading } from "../common/components/Loading";
 
 export function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const setUserSession = useUserSessionStore((state) => state.setUserSession);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -23,6 +28,11 @@ export function Login() {
 
   const mutation = useMutation({
     mutationFn: adminService.authenticate,
+    onSuccess: (data) => {
+      localStorage.setItem("userSession", data.uSession);
+      setUserSession(data.uSession);
+      navigate("/");
+    },
   });
 
   async function onSubmit(data: LoginFormSchema) {
@@ -61,6 +71,7 @@ export function Login() {
           label="Email"
           variant="outlined"
           fullWidth
+          disabled={mutation.isPending}
           {...register("email")}
           error={!!errors.email}
           color={!!errors.email ? "error" : "primary"}
@@ -70,6 +81,7 @@ export function Login() {
           label="Senha"
           variant="outlined"
           fullWidth
+          disabled={mutation.isPending}
           type={showPassword ? "text" : "password"}
           {...register("password")}
           error={!!errors.password}
@@ -90,7 +102,7 @@ export function Login() {
           size="large"
           fullWidth
         >
-          Entrar
+          {mutation.isPending ? <Loading /> : "Entrar"}
         </Button>
       </Box>
     </Box>

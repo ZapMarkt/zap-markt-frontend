@@ -22,6 +22,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "../libs/mui/themeSupermarket.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

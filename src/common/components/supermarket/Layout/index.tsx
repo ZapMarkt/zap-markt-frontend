@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
     <div className="flex">
       <SideNav />
       <Header title={title} />
-      {children}
+      <div className="mt-[103px] p-[30px]">{children}</div>
     </div>
   );
 };

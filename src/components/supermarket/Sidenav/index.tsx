@@ -1,5 +1,11 @@
 import Logo from '@/assets/logo.svg';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
+import { TooltipProvider } from '@radix-ui/react-tooltip';
 import { FaMapMarkedAlt, FaShoppingCart } from 'react-icons/fa';
 import { HiDesktopComputer } from 'react-icons/hi';
 import { IoSettingsSharp } from 'react-icons/io5';
@@ -26,31 +32,31 @@ const SideNav = () => {
       active: pathname === '/pedidos',
     },
     {
-      primary: 'Products',
+      primary: 'Produtos',
       to: '/produtos',
       icon: <FaShoppingCart className="h-8 w-8" />,
       active: pathname === '/produtos',
     },
     {
-      primary: 'Delivery',
+      primary: 'Entrega',
       to: '/entrega',
       icon: <FaMapMarkedAlt className="h-8 w-8" />,
       active: pathname === '/entrega',
     },
     {
-      primary: 'Order History',
+      primary: 'Histórico de pedidos',
       to: '/historico-de-pedidos',
       icon: <RiBookmark2Fill className="h-8 w-8" />,
       active: pathname === '/historico-de-pedidos',
     },
     {
-      primary: 'Settings',
+      primary: 'Configurações',
       to: '/configuracoes',
       icon: <IoSettingsSharp className="h-8 w-8" />,
       active: pathname === '/configuracoes',
     },
     {
-      primary: 'Exit',
+      primary: 'Sair',
       to: '/login',
       icon: <MdExitToApp className="h-8 w-8" />,
       active: pathname === '/login',
@@ -65,15 +71,28 @@ const SideNav = () => {
           </Link>
         </li>
         {menuLinks.map((link) => (
-          <Link to={link.to}>
-            <SidenavItem
-              icon={link.icon}
-              className={cn(
-                link.active &&
-                  'bg-customMkt-secondary text-customMkt-primary border-customMkt-primary',
-              )}
-            />
-          </Link>
+          <TooltipProvider key={link.primary} delayDuration={0}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link to={link.to}>
+                  <SidenavItem
+                    icon={link.icon}
+                    className={cn(
+                      link.active &&
+                        'bg-customMkt-secondary text-customMkt-primary border-customMkt-primary',
+                    )}
+                  />
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent
+                className="bg-customMkt-primary "
+                sideOffset={5}
+                side="right"
+              >
+                <p className="text-white font-normal">{link.primary}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         ))}
       </ul>
     </nav>

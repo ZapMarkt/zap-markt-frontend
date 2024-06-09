@@ -1,26 +1,26 @@
-import { createBrowserRouter } from "react-router-dom";
-import { Dashboard } from "../pages/Dashboard";
-import { Supermarkets } from "../pages/Supermarkets";
-import { SupermarketFormPage } from "../pages/SupermarketFormPage";
-import { SubscriptionPlan } from "../pages/SubscriptionPlan";
-import { SupermarketConfiguration } from "../pages/SupermarketConfiguration";
-import { Users } from "../pages/Users";
-import { UserDetails } from "../pages/UserDetails";
-import { UserConfiguration } from "../pages/UserConfiguration";
-import { Configurations } from "../pages/Configurations";
-import { AdminUserFormPage } from "../pages/AdminUserFormPage";
-import { Login } from "../pages/Login";
-import { SharedProducts } from "../pages/SharedProducts";
-import { PrivateRoute } from "./PrivateRoute";
-import DashboardSupermarketPage from "../pages/dashboard/Dashboard";
-import AcceptedOrders from "../pages/order/AcceptedOrders";
-import AllOrdersTab from "../pages/order/AllOrders";
-import CancelledOrders from "../pages/order/CancelledOrders";
-import CompletedOrders from "../pages/order/CompletedOrders";
-import InPreparationOrders from "../pages/order/InPreparationOrders";
-import OutForDeliveryOrders from "../pages/order/OutForDeliveryOrders";
-import PendingOrders from "../pages/order/PendingOrders";
-import ProductsPage from "../pages/product/Products";
+import ProductsPage from '@/pages/supermarket/ProductsPage';
+import { createBrowserRouter } from 'react-router-dom';
+import { AdminUserFormPage } from '../pages/AdminUserFormPage';
+import { Configurations } from '../pages/Configurations';
+import { Dashboard } from '../pages/Dashboard';
+import { Login } from '../pages/Login';
+import { SharedProducts } from '../pages/SharedProducts';
+import { SubscriptionPlan } from '../pages/SubscriptionPlan';
+import { SupermarketConfiguration } from '../pages/SupermarketConfiguration';
+import { SupermarketFormPage } from '../pages/SupermarketFormPage';
+import { Supermarkets } from '../pages/Supermarkets';
+import { UserConfiguration } from '../pages/UserConfiguration';
+import { UserDetails } from '../pages/UserDetails';
+import { Users } from '../pages/Users';
+import DashboardSupermarketPage from '../pages/dashboard/Dashboard';
+import AcceptedOrders from '../pages/order/AcceptedOrders';
+import AllOrdersTab from '../pages/order/AllOrders';
+import CancelledOrders from '../pages/order/CancelledOrders';
+import CompletedOrders from '../pages/order/CompletedOrders';
+import InPreparationOrders from '../pages/order/InPreparationOrders';
+import OutForDeliveryOrders from '../pages/order/OutForDeliveryOrders';
+import PendingOrders from '../pages/order/PendingOrders';
+import { PrivateRoute } from './PrivateRoute';
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/supermercados",
+    path: '/supermercados',
     element: (
       <PrivateRoute>
         <Supermarkets />,
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/supermercados/dados-cadastrais",
+    path: '/supermercados/dados-cadastrais',
     element: (
       <PrivateRoute>
         <SupermarketFormPage />,
@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/supermercados/plano-assinatura",
+    path: '/supermercados/plano-assinatura',
     element: (
       <PrivateRoute>
         <SubscriptionPlan />,
@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/supermercados/plano-assinatura",
+    path: '/supermercados/plano-assinatura',
     element: (
       <PrivateRoute>
         <SubscriptionPlan />,
@@ -64,7 +64,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/supermercados/configuracoes",
+    path: '/supermercados/configuracoes',
     element: (
       <PrivateRoute>
         <SupermarketConfiguration />,
@@ -72,7 +72,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/usuarios",
+    path: '/usuarios',
     element: (
       <PrivateRoute>
         <Users />,
@@ -80,7 +80,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/usuario/1",
+    path: '/usuario/1',
     element: (
       <PrivateRoute>
         <UserDetails />,
@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/usuario/1/configuracoes",
+    path: '/usuario/1/configuracoes',
     element: (
       <PrivateRoute>
         <UserConfiguration />,
@@ -96,7 +96,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/configuracoes",
+    path: '/configuracoes',
     element: (
       <PrivateRoute>
         <Configurations />,
@@ -104,7 +104,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/novo-usuario-administrador",
+    path: '/novo-usuario-administrador',
     element: (
       <PrivateRoute>
         <AdminUserFormPage />,
@@ -112,7 +112,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/produtos-compartilhados",
+    path: '/produtos-compartilhados',
     element: (
       <PrivateRoute>
         <SharedProducts />,
@@ -120,95 +120,95 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/dashboardadmin", // alterar depois para a rota a ser usada em produção
+    path: '/dashboardadmin', // alterar depois para a rota a ser usada em produção
     element: <Dashboard />,
   },
 
   {
-    path: "/supermercados",
+    path: '/supermercados',
     element: <Supermarkets />,
   },
   {
-    path: "/supermercados/dados-cadastrais",
+    path: '/supermercados/dados-cadastrais',
     element: <SupermarketFormPage />,
   },
   {
-    path: "/supermercados/plano-assinatura",
+    path: '/supermercados/plano-assinatura',
     element: <SubscriptionPlan />,
   },
   {
-    path: "/supermercados/plano-assinatura",
+    path: '/supermercados/plano-assinatura',
     element: <SubscriptionPlan />,
   },
   {
-    path: "/supermercados/configuracoes",
+    path: '/supermercados/configuracoes',
     element: <SupermarketConfiguration />,
   },
   {
-    path: "/usuarios",
+    path: '/usuarios',
     element: <Users />,
   },
   {
-    path: "/usuario/1",
+    path: '/usuario/1',
     element: <UserDetails />,
   },
   {
-    path: "/usuario/1/configuracoes",
+    path: '/usuario/1/configuracoes',
     element: <UserConfiguration />,
   },
   {
-    path: "/configuracoes",
+    path: '/configuracoes',
     element: <Configurations />,
   },
   {
-    path: "/novo-usuario-administrador",
+    path: '/novo-usuario-administrador',
     element: <AdminUserFormPage />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/produtos-compartilhados",
+    path: '/produtos-compartilhados',
     element: <SharedProducts />,
   },
 
   // supermarket routes
 
   {
-    path: "/dashboarduser", // alterar depois para a rota a ser usada em produção
+    path: '/dashboarduser', // alterar depois para a rota a ser usada em produção
     element: <DashboardSupermarketPage />,
   },
   {
-    path: "/pedidos",
+    path: '/pedidos',
     element: <AllOrdersTab />,
   },
   {
-    path: "/pedidos/pendentes",
+    path: '/pedidos/pendentes',
     element: <PendingOrders />,
   },
   {
-    path: "/pedidos/aceitos",
+    path: '/pedidos/aceitos',
     element: <AcceptedOrders />,
   },
   {
-    path: "/pedidos/separacao",
+    path: '/pedidos/separacao',
     element: <InPreparationOrders />,
   },
   {
-    path: "/pedidos/rota-de-entrega",
+    path: '/pedidos/rota-de-entrega',
     element: <OutForDeliveryOrders />,
   },
   {
-    path: "/pedidos/concluido",
+    path: '/pedidos/concluido',
     element: <CompletedOrders />,
   },
   {
-    path: "/pedidos/cancelado",
+    path: '/pedidos/cancelado',
     element: <CancelledOrders />,
   },
   {
-    path: "/produtos",
+    path: '/produtos',
     element: <ProductsPage />,
   },
 ]);

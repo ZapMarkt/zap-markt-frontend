@@ -1,19 +1,19 @@
 import {
   Box,
-  Button,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
-import PeopleIcon from "@mui/icons-material/People";
 import { useQuery } from "@tanstack/react-query";
 import { adminService } from "../services/AdminService";
+import { IoSearch } from "react-icons/io5";
+import { Button } from "./Button";
+import { IoMdPeople } from "react-icons/io";
+import { TextField } from "./TextField";
 
 export function AdminUserTable() {
   const query = useQuery({ queryFn: adminService.getAll, queryKey: ["all-admins"] });
@@ -28,22 +28,12 @@ export function AdminUserTable() {
         marginBottom={3.75}
       >
         <TextField
-          variant="outlined"
-          size="small"
-          placeholder="Pesquisar por usuários administradores"
-          InputProps={{
-            endAdornment: <SearchIcon />,
-          }}
+          placeholder="Buscar por produtos"
+          endIcon={() => <IoSearch size={24} />}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<PeopleIcon />}
-          component={Link}
-          to="/novo-usuario-administrador"
-        >
-          Novo usuário administrador
-        </Button>
+        <Link to="/novo-usuario-administrador">
+          <Button startIcon={() => <IoMdPeople size={24} />}>Novo usuário administrador</Button>
+        </Link>
       </Box>
       <TableContainer>
         <Table>

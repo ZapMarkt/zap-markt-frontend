@@ -1,4 +1,4 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import { BackgroundUploadButton } from "./BackgroundUploadButton";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,8 +6,8 @@ import { SubscriptionPlanFormSchema } from "../libs/zod/SubscriptionPlanFormShem
 import { ISubscriptionPlanFormSchema } from "../types/ISubscriptionPlanFormSchema";
 import { DatePicker } from "./DatePicker";
 import dayjs from "dayjs";
-import { CurrencyMask } from "../libs/imask/CurrencyMask";
 import { parseCurrency } from "../utils/parseCurrency";
+import { TextField } from "./TextField";
 
 export function SubscriptionPlanForm() {
   const {
@@ -71,18 +71,9 @@ export function SubscriptionPlanForm() {
           xl={6}
         >
           <TextField
-            label="Valor do pacote"
-            variant="filled"
-            size="small"
-            fullWidth
-            color={errors.packageValue ? "error" : "primary"}
             helperText={errors.packageValue?.message}
             error={!!errors.packageValue?.message}
             {...register("packageValue")}
-            InputProps={{
-              inputComponent: CurrencyMask as any,
-              value: packageValue,
-            }}
           />
         </Grid>
         <Grid

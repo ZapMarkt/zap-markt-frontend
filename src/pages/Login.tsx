@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Box, Button, IconButton, TextField } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -12,6 +12,7 @@ import { LoginFormSchema } from "../types/LoginFormSchema";
 import { useUserSessionStore } from "../stores/userSessionStore";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../common/components/Loading";
+import { Button, TextField } from "../components";
 
 export function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -68,42 +69,21 @@ export function Login() {
           />
         </Box>
         <TextField
-          label="Email"
-          variant="outlined"
-          fullWidth
+          placeholder="Email"
           disabled={mutation.isPending}
           {...register("email")}
           error={!!errors.email}
-          color={!!errors.email ? "error" : "primary"}
           helperText={errors.email?.message}
         />
         <TextField
-          label="Senha"
-          variant="outlined"
-          fullWidth
+          placeholder="Senha"
           disabled={mutation.isPending}
           type={showPassword ? "text" : "password"}
           {...register("password")}
           error={!!errors.password}
-          color={!!errors.password ? "error" : "primary"}
           helperText={errors.password?.message}
-          InputProps={{
-            endAdornment: (
-              <IconButton onClick={() => setShowPassword((prev) => !prev)}>
-                {showPassword ? <VisibilityIcon color="action" /> : <VisibilityOffIcon />}
-              </IconButton>
-            ),
-          }}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          size="large"
-          fullWidth
-        >
-          {mutation.isPending ? <Loading /> : "Entrar"}
-        </Button>
+        <Button>{mutation.isPending ? <Loading /> : "Entrar"}</Button>
       </Box>
     </Box>
   );

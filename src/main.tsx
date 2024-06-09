@@ -4,6 +4,7 @@ import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
+import './global.css';
 import { queryClient } from './libs/queryClient';
 import { router } from './routes/router';
 

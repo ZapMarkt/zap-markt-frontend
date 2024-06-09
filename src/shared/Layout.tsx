@@ -53,9 +53,6 @@ const menuLinks = [
 ];
 
 export function Layout({ children }: LayoutProps) {
-  const mutation = useMutation({ mutationFn: adminService.signOut });
-  const userSession = useUserSessionStore((state) => state.userSession);
-
   return (
     <ThemeProvider theme={theme}>
       <Box display={"flex"}>

@@ -6,27 +6,19 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { formatCellPhone } from "../utils/formatCellPhone";
 import { formatCpf } from "../utils/formatCpf";
+import { IoSearch } from "react-icons/io5";
+import { TextField } from "./TextField";
 
 export function UsersTable() {
   return (
     <>
       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Pesquisar por mercados"
-        InputProps={{
-          endAdornment: <SearchIcon />,
-        }}
-        sx={{
-          marginTop: 12.5,
-          marginBottom: 3.75,
-        }}
+        placeholder="Buscar por produtos"
+        endIcon={() => <IoSearch size={24} />}
       />
       <TableContainer>
         <Table>

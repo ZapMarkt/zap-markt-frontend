@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Divider,
   FormControl,
   Grid,
@@ -8,7 +7,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TextField,
   Typography,
 } from "@mui/material";
 import { BackgroundUploadButton } from "../components/BackgroundUploadButton";
@@ -18,6 +16,8 @@ import { useForm } from "react-hook-form";
 import { SharedProductFormSchema } from "../types/SharedProductsFormSchema.";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sharedProductFormSchema } from "../libs/zod/sharedProductFormSchema";
+import { TextField } from "./TextField";
+import { Button } from "./Button";
 
 type SharedProductFormProps = {
   handleClickClose: () => void;
@@ -59,9 +59,7 @@ export function SharedProductForm({ handleClickClose }: SharedProductFormProps) 
           xl={6}
         >
           <TextField
-            label="Código de barras"
-            size="small"
-            fullWidth
+            placeholder="Código de barras"
             {...register("barCode")}
           />
         </Grid>
@@ -85,20 +83,11 @@ export function SharedProductForm({ handleClickClose }: SharedProductFormProps) 
       </Grid>
       <BackgroundUploadButton />
       <TextField
-        label="Nome do produto"
-        size="small"
-        fullWidth
-        placeholder="Digite aqui"
+        placeholder="Nome do produto"
         {...register("productName")}
-        sx={{
-          marginBlock: 2.5,
-        }}
       />
       <TextField
-        label="Descrição"
-        size="small"
-        fullWidth
-        placeholder="Digite aqui"
+        placeholder="Descrição"
         {...register("description")}
       />
       <Box
@@ -114,13 +103,13 @@ export function SharedProductForm({ handleClickClose }: SharedProductFormProps) 
         gap={3}
         borderTop={`1px solid ${grey[300]}`}
       >
-        <Button onClick={handleClickClose}>Cancelar</Button>
         <Button
-          variant="contained"
-          color="primary"
+          variant="secondary"
+          onClick={handleClickClose}
         >
-          Salvar
+          Cancelar
         </Button>
+        <Button>Salvar</Button>
       </Box>
     </form>
   );

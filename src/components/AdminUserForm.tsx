@@ -1,7 +1,6 @@
 import {
   Backdrop,
   Box,
-  Button,
   CircularProgress,
   FormControl,
   Grid,
@@ -9,13 +8,14 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TextField,
   Typography,
 } from "@mui/material";
 import { ProfileUploadButton } from "./ProfileUploadButton";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useAdminUserFormContainer } from "../hooks/useAdminUserFormContainer";
+import { TextField } from "./TextField";
+import { Button } from "./Button";
 
 export function AdminUserForm() {
   const {
@@ -63,12 +63,9 @@ export function AdminUserForm() {
               xl={6}
             >
               <TextField
-                label="Nome"
-                variant="outlined"
-                fullWidth
+                placeholder="Nome"
                 {...register("name")}
                 error={!!errors.name}
-                color={!!errors.name ? "error" : "primary"}
                 helperText={errors.name?.message}
               />
             </Grid>
@@ -77,12 +74,9 @@ export function AdminUserForm() {
               xl={6}
             >
               <TextField
-                label="Email"
-                variant="outlined"
-                fullWidth
+                placeholder="Email"
                 {...register("email")}
                 error={!!errors.email}
-                color={!!errors.email ? "error" : "primary"}
                 helperText={errors.email?.message}
               />
             </Grid>
@@ -115,32 +109,15 @@ export function AdminUserForm() {
               xl={6}
             >
               <TextField
-                label="Senha"
-                variant="outlined"
-                fullWidth
+                placeholder="Senha"
                 type={showPassword ? "text" : "password"}
                 {...register("password")}
                 error={!!errors.password}
-                color={!!errors.password ? "error" : "primary"}
                 helperText={errors.password?.message}
-                InputProps={{
-                  endAdornment: (
-                    <IconButton onClick={() => setShowPassword((prev) => !prev)}>
-                      {showPassword ? <VisibilityIcon color="action" /> : <VisibilityOffIcon />}
-                    </IconButton>
-                  ),
-                }}
               />
             </Grid>
           </Grid>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            type="submit"
-          >
-            Salvar
-          </Button>
+          <Button>Salvar</Button>
         </Box>
       </form>
       <Backdrop

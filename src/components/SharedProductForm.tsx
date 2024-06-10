@@ -16,8 +16,7 @@ import { useForm } from "react-hook-form";
 import { SharedProductFormSchema } from "../types/SharedProductsFormSchema.";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sharedProductFormSchema } from "../libs/zod/sharedProductFormSchema";
-import { TextField } from "./TextField";
-import { Button } from "./Button";
+import { Button } from "./ui/button";
 
 type SharedProductFormProps = {
   handleClickClose: () => void;
@@ -58,10 +57,10 @@ export function SharedProductForm({ handleClickClose }: SharedProductFormProps) 
           item
           xl={6}
         >
-          <TextField
+          {/* <TextField
             placeholder="Código de barras"
             {...register("barCode")}
-          />
+          /> */}
         </Grid>
         <Grid
           item
@@ -82,14 +81,14 @@ export function SharedProductForm({ handleClickClose }: SharedProductFormProps) 
         </Grid>
       </Grid>
       <BackgroundUploadButton />
-      <TextField
+      {/* <TextField
         placeholder="Nome do produto"
         {...register("productName")}
-      />
-      <TextField
+      /> */}
+      {/* <TextField
         placeholder="Descrição"
         {...register("description")}
-      />
+      /> */}
       <Box
         position="absolute"
         left={0}
@@ -103,12 +102,7 @@ export function SharedProductForm({ handleClickClose }: SharedProductFormProps) 
         gap={3}
         borderTop={`1px solid ${grey[300]}`}
       >
-        <Button
-          variant="secondary"
-          onClick={handleClickClose}
-        >
-          Cancelar
-        </Button>
+        <Button onClick={handleClickClose}>Cancelar</Button>
         <Button>Salvar</Button>
       </Box>
     </form>

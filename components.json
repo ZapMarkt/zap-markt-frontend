@@ -5,9 +5,10 @@
   "tsx": true,
   "tailwind": {
     "config": "tailwind.config.js",
-    "css": "styles/index.css",
+    "css": "src/index.css",
     "baseColor": "stone",
-    "cssVariables": true
+    "cssVariables": true,
+    "prefix": ""
   },
   "aliases": {
     "components": "@/components",

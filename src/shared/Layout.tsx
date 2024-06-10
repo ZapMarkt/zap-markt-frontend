@@ -16,7 +16,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { useMutation } from "@tanstack/react-query";
 import { adminService } from "../services/AdminService";
-import { useUserSessionStore } from "../stores/userSessionStore";
+import { useUserSessionStore } from "../stores/UserSessionStore";
 
 import { grey } from "@mui/material/colors";
 import { ReactNode } from "react";

@@ -18,7 +18,7 @@ class AdminService extends AxiosService {
       "/admin/sign-in",
       data
     );
-  
+
     return response.data;
   };
 
@@ -29,6 +29,10 @@ class AdminService extends AxiosService {
 
   signOut = async () => {
     await this.httpClient.post("/admin/sign-out");
+  };
+
+  removeAdmin = async (userUUID: string) => {
+    await this.httpClient.delete(`/admin/${userUUID}`);
   };
 }
 

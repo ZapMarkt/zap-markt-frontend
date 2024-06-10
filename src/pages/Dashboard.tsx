@@ -7,7 +7,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import StoreIcon from "@mui/icons-material/Store";
 import PeopleIcon from "@mui/icons-material/People";
 import SellIcon from "@mui/icons-material/Sell";
-import { useUserSessionStore } from "../stores/userSessionStore";
+import { useUserSessionStore } from "../stores/UserSessionStore";
 
 export function Dashboard() {
   const userSession = useUserSessionStore((state) => state.userSession);

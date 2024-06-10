@@ -7,7 +7,6 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "skipLibCheck": true,
-    
     "baseUrl": ".",
     "paths": {
       "@/*": [

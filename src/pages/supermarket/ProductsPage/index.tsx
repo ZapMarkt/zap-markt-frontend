@@ -1,10 +1,9 @@
 import Layout from '@/common/components/supermarket/Layout';
-import { Input } from '@/components/ui/input';
 
 const ProductsPage = () => {
   return (
-    <Layout>
-      <Input placeholder="Produtos" />
+    <Layout title="Produtos">
+      <h1>Produtos</h1>
     </Layout>
   );
 };

@@ -1,3 +1,4 @@
+import Layout from '@/common/components/supermarket/Layout';
 import '@fontsource/inter/500.css';
 import {
   Box,
@@ -13,13 +14,11 @@ import {
 } from '@mui/material';
 import { ChangeEvent, useState } from 'react';
 import Visa from '../../assets/visa.svg';
-import Header from '../../components/header/Header';
 import OrderPanel from '../../components/orders/OrderPanel';
 import ProductsTabs from '../../components/orders/orders-tabs/OrdersTabs';
 import OrderDrawer from '../../components/orders/ui/drawer/OrderDrawer';
 import DrawerContent from '../../components/orders/ui/drawer/components/DrawerContent';
 import { orders } from '../../data/orders';
-import LayoutSupermarket from '../../shared/LayoutSupermarket';
 import { Order } from '../../types/Order';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { formatStatusIcons } from '../../utils/formatOrderIcons';
@@ -106,11 +105,9 @@ const AllOrdersTab = () => {
   };
 
   return (
-    <LayoutSupermarket>
-      <Header title="Painel de pedidos" />
+    <Layout title="Painel de pedidos">
       <Box
         sx={{
-          padding: '136px 30px 33px 124px',
           maxHeight: '98vh',
           display: 'flex',
           flexDirection: 'column',
@@ -238,7 +235,7 @@ const AllOrdersTab = () => {
           <DrawerContent selectedOrder={selectedOrder} />
         </OrderDrawer>
       </Box>
-    </LayoutSupermarket>
+    </Layout>
   );
 };
 

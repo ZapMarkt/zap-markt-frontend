@@ -24,6 +24,8 @@ module.exports = {
           black: '#110B0A',
           gray1: '#EAECEA',
           gray2: '#DADADA',
+          gray3: '#A5A5A5',
+          lightWhite: '#F6F6F6',
         },
         statusMkt: {
           pendent: '#EEBE10',

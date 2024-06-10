@@ -63,7 +63,7 @@ const SideNav = () => {
     },
   ];
   return (
-    <nav className="max-w-[110px] bg-customMkt-gray1 h-screen">
+    <nav className="max-w-[110px] bg-customMkt-gray1 h-screen fixed">
       <ul>
         <li className="pt-[40px] px-38px pb-[13px] border-b border-customMkt-gray2 flex justify-center items-center mb-4">
           <Link to="/dashboarduser">
@@ -71,7 +71,7 @@ const SideNav = () => {
           </Link>
         </li>
         {menuLinks.map((link) => (
-          <TooltipProvider key={link.primary} delayDuration={0}>
+          <TooltipProvider key={link.primary} delayDuration={100}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link to={link.to}>

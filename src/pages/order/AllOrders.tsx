@@ -108,7 +108,6 @@ const AllOrdersTab = () => {
     <Layout title="Painel de pedidos">
       <Box
         sx={{
-          padding: '136px 30px 33px 124px',
           maxHeight: '98vh',
           display: 'flex',
           flexDirection: 'column',

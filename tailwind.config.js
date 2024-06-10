@@ -26,6 +26,9 @@ module.exports = {
           gray2: '#DADADA',
           gray3: '#A5A5A5',
           gray4: '#E7E7E7',
+          gray5: '#EFEFEF',
+          gray6: '#909090',
+          gray7: '#C9D8CC',
           lightWhite: '#F6F6F6',
         },
         statusMkt: {

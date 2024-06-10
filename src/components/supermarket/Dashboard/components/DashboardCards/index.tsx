@@ -4,7 +4,7 @@ import {
   FaShoppingCart,
 } from 'react-icons/fa';
 import { MdOutlineAttachMoney } from 'react-icons/md';
-import Card from '../components/Card';
+import Card from '../Card';
 
 const dataCard = [
   {

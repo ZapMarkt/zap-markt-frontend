@@ -22,10 +22,10 @@ module.exports = {
           secondary: '#FFD8AA',
           error: '#BF1818',
           black: '#110B0A',
-          white: '#FFFFFF',
           gray1: '#EAECEA',
           gray2: '#DADADA',
           gray3: '#A5A5A5',
+          gray4: '#E7E7E7',
           lightWhite: '#F6F6F6',
         },
         statusMkt: {

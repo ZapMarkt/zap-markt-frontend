@@ -1,5 +1,5 @@
-import Header from '@/components/supermarket/Layout/Header';
-import SideNav from '@/components/supermarket/Layout/Sidenav';
+import Header from '@/components/supermarket/Header';
+import SideNav from '@/components/supermarket/Sidenav';
 import { ReactNode } from 'react';
 
 interface LayoutProps {

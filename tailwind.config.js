@@ -25,7 +25,6 @@ module.exports = {
           gray1: '#EAECEA',
           gray2: '#DADADA',
           gray3: '#A5A5A5',
-          gray4: '#E7E7E7',
           lightWhite: '#F6F6F6',
         },
         statusMkt: {

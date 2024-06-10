@@ -1,5 +1,3 @@
-import DashboardPage from '@/pages/supermarket/DashboardPage';
-import OrdersPage from '@/pages/supermarket/OrdersPage';
 import ProductsPage from '@/pages/supermarket/ProductsPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { AdminUserFormPage } from '../pages/AdminUserFormPage';
@@ -14,7 +12,9 @@ import { Supermarkets } from '../pages/Supermarkets';
 import { UserConfiguration } from '../pages/UserConfiguration';
 import { UserDetails } from '../pages/UserDetails';
 import { Users } from '../pages/Users';
+import DashboardSupermarketPage from '../pages/dashboard/Dashboard';
 import AcceptedOrders from '../pages/order/AcceptedOrders';
+import AllOrdersTab from '../pages/order/AllOrders';
 import CancelledOrders from '../pages/order/CancelledOrders';
 import CompletedOrders from '../pages/order/CompletedOrders';
 import InPreparationOrders from '../pages/order/InPreparationOrders';
@@ -177,11 +177,11 @@ export const router = createBrowserRouter([
 
   {
     path: '/dashboarduser', // alterar depois para a rota a ser usada em produção
-    element: <DashboardPage />,
+    element: <DashboardSupermarketPage />,
   },
   {
     path: '/pedidos',
-    element: <OrdersPage />,
+    element: <AllOrdersTab />,
   },
   {
     path: '/pedidos/pendentes',

@@ -1,4 +1,4 @@
-import OrderHeader from './components/Header';
+import OrderHeader from './components/HeaderPage';
 import OrderTabnation from './components/OrderTabnation';
 
 const Orders = () => {

@@ -52,8 +52,18 @@ const OrderTabnation = () => {
       >
         <DataTable />
       </TabsContent>
-      <TabsContent value="pending">Pendentes</TabsContent>
-      <TabsContent value="accepted">Aceitos</TabsContent>
+      <TabsContent
+        value="pending"
+        className="bg-customMkt-whiteF9 rounded-[10px] px-[18px] pb-[18px]"
+      >
+        <DataTable status="Pendente" />
+      </TabsContent>
+      <TabsContent
+        value="accepted"
+        className="bg-customMkt-whiteF9 rounded-[10px] px-[18px] pb-[18px]"
+      >
+        <DataTable status="Aceito" />
+      </TabsContent>
       <TabsContent value="inSeparation">Em separação</TabsContent>
       <TabsContent value="deliveryRoute">Rota de entrega</TabsContent>
       <TabsContent value="concluded">Concluído</TabsContent>

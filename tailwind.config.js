@@ -14,6 +14,9 @@ module.exports = {
       screens: {
         '2xl': '1400px',
       },
+      lineHeight: {
+        'extra-loose': 1.2,
+      },
     },
     extend: {
       colors: {

@@ -7,7 +7,7 @@ const OrderHeader = () => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <div className="place-self-end max-w-[414px] w-full">
+    <div className="place-self-end max-w-[414px] w-full mb-6">
       <div className="flex items-center gap-4 max-h-[58px] bg-customMkt-gray5 px-3 py-[17px] rounded border border-customMkt-gray7 focus-within:border-customMkt-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-customMkt-primary transition-all">
         <Input
           placeholder="Pesquisar por pedidos"

@@ -5,9 +5,9 @@ interface DataTableProps {
   status?: string;
 }
 
-export const DataTable: React.FC<DataTableProps> = ({ status }) => {
+export const DataTableeeeee: React.FC<DataTableProps> = ({ status }) => {
   return (
-    <Table className="sticky">
+    <Table>
       <TableHeader>
         <TableRow className="hover:bg-transparent">
           <DataTableHeader />
@@ -18,4 +18,4 @@ export const DataTable: React.FC<DataTableProps> = ({ status }) => {
   );
 };
 
-export default DataTable;
+export default DataTableeeeee;

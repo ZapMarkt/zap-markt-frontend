@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { z } from "zod";
+import logo from "../../public/zap-markt-degrad-logo.svg";
 
 export const schema = z.object({
   email: z
@@ -68,6 +69,10 @@ export function Login() {
         className="h-screen flex flex-col justify-center items-center gap-5"
         onSubmit={form.handleSubmit(onSubmit)}
       >
+        <img
+          className="w-96 mb-11"
+          src={logo}
+        />
         <FormField
           control={form.control}
           name="email"

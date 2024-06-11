@@ -15,9 +15,7 @@ import { formatCnpj } from "../utils/formatCnpj";
 import { Supermarket } from "../types/Supermarket";
 import { RiShoppingBasket2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { Button } from "./Button";
-import { TextField } from "./TextField";
-import { IoSearch } from "react-icons/io5";
+import { Button } from "./ui/button";
 
 export function SupermarketTable() {
   const [supermarkets, setSupermarkets] = useState<Supermarket[]>([]);
@@ -50,12 +48,15 @@ export function SupermarketTable() {
         marginTop={12.5}
         marginBottom={3.75}
       >
-        <TextField
+        {/* <TextField
           placeholder="Buscar por produtos"
           endIcon={() => <IoSearch size={24} />}
-        />
+        /> */}
         <Link to="/supermercados/dados-cadastrais">
-          <Button startIcon={() => <RiShoppingBasket2Fill size={24} />}>Novo supermercado</Button>
+          <Button>
+            <RiShoppingBasket2Fill size={24} />
+            Novo supermercado
+          </Button>
         </Link>
       </Box>
       <TableContainer>

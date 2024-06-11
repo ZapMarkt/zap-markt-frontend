@@ -1,11 +1,9 @@
 import { Layout } from "../shared/Layout";
-import { CustomAppBar } from "../components/CustomAppBar";
 import { SupermarketTable } from "../components/SupermarketTable";
 
 export function Supermarkets() {
   return (
-    <Layout>
-      <CustomAppBar title="Supermercados" />
+    <Layout headerTitle="Supermercados">
       <SupermarketTable />
     </Layout>
   );

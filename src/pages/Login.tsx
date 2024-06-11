@@ -1,90 +1,120 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Box, IconButton } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import logo from "../../public/logo-dark.png";
-import { loginFormSchema } from "../libs/zod/LoginFormSchema";
 import { adminService } from "../services/AdminService";
-import { LoginFormSchema } from "../types/LoginFormSchema";
-import { useUserSessionStore } from "../stores/userSessionStore";
+import { useUserSessionStore } from "../stores/UserSessionStore";
 import { useNavigate } from "react-router-dom";
-import { Loading } from "../common/components/Loading";
-import { Button, TextField } from "../components";
+import { rolesService } from "@/services/RolesServices";
+import { useCurrentUserStore } from "@/stores/CurrentUserStore";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { z } from "zod";
+import logo from "../../public/zap-markt-degrad-logo.svg";
+import { SyncLoader } from "react-spinners";
+import { stone } from "tailwindcss/colors";
+
+export const schema = z.object({
+  email: z
+    .string()
+    .nonempty({ message: "Este campo é obrigatório. Por favor, preencha-o antes de continuar." })
+    .email({ message: "Por favor, insira um endereço de email válido." }),
+  password: z
+    .string()
+    .nonempty({ message: "Este campo é obrigatório. Por favor, preencha-o antes de continuar." }),
+});
+
+type Schema = z.infer<typeof schema>;
 
 export function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const setUserSession = useUserSessionStore((state) => state.setUserSession);
+  const setCurrentUser = useCurrentUserStore((state) => state.setCurrentUser);
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormSchema>({
-    resolver: zodResolver(loginFormSchema),
+  const form = useForm<Schema>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   const mutation = useMutation({
     mutationFn: adminService.authenticate,
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       localStorage.setItem("userSession", data.uSession);
       setUserSession(data.uSession);
       navigate("/");
+      const currentUser = await rolesService.getMyInfo();
+      setCurrentUser(currentUser);
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
     },
   });
 
-  async function onSubmit(data: LoginFormSchema) {
+  async function onSubmit(data: Schema) {
     await mutation.mutateAsync(data);
   }
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      sx={{
-        width: "100%",
-        height: "98dvh",
-      }}
-    >
-      <Box
-        component="form"
-        onSubmit={handleSubmit(onSubmit)}
-        sx={{
-          width: "642px",
-        }}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        gap={1.5}
+    <Form {...form}>
+      <form
+        className="h-screen flex flex-col justify-center items-center gap-5"
+        onSubmit={form.handleSubmit(onSubmit)}
       >
-        <Box marginBottom={5.75}>
-          <img
-            src={logo}
-            loading="lazy"
-            width="500px"
-          />
-        </Box>
-        <TextField
-          placeholder="Email"
-          disabled={mutation.isPending}
-          {...register("email")}
-          error={!!errors.email}
-          helperText={errors.email?.message}
+        <img
+          className="w-96 mb-11"
+          src={logo}
         />
-        <TextField
-          placeholder="Senha"
-          disabled={mutation.isPending}
-          type={showPassword ? "text" : "password"}
-          {...register("password")}
-          error={!!errors.password}
-          helperText={errors.password?.message}
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => {
+            return (
+              <FormItem className="w-2/6">
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
         />
-        <Button>{mutation.isPending ? <Loading /> : "Entrar"}</Button>
-      </Box>
-    </Box>
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => {
+            return (
+              <FormItem className="w-2/6">
+                <FormLabel>Senha</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+        <Button className="w-2/6">
+          {mutation.isPending ? (
+            <SyncLoader
+              size={8}
+              color={stone[400]}
+            />
+          ) : (
+            "Entrar"
+          )}
+        </Button>
+      </form>
+    </Form>
   );
 }

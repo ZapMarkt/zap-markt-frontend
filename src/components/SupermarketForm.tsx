@@ -7,8 +7,7 @@ import { ProfileUploadButton } from "./ProfileUploadButton";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { supermarketFormSchema } from "../libs/zod/SupermarketFormSchema";
-import { TextField } from "./TextField";
-import { Button } from "./Button";
+import { Button } from "./ui/button";
 
 export function SupermarketForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -106,35 +105,35 @@ export function SupermarketForm() {
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Nome do estabelecimento"
               {...register("stablishmentName")}
               color={errors.stablishmentName ? "error" : "success"}
               helperText={errors.stablishmentName?.message}
               error={!!errors.stablishmentName?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="CNPJ"
               {...register("cnpj")}
               helperText={errors.cnpj?.message}
               error={!!errors.cnpj?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Inscrição estadual"
               {...register("stateRegistration")}
               helperText={errors.stateRegistration?.message}
               error={!!errors.stateRegistration?.message}
-            />
+            /> */}
           </Grid>
         </Grid>
       </Box>
@@ -156,34 +155,34 @@ export function SupermarketForm() {
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Celular"
               {...register("cellPhone")}
               helperText={errors.cellPhone?.message}
               error={!!errors.cellPhone?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Telefone"
               {...register("telephone")}
               helperText={errors.telephone?.message}
               error={!!errors.telephone?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Email"
               {...register("email")}
               helperText={errors.email?.message}
               error={!!errors.email?.message}
-            />
+            /> */}
           </Grid>
         </Grid>
       </Box>
@@ -205,69 +204,69 @@ export function SupermarketForm() {
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="CEP"
               {...register("cep")}
               onBlur={handleBlurCepField}
               helperText={errors.cep?.message}
               error={!!errors.cep?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Rua"
               {...register("street")}
               helperText={errors.street?.message}
               error={!!errors.street?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Número"
               {...register("number")}
               helperText={errors.number?.message}
               error={!!errors.number?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Bairro"
               {...register("neighborhood")}
               helperText={errors.neighborhood?.message}
               error={!!errors.neighborhood?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Cidade"
               {...register("city")}
               color={errors.city ? "error" : "success"}
               helperText={errors.city?.message}
               error={!!errors.city?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Estado"
               {...register("state")}
               helperText={errors.state?.message}
               error={!!errors.state?.message}
-            />
+            /> */}
           </Grid>
         </Grid>
       </Box>
@@ -289,25 +288,25 @@ export function SupermarketForm() {
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Senha"
               type={showPassword ? "text" : "password"}
               {...register("password")}
               helperText={errors.password?.message}
               error={!!errors.password?.message}
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Repita a senha"
               type={showConfirmationPassword ? "text" : "password"}
               {...register("confirmationPassword")}
               helperText={errors.confirmationPassword?.message}
               error={!!errors.confirmationPassword?.message}
-            />
+            /> */}
           </Grid>
         </Grid>
       </Box>

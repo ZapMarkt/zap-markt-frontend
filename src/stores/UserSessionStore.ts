@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 type UserSessionStore = {
-  userSession: string | null;
+  userSession: string;
   setUserSession: (userSession: string) => void;
 };
 
-const userSession = localStorage.getItem("userSession");
+const userSession = localStorage.getItem("userSession") ?? "";
 
 export const useUserSessionStore = create<UserSessionStore>((set) => ({
   userSession,

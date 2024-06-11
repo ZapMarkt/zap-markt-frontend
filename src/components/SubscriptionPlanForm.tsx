@@ -7,7 +7,6 @@ import { ISubscriptionPlanFormSchema } from "../types/ISubscriptionPlanFormSchem
 import { DatePicker } from "./DatePicker";
 import dayjs from "dayjs";
 import { parseCurrency } from "../utils/parseCurrency";
-import { TextField } from "./TextField";
 
 export function SubscriptionPlanForm() {
   const {
@@ -70,11 +69,11 @@ export function SubscriptionPlanForm() {
           item
           xl={6}
         >
-          <TextField
+          {/* <TextField
             helperText={errors.packageValue?.message}
             error={!!errors.packageValue?.message}
             {...register("packageValue")}
-          />
+          /> */}
         </Grid>
         <Grid
           item

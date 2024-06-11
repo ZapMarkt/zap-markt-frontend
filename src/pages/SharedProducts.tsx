@@ -1,12 +1,10 @@
 import { Box, Drawer } from "@mui/material";
-import { CustomAppBar } from "../components/CustomAppBar";
 import { SharedProductsTable } from "../components/SharedProductsTable";
 import { Layout } from "../shared/Layout";
 import DriveFolderUploadRoundedIcon from "@mui/icons-material/DriveFolderUploadRounded";
 import { useState } from "react";
 import { SharedProductForm } from "../components/SharedProductForm";
-import { IoSearch } from "react-icons/io5";
-import { Button, TextField } from "../components";
+import { Button } from "@/components/ui/button";
 
 export function SharedProducts() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -16,8 +14,7 @@ export function SharedProducts() {
   }
 
   return (
-    <Layout>
-      <CustomAppBar title="Produtos compartilhados" />
+    <Layout headerTitle="Produtos compartilhados">
       <Box
         marginTop={12.5}
         marginBottom={3.75}
@@ -25,18 +22,16 @@ export function SharedProducts() {
         justifyContent="space-between"
         alignItems="center"
       >
-        <TextField
+        {/* <TextField
           placeholder="Buscar por produtos"
           endIcon={() => <IoSearch size={24} />}
-        />
+        /> */}
         <Box
           display="flex"
           gap={2.25}
         >
-          <Button
-            variant="secondary"
-            startIcon={() => <DriveFolderUploadRoundedIcon />}
-          >
+          <Button>
+            <DriveFolderUploadRoundedIcon />
             Importar produtos
           </Button>
           <Button onClick={toggleDrawer}>Novo produto</Button>

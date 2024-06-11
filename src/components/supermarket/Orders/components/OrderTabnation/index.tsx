@@ -1,4 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import DataTable from '../DataTable';
 
 const dataTrigger = [
   {
@@ -45,7 +46,12 @@ const OrderTabnation = () => {
           </TabsTrigger>
         ))}
       </TabsList>
-      <TabsContent value="all">Todos</TabsContent>
+      <TabsContent
+        value="all"
+        className="bg-customMkt-whiteF9 rounded-[10px] px-[18px] pb-[18px]"
+      >
+        <DataTable />
+      </TabsContent>
       <TabsContent value="pending">Pendentes</TabsContent>
       <TabsContent value="accepted">Aceitos</TabsContent>
       <TabsContent value="inSeparation">Em separação</TabsContent>

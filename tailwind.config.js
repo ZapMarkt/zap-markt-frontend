@@ -33,6 +33,7 @@ module.exports = {
           gray6: '#909090',
           gray7: '#C9D8CC',
           lightWhite: '#F6F6F6',
+          whiteF9: '#F9F9F9',
         },
         statusMkt: {
           pendent: '#EEBE10',

@@ -13,6 +13,11 @@ import { Button } from "@/components/ui/button";
 import { SyncLoader } from "react-spinners";
 import logo from "../../public/image.png";
 import { stone } from "tailwindcss/colors";
+import { ProfileStatusWidget } from "@/components/ProfileStatusWidget";
+
+type LayoutProps = {
+  headerTitle: string;
+} & PropsWithChildren;
 
 const menu = [
   {
@@ -53,7 +58,7 @@ const menu = [
   },
 ];
 
-export function Layout({ children }: PropsWithChildren) {
+export function Layout({ children, headerTitle }: LayoutProps) {
   const userSession = useUserSessionStore((state) => state.userSession);
   const navigate = useNavigate();
 
@@ -124,7 +129,13 @@ export function Layout({ children }: PropsWithChildren) {
           </Button>
         </nav>
       </aside>
-      <div className="flex-1">{children}</div>
+      <div className="flex-1">
+        <header className="flex justify-between items-center border-b border-stone-100 px-9 pt-10 pb-4">
+          <h1 className="text-3xl font-bold text-stone-900">{headerTitle}</h1>
+          <ProfileStatusWidget />
+        </header>
+        {children}
+      </div>
     </main>
   );
 }

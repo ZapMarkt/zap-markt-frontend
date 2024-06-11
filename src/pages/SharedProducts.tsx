@@ -1,5 +1,4 @@
 import { Box, Drawer } from "@mui/material";
-import { CustomAppBar } from "../components/CustomAppBar";
 import { SharedProductsTable } from "../components/SharedProductsTable";
 import { Layout } from "../shared/Layout";
 import DriveFolderUploadRoundedIcon from "@mui/icons-material/DriveFolderUploadRounded";
@@ -15,8 +14,7 @@ export function SharedProducts() {
   }
 
   return (
-    <Layout>
-      <CustomAppBar title="Produtos compartilhados" />
+    <Layout headerTitle="Produtos compartilhados">
       <Box
         marginTop={12.5}
         marginBottom={3.75}

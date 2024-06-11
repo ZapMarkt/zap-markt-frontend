@@ -38,6 +38,7 @@ const OrderTabnation = () => {
         {dataTrigger.map((trigger) => (
           <TabsTrigger
             value={trigger.value}
+            key={trigger.value}
             className="text-customMkt-gray6 text-2xl px-[18px] pt-[10px] pb-5 max-h-[59px] rounded-none border-b-2 font-normal data-[state=active]:border-b-2 data-[state=active]:border-customMkt-black"
           >
             {trigger.label}

@@ -27,8 +27,8 @@ class AdminService extends AxiosService {
     return response.data;
   };
 
-  signOut = async () => {
-    await this.httpClient.post("/admin/sign-out");
+  signOut = async (userSession: string) => {
+    await this.httpClient.post("/admin/sign-out", { session: userSession });
   };
 
   removeAdmin = async (userUUID: string) => {

@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { adminService } from "../services/AdminService";
 import { useUserSessionStore } from "../stores/UserSessionStore";
 import { useNavigate } from "react-router-dom";
-import { Loading } from "../common/components/Loading";
 import { rolesService } from "@/services/RolesServices";
 import { useCurrentUserStore } from "@/stores/CurrentUserStore";
 import { Button } from "@/components/ui/button";
@@ -20,6 +19,8 @@ import {
 } from "@/components/ui/form";
 import { z } from "zod";
 import logo from "../../public/zap-markt-degrad-logo.svg";
+import { SyncLoader } from "react-spinners";
+import { stone } from "tailwindcss/colors";
 
 export const schema = z.object({
   email: z
@@ -103,7 +104,16 @@ export function Login() {
             );
           }}
         />
-        <Button className="w-2/6">{mutation.isPending ? <Loading /> : "Entrar"}</Button>
+        <Button className="w-2/6">
+          {mutation.isPending ? (
+            <SyncLoader
+              size={8}
+              color={stone[400]}
+            />
+          ) : (
+            "Entrar"
+          )}
+        </Button>
       </form>
     </Form>
   );

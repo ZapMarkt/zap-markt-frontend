@@ -12,8 +12,6 @@ import { useUserSessionStore } from "../stores/UserSessionStore";
 export function Dashboard() {
   const userSession = useUserSessionStore((state) => state.userSession);
 
-  console.log(userSession);
-
   return (
     <Layout>
       <CustomAppBar title="Dashboard" />

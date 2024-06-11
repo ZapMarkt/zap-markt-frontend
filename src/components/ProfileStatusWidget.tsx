@@ -26,12 +26,12 @@ export function ProfileStatusWidget() {
       <div className="flex items-center gap-3">
         <Avatar className="w-12 h-12">
           <AvatarFallback className="font-semibold">
-            {createAvatarFallback(currentUser.name)}
+            {createAvatarFallback(currentUser?.name)}
           </AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-          <strong className="text-lg text-stone-900">{currentUser.name}</strong>
-          <span className="text-sm text-stone-400">{currentUser.role.name}</span>
+          <strong className="text-lg text-stone-900">{currentUser?.name}</strong>
+          <span className="text-sm text-stone-400">{currentUser?.role?.name}</span>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Column } from '@tanstack/react-table';
+import { useState } from 'react';
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>;
@@ -15,15 +16,17 @@ export function DataTableFacetedFilter<TData, TValue>({
   options,
 }: DataTableFacetedFilterProps<TData, TValue>) {
   const { setFilterValue } = column || {};
+  const [allTable, setAllTable] = useState(true);
 
   const handleSelect = (value?: string) => {
     if (setFilterValue && typeof setFilterValue === 'function') {
       setFilterValue(value === 'Todos' ? undefined : value);
+      setAllTable(value === 'Todos' ? true : false);
     }
   };
 
   return (
-    <div className="flex flex-wrap items-center w-full mb-6 gap-[18px] border-b max-h-[59px]">
+    <div className="flex flex-wrap items-center w-full mb-6 border-b max-h-[59px] xl:gap-[18px]">
       {options.map((option) => {
         const isSelected = column?.getFilterValue?.() === option.value;
 
@@ -31,23 +34,15 @@ export function DataTableFacetedFilter<TData, TValue>({
           <Button
             key={option.value}
             className={cn(
-              'flex items-center px-[18px] pb-5 pt-[10px] border-b-2 border-transparent box-border max-h-[59px]',
-              option.value === 'Todos'
-                ? 'first:border-customMkt-black'
+              'flex items-center  pb-5 pt-[10px] border-b-2 border-transparent box-border max-h-[59px] font-medium text-customMkt-gray6 text-base md:text-lg lg:text-xl 2xl:text-2xl px-[14px] 2xl:px-[18px]',
+              allTable
+                ? 'first:border-customMkt-black first:text-customMkt-black'
                 : 'first:border-transparent',
-              isSelected && 'border-customMkt-black',
+              isSelected && 'border-customMkt-black text-black',
             )}
             onClick={() => handleSelect(option.value)}
           >
-            <span
-              className={cn(
-                'text-customMkt-gray6 text-2xl font-medium',
-                option.value === 'Todos' && 'first:text-customMkt-black',
-                isSelected && 'text-customMkt-black',
-              )}
-            >
-              {option.label}
-            </span>
+            {option.label}
           </Button>
         );
       })}

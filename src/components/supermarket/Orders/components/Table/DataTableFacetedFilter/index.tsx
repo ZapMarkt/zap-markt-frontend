@@ -34,7 +34,7 @@ export function DataTableFacetedFilter<TData, TValue>({
           <Button
             key={option.value}
             className={cn(
-              'flex items-center  pb-5 pt-[10px] border-b-2 border-transparent box-border max-h-[59px] font-medium text-customMkt-gray6 text-base md:text-lg lg:text-xl 2xl:text-2xl px-[14px] 2xl:px-[18px]',
+              'flex items-center  pb-5 pt-[10px] border-b-2 border-transparent box-border max-h-[59px] font-medium text-customMkt-gray6 text-base md:text-lg lg:text-xl 2xl:text-2xl px-[14px] 2xl:px-[18px] transition',
               allTable
                 ? 'first:border-customMkt-black first:text-customMkt-black'
                 : 'first:border-transparent',

@@ -31,6 +31,12 @@ export interface ordersColumns {
   value: number;
   quantify: number;
   payMethod: payMethod;
-  status: 'Pendente' | 'Aceito' | 'Rota de entrega' | 'Concluído' | 'Cancelado';
+  status:
+    | 'Pendente'
+    | 'Aceito'
+    | 'Rota de entrega'
+    | 'Concluído'
+    | 'Cancelado'
+    | 'Em separação';
   action: string;
 }

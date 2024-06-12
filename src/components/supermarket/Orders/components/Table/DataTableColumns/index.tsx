@@ -12,11 +12,20 @@ export const columns: ColumnDef<ordersColumns>[] = [
   },
   {
     accessorKey: 'adress',
-    header: 'Endereço',
+    header: () => <div className="font-semibold text-lg">Endereço</div>,
   },
   {
     accessorKey: 'value',
-    header: 'Valor',
+    header: () => <div className="font-semibold text-lg">Valor</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue('value'));
+      const formatted = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(amount);
+
+      return <div className="font-normal">{formatted}</div>;
+    },
   },
   {
     accessorKey: 'quantify',

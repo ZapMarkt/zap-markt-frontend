@@ -1,37 +1,61 @@
 export const labels = [
   {
     label: 'Todos',
-    value: 'all',
-    status: 'Todos',
+    value: 'Todos',
   },
   {
     label: 'Pendentes',
-    value: 'pending',
-    status: 'Todos',
+    value: 'Pendente',
   },
   {
     label: 'Aceitos',
+    value: 'Aceito',
+  },
+  {
+    label: 'Em separação',
+    value: 'Em separação',
+  },
+  {
+    label: 'Rota de entrega',
+    value: 'Rota de entrega',
+  },
+  {
+    label: 'Concluídos',
+    value: 'Concluído',
+  },
+  {
+    label: 'Cancelados',
+    value: 'Cancelado',
+  },
+];
+
+export const statuses = [
+  {
+    label: 'Todo',
+    value: 'all',
+  },
+  {
+    label: 'Pendente',
+    value: 'pending',
+  },
+  {
+    label: 'Aceito',
     value: 'accepted',
-    status: 'Aceito',
   },
   {
     label: 'Em separação',
     value: 'inSeparation',
-    status: 'Em separação',
   },
   {
     label: 'Rota de entrega',
     value: 'deliveryRoute',
-    status: 'Rota de entrega',
   },
   {
     label: 'Concluído',
     value: 'concluded',
-    status: 'Concluído',
   },
   {
     label: 'Cancelado',
     value: 'canceled',
-    status: 'Cancelado',
   },
 ];

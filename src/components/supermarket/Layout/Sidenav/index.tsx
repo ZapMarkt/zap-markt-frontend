@@ -63,7 +63,7 @@ const SideNav = () => {
     },
   ];
   return (
-    <nav className="max-w-[110px] bg-customMkt-gray1 h-screen fixed">
+    <nav className="max-w-[110px] bg-customMkt-gray1 h-screen fixed z-[999]">
       <ul>
         <li className="pt-[40px] px-38px pb-[13px] border-b border-customMkt-gray2 flex justify-center items-center mb-4">
           <Link to="/dashboarduser">

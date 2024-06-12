@@ -26,7 +26,7 @@ const dataCard = [
     isCurrency: false,
   },
   {
-    title: 'Pedidos realizados',
+    title: 'Total faturado este mês',
     Icon: <FaHandHoldingUsd className="h-6 w-6 fill-customMkt-gray3" />,
     value: 190052.23,
     isCurrency: true,

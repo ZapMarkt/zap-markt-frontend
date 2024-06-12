@@ -1,7 +1,12 @@
-import SearchIcon from '@mui/icons-material/Search';
-import { Box, TextField } from '@mui/material';
+import { Box } from '@mui/material';
+import DataTableSearch from '../supermarket/Orders/components/Table/DataTableSearch';
 
-const OrderPanel = () => {
+interface OrderPanelProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const OrderPanel: React.FC<OrderPanelProps> = ({ value, onChange }) => {
   return (
     <>
       <Box
@@ -10,21 +15,7 @@ const OrderPanel = () => {
         alignItems={'center'}
         marginBottom="24px"
       >
-        <TextField
-          variant="outlined"
-          size="small"
-          placeholder="Pesquisar por pedidos"
-          sx={{
-            '& input': {
-              height: '58px',
-              width: '414px',
-              boxSizing: 'border-box',
-            },
-          }}
-          InputProps={{
-            endAdornment: <SearchIcon color="action" />,
-          }}
-        />
+        <DataTableSearch value={value} onChange={onChange} />
       </Box>
     </>
   );

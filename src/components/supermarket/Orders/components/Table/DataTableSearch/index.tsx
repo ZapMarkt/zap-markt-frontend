@@ -3,7 +3,16 @@ import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 
-const OrderHeader = () => {
+interface DataTableSearchProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const DataTableSearch: React.FC<DataTableSearchProps> = ({
+  value,
+  onChange,
+  ...props
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -14,6 +23,9 @@ const OrderHeader = () => {
           className="p-0 text-lg font-normal leading-5 bg-customMkt-gray5 placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          {...props}
         />
         <IoSearch
           className={cn(
@@ -26,4 +38,4 @@ const OrderHeader = () => {
   );
 };
 
-export default OrderHeader;
+export default DataTableSearch;

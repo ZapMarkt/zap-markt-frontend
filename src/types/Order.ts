@@ -18,3 +18,25 @@ export interface Order {
     [key: string]: Product;
   };
 }
+
+interface payMethod {
+  method: string;
+  //   icon: JSX.Element;
+}
+
+export interface ordersColumns {
+  id: string;
+  name: string;
+  adress: string;
+  value: number;
+  quantify: number;
+  payMethod: payMethod;
+  status:
+    | 'Pendente'
+    | 'Aceito'
+    | 'Rota de entrega'
+    | 'Concluído'
+    | 'Cancelado'
+    | 'Em separação';
+  action: string;
+}

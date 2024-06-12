@@ -36,7 +36,7 @@ const UserProfile = () => {
         <p className="text-lg font-semibold leading-[1.2]">
           João Pedro Ferreira
         </p>
-        <span className="text-customMkt-gray3 font-light text-base leading-[1.2]">
+        <span className="text-customMkt-gray3 font-normal text-base leading-[1.2]">
           Administrador
         </span>
       </div>

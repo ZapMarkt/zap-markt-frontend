@@ -52,13 +52,13 @@ export function DataOrderTable<TData, TValue>({
     <div>
       <DataTableToolbar table={table} />
       <div className="flex flex-col justify-between" style={{ height: '65vh' }}>
-        <div className="bg-customMkt-whiteF9 rounded-t-[.625rem] overflow-y-auto h-full w-full">
+        <div className="bg-customMkt-whiteF9 rounded-t-[.625rem] overflow-y-auto h-full w-full custom-scrollbar">
           <Table className="h-full w-full">
             <TableHeader className="rounded-t-[.625rem] bg-customMkt-whiteF9 z-10">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow
                   key={headerGroup.id}
-                  className="hover:bg-inherit hover:opacity-100 transition hover:rounded-t-[.625rem] border-b-customMkt-gray "
+                  className="hover:bg-inherit hover:opacity-100 transition hover:rounded-t-[.625rem] border-b-customMkt-gray"
                 >
                   {headerGroup.headers.map((header) => {
                     return (
@@ -83,13 +83,28 @@ export function DataOrderTable<TData, TValue>({
                 table.getRowModel().rows.map((row) => (
                   <TableRow
                     key={row.id}
-                    className="hover:bg-customMkt-gray4 transition"
-                    onClick={toggleDrawer}
+                    className="hover:bg-customMkt-gray4 transition cursor-pointer"
+                    onClick={(e) => {
+                      const target = e.target as HTMLElement;
+                      if (!target.classList.contains('no-click')) {
+                        toggleDrawer();
+                      }
+                    }}
                   >
-                    {row.getVisibleCells().map((cell) => (
+                    {row.getVisibleCells().map((cell, index) => (
                       <TableCell
                         key={cell.id}
-                        className="px-[14px] py-[18.5px]"
+                        onClick={(e) => {
+                          const target = e.target as HTMLElement;
+                          if (!target.classList.contains('no-click')) {
+                            toggleDrawer();
+                          }
+                        }}
+                        className={`px-[14px] py-[18.5px] ${
+                          index === row.getVisibleCells().length - 1
+                            ? 'no-click'
+                            : ''
+                        }`}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,

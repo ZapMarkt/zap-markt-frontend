@@ -14,7 +14,7 @@ export const columns: ColumnDef<ordersColumns>[] = [
       const formatted = formatNumberToHash(id);
 
       return (
-        <div className="font-normal text-lg leading-[1.2] tracking-normal h-[22px] cursor-pointer">
+        <div className="font-normal text-lg leading-[1.2] tracking-normal h-[22px]">
           {formatted}
         </div>
       );
@@ -23,7 +23,7 @@ export const columns: ColumnDef<ordersColumns>[] = [
   {
     accessorKey: 'name',
     header: () => (
-      <div className="font-semibold text-lg w-[250px] h-[22px] cursor-pointer">
+      <div className="font-semibold text-lg w-[250px] h-[22px]">
         Nome do cliente
       </div>
     ),
@@ -31,7 +31,7 @@ export const columns: ColumnDef<ordersColumns>[] = [
       const name = String(row.getValue('name'));
 
       return (
-        <div className="font-normal text-lg w-[250px] leading-[1.2] whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer">
+        <div className="font-normal text-lg w-[250px] leading-[1.2] whitespace-nowrap overflow-hidden text-ellipsis">
           {name}
         </div>
       );
@@ -46,7 +46,7 @@ export const columns: ColumnDef<ordersColumns>[] = [
       const adress = String(row.getValue('adress'));
 
       return (
-        <div className="font-normal text-lg leading-[1.2] w-[321px] whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer">
+        <div className="font-normal text-lg leading-[1.2] w-[321px] whitespace-nowrap overflow-hidden text-ellipsis">
           {adress}
         </div>
       );
@@ -65,9 +65,7 @@ export const columns: ColumnDef<ordersColumns>[] = [
       }).format(amount);
 
       return (
-        <div className="font-normal text-lg leading-[1.2] cursor-pointer">
-          {formatted}
-        </div>
+        <div className="font-normal text-lg leading-[1.2]">{formatted}</div>
       );
     },
   },
@@ -80,9 +78,7 @@ export const columns: ColumnDef<ordersColumns>[] = [
       const quantify = String(row.getValue('quantify'));
 
       return (
-        <div className="font-normal text-lg leading-[1.2] cursor-pointer">
-          {quantify}
-        </div>
+        <div className="font-normal text-lg leading-[1.2]">{quantify}</div>
       );
     },
   },
@@ -97,27 +93,21 @@ export const columns: ColumnDef<ordersColumns>[] = [
       const payMethod = String(row.getValue('payMethod'));
 
       return (
-        <div className={`font-medium text-lg leading-[1.2] cursor-pointer`}>
-          {payMethod}
-        </div>
+        <div className={`font-medium text-lg leading-[1.2]`}>{payMethod}</div>
       );
     },
   },
   {
     accessorKey: 'status',
     header: () => (
-      <div className="font-semibold text-lg w-[160px] h-[22px] cursor-pointer">
-        Status
-      </div>
+      <div className="font-semibold text-lg w-[160px] h-[22px]">Status</div>
     ),
     cell: ({ row }) => {
       const status = String(row.getValue('status'));
       const statusClass = statusColors[status] || '';
 
       return (
-        <div
-          className={`font-medium text-lg leading-[1.2] ${statusClass} cursor-pointer`}
-        >
+        <div className={`font-medium text-lg leading-[1.2] ${statusClass}`}>
           {status}
         </div>
       );
@@ -131,7 +121,7 @@ export const columns: ColumnDef<ordersColumns>[] = [
       </div>
     ),
     cell: () => {
-      return <div className="text-center">icone</div>;
+      return <div className="text-center no-click">icone</div>;
     },
   },
 ];

@@ -4,6 +4,7 @@ import DrawerClientDetails from './components/DrawerClientsDetails';
 import DrawerHeader from './components/DrawerHeader';
 import DrawerOrderDetails from './components/DrawerOrderDetails';
 import DrawerPaymentDetails from './components/DrawerPaymentDetails';
+import DrawerPaymentMethod from './components/DrawerPaymentMethod';
 
 interface OrderDrawerProps {
   openDrawer: boolean;
@@ -23,6 +24,7 @@ const OrderDrawer: React.FC<OrderDrawerProps> = ({
           <DrawerClientDetails />
           <DrawerAdressDetails />
           <DrawerPaymentDetails />
+          <DrawerPaymentMethod />
         </div>
       </SheetContent>
     </Sheet>

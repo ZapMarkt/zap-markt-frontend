@@ -17,6 +17,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useState } from 'react';
+import OrderDrawer from '../Drawer';
 import DataTablePagination from './DataTablePagination';
 import { DataTableToolbar } from './DataTableToolbar';
 
@@ -29,6 +30,11 @@ export function DataOrderTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  function toggleDrawer() {
+    setOpenDrawer(true);
+  }
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     data,
@@ -78,6 +84,7 @@ export function DataOrderTable<TData, TValue>({
                   <TableRow
                     key={row.id}
                     className="hover:bg-customMkt-gray4 transition"
+                    onClick={toggleDrawer}
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell
@@ -107,6 +114,10 @@ export function DataOrderTable<TData, TValue>({
         </div>
         <DataTablePagination table={table} />
       </div>
+      <OrderDrawer
+        openDrawer={openDrawer}
+        closeDrawer={() => setOpenDrawer(false)}
+      />
     </div>
   );
 }

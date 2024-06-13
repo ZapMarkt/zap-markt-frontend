@@ -1,10 +1,5 @@
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from '@/components/ui/sheet';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
+import DrawerHeader from './DrawerHeader';
 
 interface OrderDrawerProps {
   openDrawer: boolean;
@@ -17,14 +12,8 @@ const OrderDrawer: React.FC<OrderDrawerProps> = ({
 }) => {
   return (
     <Sheet open={openDrawer}>
-      <SheetContent className="sm:max-w-[900px] w-full">
-        <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
-        </SheetHeader>
+      <SheetContent className="sm:max-w-[900px] w-full p-0">
+        <DrawerHeader onClose={closeDrawer} />
       </SheetContent>
     </Sheet>
   );

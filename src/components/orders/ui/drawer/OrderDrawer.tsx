@@ -2,7 +2,6 @@ import { Drawer } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { Order } from '../../../../../types/Order';
 import DrawerActionButtons from './components/DrawerActionButtons';
-import DrawerHeader from './components/DrawerHeader';
 
 interface OrderDrawerProps {
   openDrawer: boolean;
@@ -29,7 +28,6 @@ const OrderDrawer: React.FC<OrderDrawerProps> = ({
         },
       }}
     >
-      <DrawerHeader onClick={closeDrawer} selectedOrder={selectedOrder} />
       {children}
       <DrawerActionButtons />
     </Drawer>

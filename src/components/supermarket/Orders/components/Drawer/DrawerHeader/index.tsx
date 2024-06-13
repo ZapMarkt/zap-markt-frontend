@@ -19,7 +19,7 @@ const DrawerHeader: React.FC<DrawerHeaderProps> = ({ onClose }) => {
           onClick={onClose}
           className="flex justify-center items-center my-auto"
         >
-          <FaArrowLeft className="fill-customMkt-primary w-9 h-9" />
+          <FaArrowLeft className="fill-customMkt-primary w-5 h-5" />
         </Button>
         <h1 className="text-[38px] font-semibold leading-[46px] my-auto ml-[10px]">
           #856-963

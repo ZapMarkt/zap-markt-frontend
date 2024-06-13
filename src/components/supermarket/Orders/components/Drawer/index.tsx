@@ -1,7 +1,7 @@
 import { Sheet, SheetContent } from '@/components/ui/sheet';
-import DrawerClientDetails from './DrawerClientsDetails';
-import DrawerHeader from './DrawerHeader';
-import DrawerOrderDetails from './DrawerOrderDetails';
+import DrawerClientDetails from './components/DrawerClientsDetails';
+import DrawerHeader from './components/DrawerHeader';
+import DrawerOrderDetails from './components/DrawerOrderDetails';
 
 interface OrderDrawerProps {
   openDrawer: boolean;

@@ -18,8 +18,8 @@ import {
 } from '@/components/ui/table';
 import { useState } from 'react';
 import OrderDrawer from '../Drawer';
-import DataTablePagination from './DataTablePagination';
-import { DataTableToolbar } from './DataTableToolbar';
+import DataTablePagination from './components/DataTablePagination';
+import { DataTableToolbar } from './components/DataTableToolbar';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

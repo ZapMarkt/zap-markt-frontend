@@ -1,6 +1,6 @@
 import Layout from '@/common/components/supermarket/Layout';
 import { DataOrderTable } from '@/components/supermarket/Orders/components/Table';
-import { columns } from '@/components/supermarket/Orders/components/Table/DataTableColumns';
+import { columns } from '@/components/supermarket/Orders/components/Table/components/DataTableColumns';
 import { orders } from '@/data/orders';
 import { ordersColumns } from '@/types/Order';
 

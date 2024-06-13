@@ -1,4 +1,5 @@
 import { Sheet, SheetContent } from '@/components/ui/sheet';
+import DrawerAdressDetails from './components/DrawerAdressDetails';
 import DrawerClientDetails from './components/DrawerClientsDetails';
 import DrawerHeader from './components/DrawerHeader';
 import DrawerOrderDetails from './components/DrawerOrderDetails';
@@ -19,6 +20,7 @@ const OrderDrawer: React.FC<OrderDrawerProps> = ({
         <div className="flex flex-col gap-6 px-[30px] pt-[30px] pb-5">
           <DrawerOrderDetails />
           <DrawerClientDetails />
+          <DrawerAdressDetails />
         </div>
       </SheetContent>
     </Sheet>

@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import DataTableSearch from '../supermarket/Orders/components/Table/DataTableSearch';
+import DataTableSearch from '../supermarket/Orders/components/Table/components/DataTableSearch';
 
 interface OrderPanelProps {
   value: string;

@@ -14,11 +14,15 @@ module.exports = {
       screens: {
         '2xl': '1400px',
       },
-      lineHeight: {
-        'extra-loose': 1.2,
-      },
     },
     extend: {
+      boxShadow: {
+        customButton: '0px 2px 4px 0px  rgba(0, 0, 0, 0.05)',
+        customPopup: '0px 0px 10px 0px rgba(0, 0, 0, 0.10)',
+      },
+      lineHeight: {
+        customNormal: 1.2,
+      },
       colors: {
         customMkt: {
           primary: '#F2790B',

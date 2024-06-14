@@ -6,7 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { IoIosArrowDown, IoIosNotificationsOutline } from 'react-icons/io';
+import { IoIosNotificationsOutline } from 'react-icons/io';
 
 const UserProfile = () => {
   return (
@@ -32,7 +32,7 @@ const UserProfile = () => {
         <AvatarImage src="https://github.com/shadcn.png" />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
-      <div className="flex flex-col gap-[2px] justify-end mr-28">
+      <div className="flex flex-col gap-[2px] justify-end">
         <p className="text-lg font-semibold leading-[1.2]">
           João Pedro Ferreira
         </p>
@@ -40,7 +40,6 @@ const UserProfile = () => {
           Administrador
         </span>
       </div>
-      <IoIosArrowDown className="text-customMkt-gray3 cursor-pointer" />
     </div>
   );
 };

@@ -24,7 +24,7 @@ const CancelOrderModal: React.FC<CancelOrderModalProps> = ({
     >
       <div className="gap-5 flex items-center justify-end w-full">
         <Button
-          variant="customError"
+          variant="customSecondary"
           size="customLg"
           disabled={loading}
           onClick={onConfirm}
@@ -32,7 +32,7 @@ const CancelOrderModal: React.FC<CancelOrderModalProps> = ({
           Cancelar
         </Button>
         <Button
-          variant="customSecondary"
+          variant="customPrimary"
           size="customLg"
           disabled={loading}
           onClick={onClose}

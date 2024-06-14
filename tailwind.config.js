@@ -42,6 +42,7 @@ module.exports = {
           whiteF2: '#F2F2F2',
           grenLight: '#2F79584D',
           blueLight: '#5F7880',
+          primaryLight: '#ED7C004D',
         },
         statusMkt: {
           pendent: '#EEBE10',

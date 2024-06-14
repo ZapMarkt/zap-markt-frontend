@@ -9,7 +9,7 @@ const DrawerAdressDetails = () => {
         <p className="font-normal text-xl leading-[24px]">
           Av. Fernandes Lima, 2257 - Pinheiro , Maceió - AL
         </p>
-        <p className="font-normal text-xl leading-[24px] text-customMkt-blueLight">
+        <p className="font-light text-xl leading-[24px] text-customMkt-blueLight">
           Ao lado do mercado do joão
         </p>
       </div>

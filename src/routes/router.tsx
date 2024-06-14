@@ -104,7 +104,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/novo-usuario-administrador',
+    path: '/configuracoes/novo-usuario-administrador',
     element: (
       <PrivateRoute>
         <AdminUserFormPage />,

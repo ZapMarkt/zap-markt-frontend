@@ -4,7 +4,9 @@ import { Layout } from "../shared/Layout";
 export function Users() {
   return (
     <Layout headerTitle="Usuários">
-      <UsersTable />
+      <div className="p-8">
+        <UsersTable />
+      </div>
     </Layout>
   );
 }

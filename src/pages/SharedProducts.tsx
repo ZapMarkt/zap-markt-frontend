@@ -1,55 +1,42 @@
-import { Box, Drawer } from "@mui/material";
 import { SharedProductsTable } from "../components/SharedProductsTable";
 import { Layout } from "../shared/Layout";
-import DriveFolderUploadRoundedIcon from "@mui/icons-material/DriveFolderUploadRounded";
-import { useState } from "react";
 import { SharedProductForm } from "../components/SharedProductForm";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { MdDriveFolderUpload } from "react-icons/md";
+import { AiFillProduct } from "react-icons/ai";
 
 export function SharedProducts() {
-  const [openDrawer, setOpenDrawer] = useState(false);
-
-  function toggleDrawer() {
-    setOpenDrawer((prev) => !prev);
-  }
-
   return (
     <Layout headerTitle="Produtos compartilhados">
-      <Box
-        marginTop={12.5}
-        marginBottom={3.75}
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        {/* <TextField
-          placeholder="Buscar por produtos"
-          endIcon={() => <IoSearch size={24} />}
-        /> */}
-        <Box
-          display="flex"
-          gap={2.25}
-        >
-          <Button>
-            <DriveFolderUploadRoundedIcon />
+      <div className="p-8">
+        <div className="flex justify-end gap-4 mb-8">
+          <Button
+            className="gap-4 text-stone-400"
+            variant="outline"
+          >
+            <MdDriveFolderUpload size={24} />
             Importar produtos
           </Button>
-          <Button onClick={toggleDrawer}>Novo produto</Button>
-        </Box>
-      </Box>
-      <SharedProductsTable />
-      <Drawer
-        anchor="right"
-        open={openDrawer}
-        PaperProps={{
-          sx: {
-            width: "900px",
-            padding: 3.75,
-          },
-        }}
-      >
-        <SharedProductForm handleClickClose={toggleDrawer} />
-      </Drawer>
+          <Sheet>
+            <SheetTrigger>
+              <Button>
+                <AiFillProduct className="mr-4" />
+                Novo produto compartilhado
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="sm:max-w-[900px]">
+              <SheetHeader className="mb-8">
+                <SheetTitle className="text-3xl font-bold text-stone-900">
+                  Novo produto compartilhado
+                </SheetTitle>
+              </SheetHeader>
+              <SharedProductForm />
+            </SheetContent>
+          </Sheet>
+        </div>
+        <SharedProductsTable />
+      </div>
     </Layout>
   );
 }

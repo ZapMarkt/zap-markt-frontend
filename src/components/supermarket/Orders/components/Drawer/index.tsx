@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
+import { useToast } from '@/components/ui/supermarket-toasters/use-toast';
 import { useState } from 'react';
 import CancelOrderModal from './components/CancelOrderModal';
 import DrawerAdressDetails from './components/DrawerAdressDetails';
@@ -22,11 +23,15 @@ const OrderDrawer: React.FC<OrderDrawerProps> = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const { toast } = useToast();
 
   const onDelete = async () => {
     try {
       setLoading(true);
-      alert('Pedido cancelado');
+      toast({
+        variant: 'sucess',
+        description: 'Pedido cancelado com sucesso!',
+      });
     } catch (error) {
       console.log(error);
     } finally {

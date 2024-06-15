@@ -1,5 +1,5 @@
 import FeijaoPretoKikaldo from '@/assets/feijao-preto-kicaldo.jpeg';
-import ActionButons from './components/ActionButtons';
+import ActionButons from '../ActionButtons';
 
 const DrawerProductItem = () => {
   return (

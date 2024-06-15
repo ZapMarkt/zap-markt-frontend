@@ -19,11 +19,10 @@ const EditQuantifyModal: React.FC<EditQuantifyModalProps> = ({
   loading,
 }) => {
   // TODO retirar depois
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('1.200');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-
     setInputValue(value);
   };
 
@@ -33,7 +32,7 @@ const EditQuantifyModal: React.FC<EditQuantifyModalProps> = ({
       decription="Edite a quantidade de um produto sem precisa exclui-lo."
       isOpen={isOpen}
       onClose={onClose}
-      className="w-[596px] max-w[596px]"
+      className="w-[37.25rem] max-w[37.25rem]"
     >
       <div className="flex gap-6 mb-6">
         <InputIcon
@@ -47,7 +46,7 @@ const EditQuantifyModal: React.FC<EditQuantifyModalProps> = ({
           text="Kg"
           onChange={handleChange}
           value={formatQuantifyNumber(inputValue)}
-          type="text"
+          type="number"
         />
       </div>
       <div className="gap-5 flex items-center justify-end w-full">

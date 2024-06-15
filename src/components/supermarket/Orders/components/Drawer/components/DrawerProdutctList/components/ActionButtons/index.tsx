@@ -4,6 +4,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useToast } from '@/components/ui/supermarket-toasters/use-toast';
 import { useState } from 'react';
 import { TbSquareNumber1, TbTrash } from 'react-icons/tb';
 import CancelProductModal from './components/CancelProductModal';
@@ -13,13 +14,22 @@ const ActionButons = () => {
   const [loading, setLoading] = useState(false);
   const [openCancelProduct, setOpenCancelProduct] = useState(false);
   const [openEditQuantify, setOpenEditQuantify] = useState(false);
+  const { toast } = useToast();
 
   const onDelete = async () => {
     // TODO add delete item drom product list
+
     try {
+      toast({
+        variant: 'sucess',
+        description: 'Produto cancelado com sucesso!',
+      });
       setLoading(true);
-      alert('Produto cancelado');
     } catch (error) {
+      toast({
+        variant: 'destructive',
+        description: 'Algo deu errado.',
+      });
       console.log(error);
     } finally {
       setLoading(false);
@@ -31,8 +41,15 @@ const ActionButons = () => {
     // TODO add delete item drom product list
     try {
       setLoading(true);
-      alert('Quantidade editada');
+      toast({
+        variant: 'sucess',
+        description: 'Quantidade editada com sucesso!',
+      });
     } catch (error) {
+      toast({
+        variant: 'destructive',
+        description: 'Algo deu errado.',
+      });
       console.log(error);
     } finally {
       setLoading(false);

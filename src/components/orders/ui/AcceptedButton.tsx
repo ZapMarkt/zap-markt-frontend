@@ -1,21 +1,18 @@
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Button } from '@mui/material';
+import { Button } from '@/components/ui/button';
+interface statusButtonProps {
+  icon: JSX.Element;
+  status: string;
+}
 
-const AcceptedButton = () => {
+const StatusButton: React.FC<statusButtonProps> = ({ icon, status }) => {
   return (
     <Button
-      variant="contained"
       color="primary"
-      sx={{
-        padding: '7px',
-        minWidth: '32px',
-        height: '32px',
-        borderRadius: '50%',
-      }}
+      className={`p-[7px] min-w-8 h-8 rounded-full bg-statusMktValue-${status}`}
     >
-      <ShoppingCartIcon sx={{ width: '18px', color: '#FFFFFF' }} />
+      {icon}
     </Button>
   );
 };
 
-export default AcceptedButton;
+export default StatusButton;

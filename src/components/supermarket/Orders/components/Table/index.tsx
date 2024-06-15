@@ -17,8 +17,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useState } from 'react';
-import DataTablePagination from './DataTablePagination';
-import { DataTableToolbar } from './DataTableToolbar';
+import OrderDrawer from '../Drawer';
+import DataTablePagination from './components/DataTablePagination';
+import { DataTableToolbar } from './components/DataTableToolbar';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -29,6 +30,11 @@ export function DataOrderTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  function toggleDrawer() {
+    setOpenDrawer(true);
+  }
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     data,
@@ -45,49 +51,88 @@ export function DataOrderTable<TData, TValue>({
   return (
     <div>
       <DataTableToolbar table={table} />
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
+      <div className="flex flex-col justify-between" style={{ height: '65vh' }}>
+        <div className="bg-customMkt-whiteF9 rounded-t-[.625rem] overflow-y-auto h-full w-full custom-scrollbar">
+          <Table className="h-full w-full">
+            <TableHeader className="rounded-t-[.625rem] bg-customMkt-whiteF9 z-10">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow
+                  key={headerGroup.id}
+                  className="hover:bg-inherit hover:opacity-100 transition hover:rounded-t-[.625rem] border-b-customMkt-gray"
+                >
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <TableHead
+                        key={header.id}
+                        className="px-[14px] pb-3 pt-[14px]"
+                      >
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                      </TableHead>
+                    );
+                  })}
+                </TableRow>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    className="hover:bg-customMkt-gray4 transition cursor-pointer"
+                    onClick={(e) => {
+                      const target = e.target as HTMLElement;
+                      if (!target.classList.contains('no-click')) {
+                        toggleDrawer();
+                      }
+                    }}
+                  >
+                    {row.getVisibleCells().map((cell, index) => (
+                      <TableCell
+                        key={cell.id}
+                        onClick={(e) => {
+                          const target = e.target as HTMLElement;
+                          if (!target.classList.contains('no-click')) {
+                            toggleDrawer();
+                          }
+                        }}
+                        className={`px-[14px] py-[18.5px] ${
+                          index === row.getVisibleCells().length - 1
+                            ? 'no-click'
+                            : ''
+                        }`}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
                         )}
-                  </TableHead>
-                );
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && 'selected'}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    Sem resultados.
                   </TableCell>
-                ))}
-              </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                Sem resultados.
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-      <DataTablePagination table={table} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+        <DataTablePagination table={table} />
+      </div>
+      <OrderDrawer
+        openDrawer={openDrawer}
+        closeDrawer={() => setOpenDrawer(false)}
+      />
     </div>
   );
 }

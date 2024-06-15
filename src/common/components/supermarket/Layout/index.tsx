@@ -1,5 +1,6 @@
 import Header from '@/components/supermarket/Layout/Header';
 import SideNav from '@/components/supermarket/Layout/Sidenav';
+import { Toaster } from '@/components/ui/supermarket-toasters/toaster';
 import { ReactNode } from 'react';
 
 interface LayoutProps {
@@ -14,6 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       <Header title={title} />
       <div className="mt-[104px] p-[30px] w-[calc(100%-110px)] ml-[110px]">
         {children}
+        <Toaster />
       </div>
     </div>
   );

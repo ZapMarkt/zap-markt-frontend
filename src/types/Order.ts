@@ -25,7 +25,7 @@ interface payMethod {
 }
 
 export interface ordersColumns {
-  id: string;
+  id: number;
   name: string;
   adress: string;
   value: number;

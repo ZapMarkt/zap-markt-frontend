@@ -1,5 +1,5 @@
 const DrawerPaymentMethod = () => {
-  // TODO need add dinamic data from users
+  // TODO: need add dinamic data from users
   return (
     <div className=" flex flex-col ">
       <h1 className="font-semibold text-2xl leading-[29px] mb-[10px]">

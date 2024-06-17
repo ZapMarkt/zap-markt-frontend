@@ -1,5 +1,5 @@
 const DrawerPaymentDetails = () => {
-  // TODO need add dinamic data from users
+  // TODO: need add dinamic data from users
   return (
     <div className="px-[14px] py-3 flex flex-col rounded-[5px] bg-customMkt-whiteF2">
       <h1 className="font-semibold text-2xl leading-[29px] mb-[10px]">

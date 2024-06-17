@@ -18,7 +18,7 @@ const EditQuantifyModal: React.FC<EditQuantifyModalProps> = ({
   onConfirm,
   loading,
 }) => {
-  // TODO retirar depois
+  // TODO: retirar depois
   const [inputValue, setInputValue] = useState<string>('1.200');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

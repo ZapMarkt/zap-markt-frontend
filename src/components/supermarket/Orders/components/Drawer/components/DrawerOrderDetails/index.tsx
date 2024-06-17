@@ -1,5 +1,5 @@
 const DrawerOrderDetails = () => {
-  // TODO add bg-color status formatter
+  // TODO: add bg-color status formatter
   return (
     <div className="flex justify-start items-center gap-[10px]">
       <div className="px-3 py-[10px] w-[194px] rounded-[5px] bg-statusMkt-pendent flex justify-center items-center max-h-11 text-xl leading-[24px] font-medium text-white">

@@ -1,15 +1,15 @@
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { FaFilter } from 'react-icons/fa';
 import { MdOutlineDriveFolderUpload } from 'react-icons/md';
 import ImportProductsModal from '../DataImportModal';
-import DataTableFilter from '../DataTableFilter';
 
 const DataTableButtons = () => {
   const [openImportProducts, setOpenImportProducts] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const onImport = async () => {
-    // TODO add import to db products
+    // TODO: add import to db products
     try {
       setLoading(true);
     } catch (error) {
@@ -40,7 +40,14 @@ const DataTableButtons = () => {
           Importar produtos
         </Button>
 
-        <DataTableFilter />
+        <Button
+          size="customMd"
+          variant="customOutiline"
+          className="gap-[10px] transition max-w-[109px]"
+        >
+          <FaFilter className="fill-customMkt-gray6 group-hover:fill-customMkt-primary/80 w-6 h-6" />
+          Filtrar
+        </Button>
         <Button size="customLg" variant="customPrimary" className="w-[264px]">
           Novo produto
         </Button>

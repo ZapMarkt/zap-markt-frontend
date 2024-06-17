@@ -17,7 +17,7 @@ const ActionButons = () => {
   const { toast } = useToast();
 
   const onDelete = async () => {
-    // TODO add delete item drom product list
+    // TODO: add delete item drom product list
 
     try {
       toast({
@@ -38,7 +38,7 @@ const ActionButons = () => {
   };
 
   const onEditQuantify = async () => {
-    // TODO add delete item drom product list
+    // TODO: add delete item drom product list
     try {
       setLoading(true);
       toast({

@@ -53,6 +53,9 @@ export function SelectFilter<TData, TValue>({
   const facets = column?.getFacetedUniqueValues();
   const selectedValues = new Set(column?.getFilterValue() as string[]);
 
+
+  
+
   return (
     <>
       <Popover>
@@ -157,6 +160,7 @@ export function SelectFilter<TData, TValue>({
             </CommandList>
           </Command>
         </PopoverContent>
+      </Popover>
       </Popover>
       <Select>
         <SelectTrigger>

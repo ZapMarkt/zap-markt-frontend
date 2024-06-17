@@ -29,7 +29,7 @@ const CancelProductModal: React.FC<CancelProductModalProps> = ({
           disabled={loading}
           onClick={onConfirm}
         >
-          Cancelar
+          Apagar
         </Button>
         <Button
           variant="customPrimary"

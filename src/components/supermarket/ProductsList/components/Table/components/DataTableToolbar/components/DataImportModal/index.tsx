@@ -182,7 +182,7 @@ const ImportProductsModal: React.FC<ImportProductsModalProps> = ({
           <Button
             variant="customPrimary"
             size="customLg"
-            //TODO disabled={error || !file || loading} ativar na integração
+            //TODO: disabled={error || !file || loading} ativar na integração
             disabled={!isCompleted}
             onClick={handleConfirm}
           >

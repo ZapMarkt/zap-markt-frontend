@@ -1,11 +1,4 @@
-export interface Product {
-  id: number;
-  nome: string;
-  valor: number;
-  quantidade: number;
-  unidade: string;
-  img: string;
-}
+import { Product } from './Products';
 
 export interface Order {
   order: string;

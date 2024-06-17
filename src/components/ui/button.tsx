@@ -20,19 +20,23 @@ const buttonVariants = cva(
         ghost: 'hover:notbg-accent hover:nottext-accent-foreground',
         link: 'nottext-primary notunderline-offset-4 hover:notunderline',
         customPrimary:
-          'bg-customMkt-primary text-white hover:bg-customMkt-primary/80 transition',
+          'bg-customMkt-primary text-white hover:bg-customMkt-primary/80 transition disabled:pointer-events-none disabled:opacity-50 disabled:bg-gray-700',
         customSecondary:
-          'bg-customMkt-secondary text-customMkt-primary hover:bg-customMkt-secondary/80 transition',
+          'bg-customMkt-secondary text-customMkt-primary hover:bg-customMkt-secondary/80 transition disabled:pointer-events-none disabled:opacity-50 disabled:bg-gray-700',
         customError:
-          'bg-customMkt-error text-white hover:bg-customMkt-error/80 transition',
+          'bg-customMkt-error text-white hover:bg-customMkt-error/80 transition disabled:pointer-events-none disabled:opacity-50 disabled:bg-gray-700',
+        customOutiline:
+          'border border-customMkt-gray7 text-customMkt-gray6 rounded-[5px] hover:text-customMkt-primary/80 hover:border-customMkt-primary/80 hover:fill-customMkt-primary group disabled:pointer-events-none disabled:opacity-50 disabled:bg-gray-700',
       },
       size: {
         default: 'noth-10 notpx-4 notpy-2',
         sm: 'noth-9 notrounded-md notpx-3',
         lg: 'noth-11 notrounded-md notpx-8',
         icon: 'noth-10 notw-10',
+        customMd:
+          'px-[12px] py-[17px] text-lg font-semibold shadow-customButton rounded-[8px] w-[264px] max-h-[58px] flex justify-center items-center leading-[22px] w-full',
         customLg:
-          'px-[22px] py-[18px] text-lg font-semibold shadow-customButton rounded-[8px] w-[264px] max-h-[58px] flex justify-center items-center leading-[22px]',
+          'px-[22px] py-[18px] text-lg font-medium shadow-customButton rounded-[8px] w-[264px] max-h-[58px] flex justify-center items-center leading-[22px] w-full',
       },
     },
     defaultVariants: {

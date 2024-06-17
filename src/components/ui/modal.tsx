@@ -12,8 +12,8 @@ import React from 'react';
 interface ModalProps {
   title: string;
   decription: string;
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
   children?: React.ReactNode;
   className?: string;
 }

@@ -40,6 +40,7 @@ module.exports = {
           whiteF9: '#F9F9F9',
           whiteF0: '#F0F0F0',
           whiteF2: '#F2F2F2',
+          green: '#2F7958',
           grenLight: '#2F79584D',
           blueLight: '#5F7880',
           primaryLight: '#ED7C004D',
@@ -52,6 +53,7 @@ module.exports = {
           concluded: '#F9871F',
           canceled: '#BF1818',
         },
+
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -85,6 +87,9 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+      },
+      transitionDelay: {
+        2000: '2000ms',
       },
       borderRadius: {
         lg: 'var(--radius)',

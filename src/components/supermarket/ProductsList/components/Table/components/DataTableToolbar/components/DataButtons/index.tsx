@@ -1,3 +1,4 @@
+import NewProductDrawer from '@/components/supermarket/ProductsList/components/NewProductDrawer';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { FaFilter } from 'react-icons/fa';
@@ -7,6 +8,11 @@ import ImportProductsModal from '../DataImportModal';
 const DataTableButtons = () => {
   const [openImportProducts, setOpenImportProducts] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  function toggleDrawer() {
+    setOpenDrawer(true);
+  }
 
   const onImport = async () => {
     // TODO: add import to db products
@@ -48,10 +54,20 @@ const DataTableButtons = () => {
           <FaFilter className="fill-customMkt-gray6 group-hover:fill-customMkt-primary/80 w-6 h-6" />
           Filtrar
         </Button>
-        <Button size="customLg" variant="customPrimary" className="w-[264px]">
+        <Button
+          size="customLg"
+          variant="customPrimary"
+          className="w-[264px]"
+          onClick={toggleDrawer}
+        >
           Novo produto
         </Button>
       </div>
+
+      <NewProductDrawer
+        openDrawer={openDrawer}
+        closeDrawer={() => setOpenDrawer(false)}
+      />
     </>
   );
 };

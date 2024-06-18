@@ -13,7 +13,7 @@ export class AxiosService {
   }
 
   setupInterceptors = () => {
-    this.httpClient.interceptors.response.use()
+    this.httpClient.interceptors.response.use();
   };
 }
 

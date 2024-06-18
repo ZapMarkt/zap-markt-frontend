@@ -41,9 +41,7 @@ export function SupermarketForm() {
     },
   });
 
-  function onSubmitForm(data: SupermarketFormSchema) {
-    console.log(data);
-  }
+  function onSubmitForm(data: SupermarketFormSchema) {}
 
   const cep = watch("cep");
   const password = watch("password");
@@ -74,10 +72,7 @@ export function SupermarketForm() {
         position={"relative"}
         marginBottom={15.62}
       >
-        <BackgroundUploadButton
-          {...register("backdrop")}
-          onChange={(ev) => console.log(ev)}
-        />
+        <BackgroundUploadButton {...register("backdrop")} />
         <ProfileUploadButton
           {...register("profile")}
           sx={{

@@ -5,8 +5,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "./ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { z } from "zod";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { productService } from "@/services/ProductService";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { PaginatedData, SharedProduct, productService } from "@/services/ProductService";
 import { Textarea } from "./ui/textarea";
 import { useState } from "react";
 
@@ -59,10 +59,20 @@ export function SharedProductForm() {
     },
   });
 
-  const query = useQuery({ queryKey: ["all-measures"], queryFn: productService.getAllMeasures });
-  const mutation = useMutation({ mutationFn: productService.createProduct });
+  const query = useQuery({ queryKey: ["measures"], queryFn: productService.getAllMeasures });
+  const queryClient = useQueryClient();
 
-  const onSubmit = async (data: Schema) => {
+  const mutation = useMutation({
+    mutationFn: productService.createProduct,
+    onSuccess: (data) => {
+      queryClient.setQueryData(["sharedProducts"], (oldState: PaginatedData<SharedProduct>) => ({
+        ...oldState,
+        items: [...oldState.items, data],
+      }));
+    },
+  });
+
+  async function onSubmit(data: Schema) {
     const payload = {
       name: data.productName,
       measureId: +data.measureId,
@@ -70,9 +80,8 @@ export function SharedProductForm() {
       description: data.description,
       picture: data.picture,
     };
-
     await mutation.mutateAsync(payload);
-  };
+  }
 
   const pictureRef = form.register("picture");
 

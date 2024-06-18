@@ -1,4 +1,4 @@
-import { SharedProductsTable } from "../components/SharedProductsTable";
+import { SharedProductsTable } from "../components/SharedPorductsTable/SharedProductsTable";
 import { Layout } from "../shared/Layout";
 import { SharedProductForm } from "../components/SharedProductForm";
 import { Button } from "@/components/ui/button";

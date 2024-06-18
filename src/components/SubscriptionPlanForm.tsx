@@ -35,8 +35,6 @@ export function SubscriptionPlanForm() {
       dueDate: inputData.dueDate.toISOString(),
       sendDate: inputData.sendDate.toISOString(),
     };
-
-    console.log(data);
   }
 
   return (

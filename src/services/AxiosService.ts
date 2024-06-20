@@ -11,6 +11,10 @@ export class AxiosService {
       withCredentials: true,
     });
   }
+
+  setupInterceptors = () => {
+    this.httpClient.interceptors.response.use();
+  };
 }
 
 export const httpClient = new AxiosService();

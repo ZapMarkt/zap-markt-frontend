@@ -47,7 +47,7 @@ const schema = z.object({
 type Schema = z.infer<typeof schema>;
 
 export function SharedProductForm() {
-  const [selectedPicture, setSelectedPicture] = useState<File | undefined>();
+  const [selectedPicture, setSelectedPicture] = useState<File>();
 
   const form = useForm<Schema>({
     resolver: zodResolver(schema),

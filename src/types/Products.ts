@@ -8,6 +8,20 @@ export interface Product {
   quantify: number;
   unity: string;
   codeBar: string;
-  onPromotion: boolean;
+  onPromotion?: boolean;
   promotionValue?: number;
+}
+
+export interface ProductForm {
+  barCode: string;
+  measureId: string;
+  name: string;
+  image: {};
+  price: number;
+  isOnPromotion?: boolean;
+  promotionalPrice?: number;
+  description?: string;
+  categoryId: string;
+  stock: string;
+  pdvCode: string;
 }

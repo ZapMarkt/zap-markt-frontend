@@ -69,6 +69,6 @@ export const newProductSchema: ZodType<ProductForm> = z
     },
   );
 
-type NewProductSchema = z.infer<typeof newProductSchema>;
+type ProductSchema = z.infer<typeof newProductSchema>;
 
-export type { NewProductSchema };
+export type { ProductSchema };

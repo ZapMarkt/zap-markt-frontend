@@ -1,5 +1,6 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
+import { categories } from '@/data/category-data';
 import { measures } from '@/data/measure-data';
 import ProductForm from './components/DrawerForm';
 import NewProductDrawerHeader from './components/DrawerHeader';
@@ -19,7 +20,11 @@ const NewProductDrawer: React.FC<NewProductDrawerProps> = ({
         <NewProductDrawerHeader onClose={closeDrawer} />
         <ScrollArea>
           <div className="flex flex-col gap-6 px-[30px] pt-[30px] pb-[35px]">
-            <ProductForm measures={measures} onClose={closeDrawer} />
+            <ProductForm
+              measures={measures}
+              onClose={closeDrawer}
+              categories={categories}
+            />
           </div>
         </ScrollArea>
       </SheetContent>

@@ -2,23 +2,28 @@ import { Measure } from '@/types/measure';
 
 export const measures: Measure[] = [
   {
-    name: 'Grama',
+    id: 1,
+    name: 'Grama (gr)',
     type: 'g',
   },
   {
-    name: 'Quilograma',
+    id: 2,
+    name: 'Quilograma (kg)',
     type: 'kg',
   },
   {
-    name: 'Litro',
+    id: 3,
+    name: 'Litro (l)',
     type: 'l',
   },
   {
-    name: 'Mililitro',
+    id: 4,
+    name: 'Mililitro (ml)',
     type: 'ml',
   },
   {
-    name: 'Metro',
+    id: 5,
+    name: 'Metro (mt)',
     type: 'm',
   },
 ];

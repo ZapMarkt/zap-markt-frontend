@@ -19,6 +19,7 @@ import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import { ProductSchema, newProductSchema } from '@/libs/zod/NewProductSchema';
+import { Category } from '@/types/category';
 import { Measure } from '@/types/measure';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useEffect, useState } from 'react';
@@ -28,10 +29,15 @@ import { IoMdCloudUpload } from 'react-icons/io';
 
 interface ProductFormProps {
   measures: Measure[];
+  categories: Category[];
   onClose: () => void;
 }
 
-const ProductForm: React.FC<ProductFormProps> = ({ measures, onClose }) => {
+const ProductForm: React.FC<ProductFormProps> = ({
+  measures,
+  onClose,
+  categories,
+}) => {
   const form = useForm<ProductSchema>({
     resolver: zodResolver(newProductSchema),
     defaultValues: {
@@ -265,13 +271,13 @@ const ProductForm: React.FC<ProductFormProps> = ({ measures, onClose }) => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="p-0">
-                    {measures.map((measure) => (
+                    {categories.map((category) => (
                       <SelectItem
-                        key={measure.type}
-                        value={measure.type}
+                        key={category.uuid}
+                        value={category.uuid}
                         className="border-b border-customMkt-whiteF0 text-lg font-normal last:border-b-0 rounded-b-0"
                       >
-                        {measure.name}
+                        {category.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -311,8 +317,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ measures, onClose }) => {
                   <SelectContent className="p-0">
                     {measures.map((measure) => (
                       <SelectItem
-                        key={measure.type}
-                        value={measure.type}
+                        key={measure.name}
+                        value={String(measure.id)}
                         className="border-b border-customMkt-whiteF0 text-lg font-normal last:border-b-0 rounded-b-0"
                       >
                         {measure.name}

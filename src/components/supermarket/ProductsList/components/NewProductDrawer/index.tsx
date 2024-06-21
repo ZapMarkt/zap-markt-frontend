@@ -19,7 +19,7 @@ const NewProductDrawer: React.FC<NewProductDrawerProps> = ({
         <NewProductDrawerHeader onClose={closeDrawer} />
         <ScrollArea>
           <div className="flex flex-col gap-6 px-[30px] pt-[30px] pb-5">
-            <ProductForm measures={measures} />
+            <ProductForm measures={measures} onClose={closeDrawer} />
           </div>
         </ScrollArea>
       </SheetContent>

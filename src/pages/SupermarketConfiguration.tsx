@@ -1,12 +1,10 @@
 import { Box, FormControlLabel, Link, Switch, Typography } from "@mui/material";
-import { CustomAppBar } from "../components/CustomAppBar";
 import { CustomTabs } from "../components/CustomTabs";
 import { Layout } from "../shared/Layout";
 
 export function SupermarketConfiguration() {
   return (
-    <Layout>
-      <CustomAppBar title="Mix Mateus" />
+    <Layout headerTitle="Mix Mateus">
       <CustomTabs />
       <Box
         display={"flex"}

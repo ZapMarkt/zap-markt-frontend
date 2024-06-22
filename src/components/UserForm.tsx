@@ -1,7 +1,4 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { CPFMask } from "../libs/imask/CPFMask";
-import { PhoneMask } from "../libs/imask/PhoneMask";
-import { TextField } from "./TextField";
 
 export function UserForm() {
   return (
@@ -24,19 +21,19 @@ export function UserForm() {
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Nome"
               disabled
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="CPF"
               disabled
-            />
+            /> */}
           </Grid>
         </Grid>
       </Box>
@@ -58,28 +55,28 @@ export function UserForm() {
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Celular"
               disabled
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Email"
               disabled
-            />
+            /> */}
           </Grid>
           <Grid
             item
             xl={6}
           >
-            <TextField
+            {/* <TextField
               placeholder="Origem do cadastro"
               disabled
-            />
+            /> */}
           </Grid>
         </Grid>
       </Box>

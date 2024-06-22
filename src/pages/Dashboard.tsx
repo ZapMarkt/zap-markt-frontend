@@ -1,5 +1,4 @@
 import { Box, Card, CardContent, Chip, Divider, Typography } from "@mui/material";
-import { CustomAppBar } from "../components/CustomAppBar";
 import { Layout } from "../shared/Layout";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -7,16 +6,10 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import StoreIcon from "@mui/icons-material/Store";
 import PeopleIcon from "@mui/icons-material/People";
 import SellIcon from "@mui/icons-material/Sell";
-import { useUserSessionStore } from "../stores/userSessionStore";
 
 export function Dashboard() {
-  const userSession = useUserSessionStore((state) => state.userSession);
-
-  console.log(userSession);
-
   return (
-    <Layout>
-      <CustomAppBar title="Dashboard" />
+    <Layout headerTitle="Dashboard">
       <Box
         display={"flex"}
         gap={3.75}

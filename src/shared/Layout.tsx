@@ -1,143 +1,139 @@
-import {
-  Box,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  ListSubheader,
-  ThemeProvider,
-} from "@mui/material";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import StoreIcon from "@mui/icons-material/Store";
-import PeopleIcon from "@mui/icons-material/People";
-import SettingsIcon from "@mui/icons-material/Settings";
-import LogoutIcon from "@mui/icons-material/Logout";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { PropsWithChildren } from "react";
+import { useUserSessionStore } from "@/stores/UserSessionStore";
 import { useMutation } from "@tanstack/react-query";
-import { adminService } from "../services/AdminService";
-import { useUserSessionStore } from "../stores/userSessionStore";
-
-import { grey } from "@mui/material/colors";
-import { ReactNode } from "react";
-import { Link, NavLink } from "react-router-dom";
-import logo from "../../public/logo.png";
-import { theme } from "../libs/mui/theme";
+import { adminService } from "@/services/AdminService";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AiFillDashboard } from "react-icons/ai";
+import { IoStorefront } from "react-icons/io5";
+import { BsPeopleFill } from "react-icons/bs";
+import { BsFillBasketFill } from "react-icons/bs";
+import { FaGear } from "react-icons/fa6";
+import { MdLogout } from "react-icons/md";
+import { Button } from "@/components/ui/button";
+import { SyncLoader } from "react-spinners";
+import logo from "../../public/image.png";
+import { stone } from "tailwindcss/colors";
+import { ProfileStatusWidget } from "@/components/ProfileStatusWidget";
 
 type LayoutProps = {
-  children: ReactNode;
-};
+  headerTitle: string;
+} & PropsWithChildren;
 
-const menuLinks = [
+const menu = [
   {
-    primary: "Dashboard",
-    to: "/dashboardadmin", // trocar posteriormente
-    icon: <DashboardIcon />,
-  },
+    menuSubHeader: "Menu",
+    menuItems: [
+      {
+        menuItemText: "Dashboard",
+        menuItemPath: "/",
+        menuItemIcon: <AiFillDashboard />,
+      },
 
-  {
-    primary: "Supermercados",
-    to: "/supermercados",
-    icon: <StoreIcon />,
+      {
+        menuItemText: "Supermercados",
+        menuItemPath: "/supermercados",
+        menuItemIcon: <IoStorefront />,
+      },
+      {
+        menuItemText: "Usuários",
+        menuItemPath: "/usuarios",
+        menuItemIcon: <BsPeopleFill />,
+      },
+      {
+        menuItemText: "Produtos compartilhados",
+        menuItemPath: "/produtos-compartilhados",
+        menuItemIcon: <BsFillBasketFill />,
+      },
+    ],
   },
   {
-    primary: "Usuários",
-    to: "/usuarios",
-    icon: <PeopleIcon />,
-  },
-  {
-    primary: "Produtos compartilhados",
-    to: "/produtos-compartilhados",
-    icon: <ShoppingBasketIcon />,
+    menuSubHeader: "Sistema",
+    menuItems: [
+      {
+        menuItemText: "Configurações",
+        menuItemPath: "/configuracoes",
+        menuItemIcon: <FaGear />,
+      },
+    ],
   },
 ];
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children, headerTitle }: LayoutProps) {
+  const userSession = useUserSessionStore((state) => state.userSession);
+  const navigate = useNavigate();
+
+  const mutation = useMutation({
+    mutationFn: adminService.signOut,
+  });
+
+  const handleSignOut = async () => {
+    await mutation.mutateAsync(userSession);
+    localStorage.removeItem("userSession");
+    localStorage.removeItem("currentUser");
+    navigate("/login");
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <Box display={"flex"}>
-        <Drawer
-          anchor="left"
-          variant="permanent"
-          sx={{ width: 340 }}
-          PaperProps={{
-            sx: {
-              backgroundColor: grey[900],
-              color: grey[500],
-            },
-          }}
-        >
-          <Box
-            marginBottom={5.5}
-            marginInline={3.75}
-            marginTop={5}
-            component={Link}
-            to={"/"}
+    <main className="flex h-screen">
+      <aside className="w-80 bg-stone-900 p-8">
+        <img
+          className="mb-11"
+          src={logo}
+        />
+        <nav>
+          <ul>
+            {menu.map((link) => {
+              return (
+                <>
+                  <strong className="block text-lg text-white mb-5">{link.menuSubHeader}</strong>
+                  <ul>
+                    {link.menuItems.map((menuItem, index) => {
+                      return (
+                        <li key={index}>
+                          <NavLink
+                            to={menuItem.menuItemPath}
+                            className={({ isActive }) =>
+                              isActive
+                                ? "flex items-center gap-4 bg-white text-stone-900 mb-3 h-10 px-4 py-2 rounded-md"
+                                : "flex items-center gap-4 text-stone-400 mb-3 h-10 px-4 py-2"
+                            }
+                          >
+                            {menuItem.menuItemIcon}
+                            <span>{menuItem.menuItemText}</span>
+                          </NavLink>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              );
+            })}
+          </ul>
+          <Button
+            className="gap-4 text-stone-400"
+            onClick={handleSignOut}
           >
-            <img
-              src={logo}
-              loading="lazy"
-              width={280}
-            />
-          </Box>
-          <List
-            sx={{ width: 340 }}
-            disablePadding
-          >
-            <ListSubheader
-              sx={{
-                backgroundColor: grey[900],
-                color: grey[500],
-                fontSize: 18,
-              }}
-            >
-              MENU
-            </ListSubheader>
-            {menuLinks.map((link, index) => (
-              <ListItem
-                key={index}
-                button
-                component={NavLink}
-                to={link.to}
-              >
-                <ListItemIcon color="gray">{link.icon}</ListItemIcon>
-                <ListItemText primary={link.primary} />
-              </ListItem>
-            ))}
-            <ListSubheader
-              sx={{
-                backgroundColor: grey[900],
-                color: grey[500],
-                fontSize: 18,
-              }}
-            >
-              SISTEMA
-            </ListSubheader>
-            <ListItem
-              button
-              component={NavLink}
-              to="/configuracoes"
-            >
-              <ListItemIcon color="gray">
-                <SettingsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Configurações" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon color="gray">
-                <LogoutIcon />
-              </ListItemIcon>
-              <ListItemText>Sair da conta</ListItemText>
-            </ListItem>
-          </List>
-        </Drawer>
-        <Box
-          flex={1}
-          padding={3.75}
-        >
-          {children}
-        </Box>
-      </Box>
-    </ThemeProvider>
+            {mutation.isPending ? (
+              <SyncLoader
+                size={8}
+                color={stone[400]}
+              />
+            ) : (
+              <>
+                <MdLogout />
+                Sair da conta
+              </>
+            )}
+          </Button>
+        </nav>
+      </aside>
+      <div className="flex-1">
+        <header className="flex justify-between items-center border-b border-stone-100 px-9 pt-10 pb-4">
+          <h1 className="text-3xl font-bold text-stone-900">{headerTitle}</h1>
+          <ProfileStatusWidget />
+        </header>
+        {children}
+      </div>
+    </main>
   );
 }

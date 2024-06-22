@@ -2,14 +2,7 @@ import { z } from "zod";
 import { validateCnpj } from "../../utils/validateCnpj";
 
 export const supermarketFormSchema = z.object({
-  profile: z.any(),
-  backdrop: z.any().refine((file: File) => {
-    if (file.size > 1) {
-      return false;
-    }
-    return true;
-  }),
-  stablishmentName: z
+  establishmentName: z
     .string()
     .min(4, {
       message:
@@ -53,10 +46,10 @@ export const supermarketFormSchema = z.object({
       message:
         "O endereço de e-mail inserido é inválido. Por favor, insira um endereço de e-mail válido.",
     }),
-  cep: z
+  zipCode: z
     .string()
     .nonempty({ message: "Este campo é obrigatório. Por favor, preencha-o antes de continuar." })
-    .length(9, {
+    .length(7, {
       message:
         "O campo deve conter exatamente 8 caracteres. Por favor, verifique e tente novamente.",
     }),
@@ -115,12 +108,22 @@ export const supermarketFormSchema = z.object({
       message:
         "O campo deve conter exatamente 2 caracteres. Por favor, verifique e tente novamente.",
     }),
-  password: z
-    .string()
-    .nonempty({ message: "Este campo é obrigatório. Por favor, preencha-o antes de continuar." })
-    .min(8, {
-      message:
-        "Este campo deve conter no mínimo 8 caracteres. Por favor, adicione mais caracteres.",
+  banner: z
+    .instanceof(FileList)
+    .refine((val) => val.length, {
+      message: "Nenhum arquivo selecionado. Por favor, escolha um arquivo para enviar.",
+    })
+    .transform((val) => val.item(0) as NonNullable<File>)
+    .refine((val) => val.size <= 2 ** 20 * 3, {
+      message: "O arquivo é muito grande. O tamanho máximo permitido é de 3MB.",
     }),
-  confirmationPassword: z.string(),
+  picture: z
+    .instanceof(FileList)
+    .refine((val) => val.length, {
+      message: "Nenhum arquivo selecionado. Por favor, escolha um arquivo para enviar.",
+    })
+    .transform((val) => val.item(0) as NonNullable<File>)
+    .refine((val) => val.size <= 2 ** 20 * 3, {
+      message: "O arquivo é muito grande. O tamanho máximo permitido é de 3MB.",
+    }),
 });

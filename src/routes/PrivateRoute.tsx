@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from "react";
-import { useUserSessionStore } from "../stores/userSessionStore";
+import { useUserSessionStore } from "../stores/UserSessionStore";
 import { useNavigate } from "react-router-dom";
 
 export function PrivateRoute({ children }: PropsWithChildren) {

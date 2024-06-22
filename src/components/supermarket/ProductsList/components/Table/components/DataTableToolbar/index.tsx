@@ -17,7 +17,6 @@ export function DataTableToolbar<TData>({
             value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
             onChange={(value) => table.getColumn('name')?.setFilterValue(value)}
           />
-
           <DataTableButtons />
         </div>
       </div>

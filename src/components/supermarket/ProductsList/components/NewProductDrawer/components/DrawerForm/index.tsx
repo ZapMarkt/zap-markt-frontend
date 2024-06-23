@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useToast } from '@/components/ui/supermarket-toasters/use-toast';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
@@ -51,10 +52,12 @@ const ProductForm: React.FC<ProductFormProps> = ({
       pdvCode: '',
       isOnPromotion: false,
       promotionalPrice: 0,
+      image: {},
     },
   });
 
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   // Control if product is on promotion
   const [promotion, setPromotion] = useState(false);
@@ -75,11 +78,18 @@ const ProductForm: React.FC<ProductFormProps> = ({
     try {
       setLoading(true);
       console.log(data);
+      toast({
+        variant: 'sucess',
+        description: 'Produto cadastrado com sucesso!',
+      });
     } catch (error) {
       alert('Nao Passou');
       console.log(error);
     } finally {
       setLoading(false);
+      setTimeout(() => {
+        onClose();
+      }, 1000);
     }
   };
 
@@ -273,8 +283,8 @@ const ProductForm: React.FC<ProductFormProps> = ({
                   <SelectContent className="p-0">
                     {categories.map((category) => (
                       <SelectItem
-                        key={category.uuid}
-                        value={category.uuid}
+                        key={category.name}
+                        value={category.name}
                         className="border-b border-customMkt-whiteF0 text-lg font-normal last:border-b-0 rounded-b-0"
                       >
                         {category.name}

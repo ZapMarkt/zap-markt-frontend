@@ -51,7 +51,7 @@ export function DataProductTable<TData, TValue>({
   return (
     <div>
       <DataTableToolbar table={table} />
-      <div className="flex flex-col justify-between" style={{ height: '65vh' }}>
+      <div className="flex flex-col justify-between" style={{ height: '60vh' }}>
         <div className="bg-white rounded-t-[.625rem] overflow-y-auto h-full w-full custom-scrollbar">
           <ScrollArea>
             <Table className="h-full w-full">

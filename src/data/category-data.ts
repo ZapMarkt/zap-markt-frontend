@@ -2,23 +2,63 @@ import { Category } from '@/types/category';
 
 export const categories: Category[] = [
   {
-    name: 'Promoção',
-    uuid: '3f3cd4e1-7f97-4e8a-91c1-05e8a1e8b54c',
-  },
-  {
     name: 'Laticínios',
-    uuid: '71a06a7e-3b61-4747-b6c2-7ebd9e9052f1',
+    productQuantify: 10,
+    ordination: 2,
   },
   {
     name: 'Doces e Sobremesas',
-    uuid: '5ac63b17-57d4-4f1a-b795-973d1ecaba14',
+    productQuantify: 15,
+    ordination: 3,
   },
   {
-    name: 'Produtos de Limpeza',
-    uuid: 'e91a5424-8329-41d1-9a60-7a663168c528',
+    name: 'Produtos de Limpeza2',
+    productQuantify: 8,
+    ordination: 4,
   },
   {
     name: 'Padaria',
-    uuid: '7b4b7086-f8ea-499a-8b0e-cfd3f15f95a1',
+    productQuantify: 99,
+    ordination: 5,
+  },
+  {
+    name: 'Produtos de Limpeza',
+    productQuantify: 5,
+    ordination: 6,
+  },
+  {
+    name: 'Higiene Pessoal',
+    productQuantify: 5,
+    ordination: 7,
+  },
+  {
+    name: 'Higiene Pessoal2',
+    productQuantify: 5,
+    ordination: 7,
+  },
+  {
+    name: 'Higiene Pessoal3',
+    productQuantify: 5,
+    ordination: 7,
+  },
+  {
+    name: 'Higiene Pessoal4',
+    productQuantify: 5,
+    ordination: 7,
+  },
+  {
+    name: 'Higiene Pessoal5',
+    productQuantify: 5,
+    ordination: 7,
+  },
+  {
+    name: 'Higiene Pessoal6',
+    productQuantify: 5,
+    ordination: 7,
+  },
+  {
+    name: 'Higiene Pessoal7',
+    productQuantify: 5,
+    ordination: 7,
   },
 ];

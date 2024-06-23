@@ -11,14 +11,12 @@ export function DataTableToolbar<TData>({
 }: DataTableToolbarProps<TData>) {
   return (
     <>
-      <div className="flex items-center justify-between mb-[30px]">
-        <div className="flex flex-1 items-center space-x-2 justify-between">
-          <DataTableSearch
-            value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-            onChange={(value) => table.getColumn('name')?.setFilterValue(value)}
-          />
-          <DataTableButtons />
-        </div>
+      <div className="flex mb-[30px]">
+        <DataTableSearch
+          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+          onChange={(value) => table.getColumn('name')?.setFilterValue(value)}
+        />
+        <DataTableButtons />
       </div>
     </>
   );

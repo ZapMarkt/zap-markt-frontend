@@ -13,7 +13,7 @@ const DataTableSearch: React.FC<DataTableSearchProps> = ({
   ...props
 }) => {
   return (
-    <div className="place-self-start max-w-[414px] w-full mb-6 group">
+    <div className="max-w-[414px] w-full group">
       <div className="flex items-center gap-4 max-h-[58px] bg-customMkt-gray5 px-3 py-[17px] rounded border border-customMkt-gray7 focus-within:border-customMkt-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-customMkt-primary transition-all">
         <Input
           placeholder="Buscar por produtos"

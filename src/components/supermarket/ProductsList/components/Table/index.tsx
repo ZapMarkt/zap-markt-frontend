@@ -16,7 +16,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from '@/components/ui/supermarket-table/table';
 import { useState } from 'react';
 import DataTablePagination from './components/DataTablePagination';
 import { DataTableToolbar } from './components/DataTableToolbar';
@@ -52,83 +52,82 @@ export function DataProductTable<TData, TValue>({
     <div>
       <DataTableToolbar table={table} />
       <div className="flex flex-col justify-between" style={{ height: '60vh' }}>
-        <div className="bg-white rounded-t-[.625rem] overflow-y-auto h-full w-full custom-scrollbar">
-          <ScrollArea>
-            <Table className="h-full w-full">
-              <TableHeader className="rounded-t-[.625rem] bg-white z-10">
-                {table.getHeaderGroups().map((headerGroup) => (
+        <ScrollArea>
+          <Table className="h-full w-full relative">
+            <TableHeader className="rounded-t-[.625rem] bg-white z-10">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow
+                  key={headerGroup.id}
+                  className="hover:bg-inherit hover:opacity-100 transition hover:rounded-t-[.625rem] border-b-customMkt-gray"
+                >
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <TableHead
+                        key={header.id}
+                        className="px-[14px] pb-3 pt-[14px] sticky top-0 bg-white"
+                      >
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                      </TableHead>
+                    );
+                  })}
+                </TableRow>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
                   <TableRow
-                    key={headerGroup.id}
-                    className="hover:bg-inherit hover:opacity-100 transition hover:rounded-t-[.625rem] border-b-customMkt-gray"
+                    key={row.id}
+                    className="hover:bg-customMkt-gray5 transition cursor-pointer"
+                    onClick={(e) => {
+                      const target = e.target as HTMLElement;
+                      if (!target.classList.contains('no-click')) {
+                        toggleDrawer();
+                      }
+                    }}
                   >
-                    {headerGroup.headers.map((header) => {
-                      return (
-                        <TableHead
-                          key={header.id}
-                          className="px-[14px] pb-3 pt-[14px]"
-                        >
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                        </TableHead>
-                      );
-                    })}
+                    {row.getVisibleCells().map((cell, index) => (
+                      <TableCell
+                        key={cell.id}
+                        onClick={(e) => {
+                          const target = e.target as HTMLElement;
+                          if (!target.classList.contains('no-click')) {
+                            toggleDrawer();
+                          }
+                        }}
+                        className={`px-[14px] py-[18.5px] ${
+                          index === row.getVisibleCells().length - 1
+                            ? 'no-click'
+                            : ''
+                        }`}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    ))}
                   </TableRow>
-                ))}
-              </TableHeader>
-              <TableBody>
-                {table.getRowModel().rows?.length ? (
-                  table.getRowModel().rows.map((row) => (
-                    <TableRow
-                      key={row.id}
-                      className="hover:bg-customMkt-gray5 transition cursor-pointer"
-                      onClick={(e) => {
-                        const target = e.target as HTMLElement;
-                        if (!target.classList.contains('no-click')) {
-                          toggleDrawer();
-                        }
-                      }}
-                    >
-                      {row.getVisibleCells().map((cell, index) => (
-                        <TableCell
-                          key={cell.id}
-                          onClick={(e) => {
-                            const target = e.target as HTMLElement;
-                            if (!target.classList.contains('no-click')) {
-                              toggleDrawer();
-                            }
-                          }}
-                          className={`px-[14px] py-[18.5px] ${
-                            index === row.getVisibleCells().length - 1
-                              ? 'no-click'
-                              : ''
-                          }`}
-                        >
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
-                          )}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell
-                      colSpan={columns.length}
-                      className="h-24 text-center"
-                    >
-                      Sem resultados.
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </ScrollArea>
-        </div>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    Sem resultados.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </ScrollArea>
+
         <DataTablePagination table={table} />
       </div>
     </div>

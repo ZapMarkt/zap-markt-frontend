@@ -8,6 +8,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Table,
   TableBody,
@@ -15,7 +16,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from '@/components/ui/supermarket-table/table';
 import { useState } from 'react';
 import TableSearch from './TableSearch';
 
@@ -53,19 +54,19 @@ export function CategoryTable<TData, TValue>({
         className="flex flex-col justify-between pt-[82px]"
         style={{ height: '65vh' }}
       >
-        <div className="rounded-t-[.625rem] overflow-y-auto h-full w-full custom-scrollbar relative">
-          <Table className="h-full w-full">
-            <TableHeader className="rounded-t-[.625rem] z-10">
+        <ScrollArea>
+          <Table className="relative h-full w-full">
+            <TableHeader className="rounded-t-[.625rem] bg-white z-10">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow
                   key={headerGroup.id}
-                  className="hover:bg-inherit hover:opacity-100 transition hover:rounded-t-[.625rem] border-b-customMkt-gray"
+                  className="hover:bg-inherit bg-white hover:opacity-100 transition hover:rounded-t-[.625rem] border-b-customMkt-gray"
                 >
                   {headerGroup.headers.map((header) => {
                     return (
                       <TableHead
                         key={header.id}
-                        className="px-[14px] pb-3 pt-[14px]"
+                        className="bg-white px-[14px] pb-3 pt-[14px] sticky top-0"
                       >
                         {header.isPlaceholder
                           ? null
@@ -147,7 +148,7 @@ export function CategoryTable<TData, TValue>({
               )}
             </TableBody>
           </Table>
-        </div>
+        </ScrollArea>
       </div>
     </div>
   );

@@ -66,10 +66,15 @@ const OrderDrawer: React.FC<OrderDrawerProps> = ({
               size="customLg"
               variant="customError"
               onClick={() => setOpen(true)}
+              className="w-[264px]"
             >
               Cancelar pedido
             </Button>
-            <Button size="customLg" variant="customPrimary">
+            <Button
+              size="customLg"
+              variant="customPrimary"
+              className="w-[264px]"
+            >
               Aceitar
             </Button>
           </div>

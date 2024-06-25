@@ -83,13 +83,14 @@ export function DatePickerWithRange({}: React.HTMLAttributes<HTMLDivElement>) {
               render={({ field }) => (
                 <FormItem className="flex flex-col">
                   <Calendar
-                    className={{
-                      day_range_middle: 'aria-selected:bg-customMkt-secondary',
+                    classNames={{
+                      day_range_middle:
+                        'aria-selected:bg-customMkt-secondary aria-selected:text-customMkt-black',
                     }}
                     initialFocus
                     mode="range"
                     defaultMonth={date?.from}
-                    selected={field.value}
+                    selected={date}
                     onSelect={(range) => {
                       field.onChange(range);
                       setDateRange(range);

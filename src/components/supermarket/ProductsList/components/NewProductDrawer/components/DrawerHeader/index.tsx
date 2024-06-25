@@ -10,7 +10,7 @@ const NewProductDrawerHeader: React.FC<NewProductDrawerHeaderProps> = ({
 }) => {
   return (
     <>
-      <div className="flex items-start justify-betweengap-[10px] px-[30px] pt-10 pb-[14px] border-b border-b-customMkt-whiteF0">
+      <div className="flex items-start justify-betweengap-[10px] px-[30px] pt-10 pb-[17px] border-b border-b-customMkt-whiteF0">
         <Button
           onClick={onClose}
           className="flex justify-center items-center my-auto"

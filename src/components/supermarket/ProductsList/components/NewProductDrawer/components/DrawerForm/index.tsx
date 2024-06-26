@@ -28,6 +28,7 @@ import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaBarcode } from 'react-icons/fa';
 import { IoMdCloudUpload } from 'react-icons/io';
+import CloseDrawerModal from '../CloseDrawerModal';
 
 interface ProductFormProps {
   measures: Measure[];
@@ -105,8 +106,16 @@ const ProductForm: React.FC<ProductFormProps> = ({
     setCategoryValue(categoryIdValue || 'Selecione uma categoria');
   }, [measureIdValue, categoryIdValue]);
 
+  // control close drawer when have data
+  const [open, setOpen] = useState(false);
+
   return (
     <>
+      <CloseDrawerModal
+        isOpen={open}
+        onConfirm={onClose}
+        onClose={() => setOpen(false)}
+      />
       <Tabs defaultValue="details" className="mb-[35px]">
         <TabsList className="flex justify-start items-center w-max py-1 px-[6px] gap-2 h-[46px]">
           <TabsTrigger
@@ -460,7 +469,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                   variant="customSecondary"
                   disabled={loading}
                   className="max-w-[264px]"
-                  onClick={onClose}
+                  onClick={() => setOpen(true)}
                 >
                   Cancelar
                 </Button>

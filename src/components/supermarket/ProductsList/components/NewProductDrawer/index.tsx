@@ -15,20 +15,22 @@ const NewProductDrawer: React.FC<NewProductDrawerProps> = ({
   closeDrawer,
 }) => {
   return (
-    <Sheet open={openDrawer}>
-      <SheetContent className="sm:max-w-[900px] h-screen p-0 gap-0 w-full flex flex-col">
-        <NewProductDrawerHeader onClose={closeDrawer} />
-        <ScrollArea>
-          <div className="flex flex-col gap-6 px-[30px] pt-[30px]">
-            <ProductForm
-              measures={measures}
-              onClose={closeDrawer}
-              categories={categories}
-            />
-          </div>
-        </ScrollArea>
-      </SheetContent>
-    </Sheet>
+    <>
+      <Sheet open={openDrawer}>
+        <SheetContent className="sm:max-w-[900px] h-screen p-0 gap-0 w-full flex flex-col">
+          <NewProductDrawerHeader onClose={closeDrawer} />
+          <ScrollArea>
+            <div className="flex flex-col gap-6 px-[30px] pt-[30px]">
+              <ProductForm
+                measures={measures}
+                onClose={closeDrawer}
+                categories={categories}
+              />
+            </div>
+          </ScrollArea>
+        </SheetContent>
+      </Sheet>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import DashboardPage from '@/pages/supermarket/DashboardPage';
 import DeliveryConfigPage from '@/pages/supermarket/DeliveryPageConfig/DeliveryConfigPage';
+import LoginPage from '@/pages/supermarket/LoginPage/LoginPage';
 import OrderHistoryPage from '@/pages/supermarket/OrderHistory/OrderHistoryPage';
 import OrdersPage from '@/pages/supermarket/OrdersPage';
 import ProductsPage from '@/pages/supermarket/ProductsPage';
@@ -170,7 +171,10 @@ export const router = createBrowserRouter([
   },
 
   // supermarket routes
-
+  {
+    path: '/login-supermarket', // alterar depois para a rota a ser usada em produção
+    element: <LoginPage />,
+  },
   {
     path: '/dashboarduser', // alterar depois para a rota a ser usada em produção
     element: <DashboardPage />,

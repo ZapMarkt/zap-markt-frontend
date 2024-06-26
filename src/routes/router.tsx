@@ -1,4 +1,5 @@
 import DashboardPage from '@/pages/supermarket/DashboardPage';
+import DeliveryConfigPage from '@/pages/supermarket/DeliveryPageConfig/DeliveryConfigPage';
 import OrderHistoryPage from '@/pages/supermarket/OrderHistory/OrderHistoryPage';
 import OrdersPage from '@/pages/supermarket/OrdersPage';
 import ProductsPage from '@/pages/supermarket/ProductsPage';
@@ -181,6 +182,10 @@ export const router = createBrowserRouter([
   {
     path: '/produtos',
     element: <ProductsPage />,
+  },
+  {
+    path: '/entrega',
+    element: <DeliveryConfigPage />,
   },
   {
     path: '/historico-de-pedidos',

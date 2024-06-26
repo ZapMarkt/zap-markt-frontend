@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/components/ui/supermarket-toasters/use-toast';
 import {
-  DeliveryOptionSchema,
+  DeliveryOptionTransformSchema,
   deliveryOptionSchema,
 } from '@/libs/zod/DeliveryOptionSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -25,7 +25,7 @@ const DeliveryForm = () => {
   const [loading, setLoading] = useState(false);
 
   const form = useForm<{
-    deliveryAreas: DeliveryOptionSchema[];
+    deliveryAreas: DeliveryOptionTransformSchema[];
   }>({
     resolver: zodResolver(
       z.object({
@@ -33,7 +33,7 @@ const DeliveryForm = () => {
       }),
     ),
     defaultValues: {
-      deliveryAreas: [{ radius: 0, price: 0, time: 0 }],
+      deliveryAreas: [{ radius: '0', price: '0', time: '0' }],
     },
   });
 
@@ -42,9 +42,9 @@ const DeliveryForm = () => {
     name: 'deliveryAreas',
   });
 
-  const onSubmit: SubmitHandler<{ deliveryAreas: DeliveryOptionSchema[] }> = (
-    data,
-  ) => {
+  const onSubmit: SubmitHandler<{
+    deliveryAreas: DeliveryOptionTransformSchema[];
+  }> = (data) => {
     // TODO: add request to create delivery options
 
     if (data.deliveryAreas.length === 0) return null;
@@ -84,7 +84,6 @@ const DeliveryForm = () => {
                           <Input
                             disabled={loading}
                             placeholder="1"
-                            type="number"
                             {...field}
                             className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
                           />
@@ -108,7 +107,6 @@ const DeliveryForm = () => {
                           <Input
                             disabled={loading}
                             placeholder="1,00"
-                            type="number"
                             {...field}
                             className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
                           />
@@ -132,7 +130,6 @@ const DeliveryForm = () => {
                           <Input
                             disabled={loading}
                             placeholder="60"
-                            type="number"
                             {...field}
                             className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
                           />
@@ -161,7 +158,7 @@ const DeliveryForm = () => {
         </ScrollArea>
         <Button
           className="p-[18px] text-xl bg-white font-medium flex items-center justify-center leading-customNormal w-full text-customMkt-primary rounded-[10px] mb-[18px] border hover:border-customMkt-primary transition mt-5"
-          onClick={() => append({ radius: 0, price: 0, time: 0 })}
+          onClick={() => append({ radius: '0', price: '0', time: '0' })}
         >
           Adicionar mais área de entrega
         </Button>

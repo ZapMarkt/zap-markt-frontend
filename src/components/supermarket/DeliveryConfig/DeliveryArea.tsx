@@ -15,7 +15,7 @@ const DeliveryArea = () => {
         </p>
       </div>
       <div>
-        <div className="px-[10px] py-[14px] bg-customMkt-gray4 flex rounded-t-[5px] gap-[10px]">
+        <div className="px-[10px] py-[14px] bg-customMkt-gray4 flex rounded-t-[5px] gap-[12px]">
           <h2 className="text-xl font-semibold leading-customNormal text-left w-[170px]">
             Distancia
           </h2>

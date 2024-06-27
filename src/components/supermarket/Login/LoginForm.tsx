@@ -84,7 +84,7 @@ const LoginForm = () => {
         />
         <Link
           className="block text-right text-lg font-medium leading-customNormal text-customMkt-primary hover:underline transition"
-          to="/"
+          to="/recuperar-senha"
         >
           Esqueci minha senha
         </Link>

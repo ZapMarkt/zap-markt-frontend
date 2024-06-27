@@ -1,3 +1,4 @@
+import RecoveryPassword from '@/components/supermarket/Login/RecoveryPassword';
 import DashboardPage from '@/pages/supermarket/DashboardPage';
 import DeliveryConfigPage from '@/pages/supermarket/DeliveryPageConfig/DeliveryConfigPage';
 import LoginPage from '@/pages/supermarket/LoginPage/LoginPage';
@@ -172,8 +173,12 @@ export const router = createBrowserRouter([
 
   // supermarket routes
   {
-    path: '/login-supermarket', // alterar depois para a rota a ser usada em produção
+    path: '/login-supermarket',
     element: <LoginPage />,
+  },
+  {
+    path: '/recuperar-senha',
+    element: <RecoveryPassword />,
   },
   {
     path: '/dashboarduser', // alterar depois para a rota a ser usada em produção

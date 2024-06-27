@@ -33,12 +33,12 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
           >
             {showPassword ? (
               <EyeIcon
-                className="h-6 w-6 transition group-focus-within:text-customMkt-primary cursor-pointer"
+                className="h-6 w-6 transition group-focus-within:text-customMkt-primary cursor-pointer text-customMkt-gray7"
                 aria-hidden="true"
               />
             ) : (
               <EyeOffIcon
-                className="h-6 w-6 transition group-focus-within:text-customMkt-primary cursor-pointer"
+                className="h-6 w-6 transition group-focus-within:text-customMkt-primary cursor-pointer text-customMkt-gray7"
                 aria-hidden="true"
               />
             )}

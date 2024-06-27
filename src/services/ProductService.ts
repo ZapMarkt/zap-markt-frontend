@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import { AxiosService } from "./AxiosService";
+import { RequestPaginationParams } from "./SupermarketService";
 
 type Measure = {
   name: string;
@@ -54,9 +55,15 @@ class ProductService extends AxiosService {
     return response.data;
   };
 
-  getSharedPorducts = async () => {
+  getSharedPorducts = async (pagination: RequestPaginationParams) => {
     const response: AxiosResponse<PaginatedData<SharedProduct>> = await this.httpClient.get(
-      "/products"
+      "/products",
+      {
+        params: {
+          size: pagination.pageSize,
+          page: pagination.pageIndex + 1,
+        },
+      }
     );
     return response.data;
   };

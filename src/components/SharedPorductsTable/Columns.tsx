@@ -12,10 +12,6 @@ export const columns: ColumnDef<SharedProduct>[] = [
     header: "Código de barras",
   },
   {
-    accessorKey: "measure.name",
-    header: "Medida",
-  },
-  {
     id: "actions",
     header: "Ações",
     cell: ({ row }) => <SharedProductActions {...row.original} />,

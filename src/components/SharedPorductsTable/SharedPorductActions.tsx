@@ -29,25 +29,14 @@ export function SharedProductActions(sharedProduct: SharedProduct) {
   return (
     <div className="flex items-center gap-10">
       <Button
-        className="w-12 h-12 rounded-full"
+        className="w-5 h-5 rounded-full"
         variant="ghost"
       >
-        <MdVisibility
-          className="text-stone-600"
-          size={24}
-        />
+        <MdVisibility className="text-stone-600 w-16 h-16" />
       </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            className="w-12 h-12 rounded-full"
-            variant="ghost"
-          >
-            <IoMdMore
-              className="text-stone-600"
-              size={24}
-            />
-          </Button>
+          <IoMdMore className="text-stone-600 w-5 h-5" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem

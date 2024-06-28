@@ -1,6 +1,6 @@
 import DeliveryForm from './DeliveryForm';
 
-const DeliveryArea = () => {
+const DeliveryHeader = () => {
   return (
     <div
       className="px-3 py-[18px] bg-white max-w-[613px] max-h-[767px] 
@@ -32,4 +32,4 @@ const DeliveryArea = () => {
   );
 };
 
-export default DeliveryArea;
+export default DeliveryHeader;

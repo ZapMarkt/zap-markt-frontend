@@ -1,7 +1,7 @@
-import GoogleMaps from '@/components/supermarket/DeliveryConfig/GoogleMaps';
+import DeliveryMap from '@/components/supermarket/DeliveryConfig/DeliveryMap';
 
 const MapPage = () => {
-  return <GoogleMaps />;
+  return <DeliveryMap />;
 };
 
 export default MapPage;

@@ -2,6 +2,7 @@ import ChangePassword from '@/components/supermarket/Login/ChangePassword';
 import RecoveryPassword from '@/components/supermarket/Login/RecoveryPassword';
 import DashboardPage from '@/pages/supermarket/DashboardPage';
 import DeliveryConfigPage from '@/pages/supermarket/DeliveryPageConfig/DeliveryConfigPage';
+import MapPage from '@/pages/supermarket/DeliveryPageConfig/MapPage';
 import LoginPage from '@/pages/supermarket/LoginPage/LoginPage';
 import OrderHistoryPage from '@/pages/supermarket/OrderHistory/OrderHistoryPage';
 import OrdersPage from '@/pages/supermarket/OrdersPage';
@@ -204,5 +205,11 @@ export const router = createBrowserRouter([
   {
     path: '/historico-de-pedidos',
     element: <OrderHistoryPage />,
+  },
+  // Teste google maps
+
+  {
+    path: '/google-maps',
+    element: <MapPage />,
   },
 ]);

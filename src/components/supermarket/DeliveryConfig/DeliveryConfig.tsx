@@ -1,9 +1,14 @@
-import DeliveryArea from './DeliveryArea';
+import { cn } from '@/lib/utils';
+import DeliveryHeader from './DeliveryHeader';
 
-const DeliveryConfig = () => {
+interface DeliveryConfigProps {
+  className?: string;
+}
+
+const DeliveryConfig: React.FC<DeliveryConfigProps> = ({ className }) => {
   return (
-    <div className="p-[30px]">
-      <DeliveryArea />
+    <div className={cn('p-[30px]', className)}>
+      <DeliveryHeader />
     </div>
   );
 };

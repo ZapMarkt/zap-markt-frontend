@@ -14,8 +14,9 @@ import {
   DeliveryOptionTransformSchema,
   deliveryOptionSchema,
 } from '@/libs/zod/DeliveryOptionSchema';
+import { useDeliveryRadiusStore } from '@/stores/MapCIrcleHistory';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { z } from 'zod';
@@ -23,6 +24,22 @@ import { z } from 'zod';
 const DeliveryForm = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const addDeliveryArea = useDeliveryRadiusStore(
+    (state) => state.addDeliveryArea,
+  );
+  const updateDeliveryArea = useDeliveryRadiusStore(
+    (state) => state.updateDeliveryArea,
+  );
+  const saveToLocalStorage = useDeliveryRadiusStore(
+    (state) => state.saveToLocalStorage,
+  );
+  const loadFromLocalStorage = useDeliveryRadiusStore(
+    (state) => state.loadFromLocalStorage,
+  );
+  const deliveryAreas = useDeliveryRadiusStore((state) => state.deliveryAreas);
+  const removeDeliveryArea = useDeliveryRadiusStore(
+    (state) => state.removeDeliveryArea,
+  );
 
   const form = useForm<{
     deliveryAreas: DeliveryOptionTransformSchema[];
@@ -33,14 +50,33 @@ const DeliveryForm = () => {
       }),
     ),
     defaultValues: {
-      deliveryAreas: [{ radius: '0', price: '0', time: '0' }],
+      deliveryAreas: deliveryAreas.length
+        ? deliveryAreas
+        : [{ radius: '0', price: '0', time: '0' }],
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append } = useFieldArray({
     control: form.control,
     name: 'deliveryAreas',
   });
+
+  useEffect(() => {
+    loadFromLocalStorage();
+  }, [loadFromLocalStorage]);
+
+  useEffect(() => {
+    if (deliveryAreas.length > 0) {
+      form.reset({
+        deliveryAreas: deliveryAreas.map((area) => ({
+          ...area,
+          radius: area.radius.toString(),
+          price: area.price.toString(),
+          time: area.time.toString(),
+        })),
+      });
+    }
+  }, [deliveryAreas, form]);
 
   const onSubmit: SubmitHandler<{
     deliveryAreas: DeliveryOptionTransformSchema[];
@@ -50,6 +86,14 @@ const DeliveryForm = () => {
     if (data.deliveryAreas.length === 0) return null;
     try {
       setLoading(true);
+      data.deliveryAreas.forEach((area, index) => {
+        if (fields[index]) {
+          updateDeliveryArea(index, area);
+        } else {
+          addDeliveryArea(area);
+        }
+      });
+      saveToLocalStorage();
       console.log(data.deliveryAreas);
       toast({
         variant: 'sucess',
@@ -61,6 +105,10 @@ const DeliveryForm = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleRemove = (index: number) => {
+    removeDeliveryArea(index);
   };
 
   return (
@@ -147,7 +195,7 @@ const DeliveryForm = () => {
                 {index !== 0 ? (
                   <FaRegTrashAlt
                     className="h-6 w-6 fill-customMkt-error cursor-pointer"
-                    onClick={() => remove(index)}
+                    onClick={() => handleRemove(index)}
                   />
                 ) : (
                   <div className="h-6 w-6 bg-transparent" />

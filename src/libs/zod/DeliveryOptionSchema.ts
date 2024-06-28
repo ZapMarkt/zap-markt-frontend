@@ -19,7 +19,7 @@ export const deliveryOptionSchema: ZodType = z.object({
       message: 'Insira uma taxa',
     })
     .transform((val) => parseFloat(val.replace(',', '.')))
-    .refine((val) => !isNaN(val) && val >= 0.01 && val <= 20, {
+    .refine((val) => !isNaN(val) && val >= 0.01, {
       message: 'Valor mínimo de R$ 0.01',
     })
     .refine((val) => !isNaN(val) && val <= 999, {

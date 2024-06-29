@@ -1,15 +1,14 @@
 import { AxiosResponse } from "axios";
-import { AxiosService } from "./AxiosService";
 import { Admin } from "../types/Admin/Admin";
+import { AxiosService } from "./AxiosService";
 
 type SignIn = {
   email: string;
   password: string;
 };
 
-export type SignInResponse = {
-  uSession: string;
-  uIdentifier: string;
+type SignInResponse = {
+  session: string;
 };
 
 class AdminService extends AxiosService {
@@ -23,7 +22,9 @@ class AdminService extends AxiosService {
   };
 
   getAll = async () => {
-    const response: AxiosResponse<Admin[]> = await this.httpClient.get("/admin");
+    const response: AxiosResponse<Admin[]> = await this.httpClient.get(
+      "/admin"
+    );
     return response.data;
   };
 

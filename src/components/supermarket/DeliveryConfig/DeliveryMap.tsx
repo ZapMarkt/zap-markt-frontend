@@ -1,5 +1,10 @@
 import { useDeliveryRadiusStore } from '@/stores/MapCIrcleHistory';
-import { APIProvider, AdvancedMarker, Map } from '@vis.gl/react-google-maps';
+import {
+  APIProvider,
+  AdvancedMarker,
+  Map,
+  Pin,
+} from '@vis.gl/react-google-maps';
 import { useEffect } from 'react';
 import { Circle } from './CircleMap';
 import DeliveryConfig from './DeliveryConfig';
@@ -32,7 +37,13 @@ const DeliveryMap = () => {
           mapId={'Supermarket_Id'}
           clickableIcons={false}
         >
-          <AdvancedMarker position={position} />
+          <AdvancedMarker position={position}>
+            <Pin
+              background={'#f28608'}
+              borderColor={'#f28608'}
+              glyphColor={'#FFD8AA'}
+            />
+          </AdvancedMarker>
           {deliveryAreas.map((area, index) => (
             <Circle
               key={index}

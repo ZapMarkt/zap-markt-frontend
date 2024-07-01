@@ -14,12 +14,18 @@ const position = {
   lng: -50.160205,
 };
 
+export const getColor = (index: number, alpha = 1) => {
+  const hue = (index * 137.508) % 360;
+  return `hsla(${hue}, 70%, 50%, ${alpha})`;
+};
+
 const DeliveryMap = () => {
   const apiKey = import.meta.env.VITE_API_GOOGLE_MAPS;
   const deliveryAreas = useDeliveryRadiusStore((state) => state.deliveryAreas);
   const loadFromLocalStorage = useDeliveryRadiusStore(
     (state) => state.loadFromLocalStorage,
   );
+  const hoveredIndex = useDeliveryRadiusStore((state) => state.hoveredIndex);
 
   useEffect(() => {
     loadFromLocalStorage();
@@ -44,18 +50,44 @@ const DeliveryMap = () => {
               glyphColor={'#FFD8AA'}
             />
           </AdvancedMarker>
-          {deliveryAreas.map((area, index) => (
-            <Circle
-              key={index}
-              center={position}
-              strokeColor={'#F28608'}
-              strokeOpacity={1}
-              strokeWeight={3}
-              fillColor={'#FFBC6E40'}
-              fillOpacity={0.3}
-              radius={area.radius * 1000}
-            />
-          ))}
+          {deliveryAreas.map((area, index) => {
+            let radius = area.radius * 1000;
+            let fillColor = 'transparent';
+            let strokeColor = '#F28608';
+            let fillOpacity = 1;
+            let strokeWeight = 3;
+            let zIndex = 0;
+
+            if (hoveredIndex !== null) {
+              if (index < hoveredIndex) {
+                fillColor = '#FFFFFF';
+                zIndex = 100;
+                strokeWeight = 5;
+              } else if (index > hoveredIndex) {
+                fillOpacity = 0;
+                strokeWeight = 1;
+              } else if (index === hoveredIndex) {
+                fillColor = '#FFBC6E';
+                fillOpacity = 0.5;
+                strokeWeight = 5;
+                zIndex = 99;
+              }
+            }
+
+            return (
+              <Circle
+                key={index}
+                center={position}
+                strokeColor={strokeColor}
+                strokeOpacity={1}
+                strokeWeight={strokeWeight}
+                fillColor={fillColor}
+                fillOpacity={fillOpacity}
+                radius={radius}
+                zIndex={zIndex}
+              />
+            );
+          })}
         </Map>
         <DeliveryConfig className="absolute top-0 z-40" />
       </div>

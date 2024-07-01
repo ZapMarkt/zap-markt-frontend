@@ -8,6 +8,8 @@ type DeliveryArea = {
 
 type DeliveryConfigStore = {
   deliveryAreas: DeliveryArea[];
+  hoveredIndex: number | null;
+  setHoveredIndex: (index: number | null) => void;
   loadFromLocalStorage: () => void;
   saveToLocalStorage: () => void;
   addDeliveryArea: (area: DeliveryArea) => void;
@@ -22,12 +24,15 @@ const initialAreas: DeliveryArea[] = deliveryRadius
 
 export const useDeliveryRadiusStore = create<DeliveryConfigStore>((set) => ({
   deliveryAreas: initialAreas,
+  hoveredIndex: null,
+  setHoveredIndex: (index: number | null) => set({ hoveredIndex: index }),
   loadFromLocalStorage: () => {
-    const storedAreas = localStorage.getItem('userSession');
+    const storedAreas = localStorage.getItem('deliverySession');
     if (storedAreas) {
       try {
         const parsedAreas: DeliveryArea[] = JSON.parse(storedAreas);
-        set({ deliveryAreas: parsedAreas });
+        const sortedAreas = parsedAreas.sort((a, b) => a.radius - b.radius); // Ordena os dados ao carregar
+        set({ deliveryAreas: sortedAreas });
       } catch (error) {
         console.error(
           'Erro ao fazer parsing dos dados do localStorage:',
@@ -38,25 +43,31 @@ export const useDeliveryRadiusStore = create<DeliveryConfigStore>((set) => ({
   },
   saveToLocalStorage: () => {
     set((state) => {
-      localStorage.setItem('userSession', JSON.stringify(state.deliveryAreas));
+      localStorage.setItem(
+        'deliverySession',
+        JSON.stringify(state.deliveryAreas),
+      );
       return state;
     });
   },
   addDeliveryArea: (area: DeliveryArea) =>
-    set((state) => ({
-      deliveryAreas: [...state.deliveryAreas, area],
-    })),
+    set((state) => {
+      const newAreas = [...state.deliveryAreas, area];
+      localStorage.setItem('deliverySession', JSON.stringify(newAreas));
+      return { deliveryAreas: newAreas };
+    }),
   updateDeliveryArea: (index: number, area: DeliveryArea) =>
     set((state) => {
       const newAreas = [...state.deliveryAreas];
       newAreas[index] = area;
+      localStorage.setItem('deliverySession', JSON.stringify(newAreas));
       return { deliveryAreas: newAreas };
     }),
   removeDeliveryArea: (index: number) =>
     set((state) => {
       const newAreas = [...state.deliveryAreas];
       newAreas.splice(index, 1);
-      localStorage.setItem('userSession', JSON.stringify(newAreas));
+      localStorage.setItem('deliverySession', JSON.stringify(newAreas));
       return { deliveryAreas: newAreas };
     }),
 }));

@@ -42,3 +42,18 @@ export const deliveryOptionSchema: ZodType = z.object({
 export type DeliveryOptionTransformSchema = z.infer<
   typeof deliveryOptionSchema
 >;
+
+// Teste de validação
+/* const testData = [
+  { radius: '0,5', price: '10,00', time: '20' },
+  { radius: '10,1', price: '300,50', time: '60' },
+];
+
+testData.forEach((data) => {
+  try {
+    deliveryOptionSchema.parse(data);
+    console.log('Validação bem-sucedida para:', data);
+  } catch (e: any) {
+    console.error('Erro de validação:', e.errors);
+  }
+}); */

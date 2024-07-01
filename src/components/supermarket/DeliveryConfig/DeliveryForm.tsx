@@ -15,15 +15,18 @@ import {
   deliveryOptionSchema,
 } from '@/libs/zod/DeliveryOptionSchema';
 import { useDeliveryRadiusStore } from '@/stores/MapCIrcleHistory';
+import { formatCurrency } from '@/utils/formatCurrency';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
 const DeliveryForm = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const addDeliveryArea = useDeliveryRadiusStore(
     (state) => state.addDeliveryArea,
   );
@@ -33,12 +36,12 @@ const DeliveryForm = () => {
   const saveToLocalStorage = useDeliveryRadiusStore(
     (state) => state.saveToLocalStorage,
   );
-  const loadFromLocalStorage = useDeliveryRadiusStore(
-    (state) => state.loadFromLocalStorage,
-  );
   const deliveryAreas = useDeliveryRadiusStore((state) => state.deliveryAreas);
   const removeDeliveryArea = useDeliveryRadiusStore(
     (state) => state.removeDeliveryArea,
+  );
+  const setHoveredIndex = useDeliveryRadiusStore(
+    (state) => state.setHoveredIndex,
   );
 
   const form = useForm<{
@@ -50,9 +53,7 @@ const DeliveryForm = () => {
       }),
     ),
     defaultValues: {
-      deliveryAreas: deliveryAreas.length
-        ? deliveryAreas
-        : [{ radius: '0', price: '0', time: '0' }],
+      deliveryAreas: [{ radius: '0,1', price: '0,00', time: '10' }],
     },
   });
 
@@ -60,10 +61,6 @@ const DeliveryForm = () => {
     control: form.control,
     name: 'deliveryAreas',
   });
-
-  useEffect(() => {
-    loadFromLocalStorage();
-  }, [loadFromLocalStorage]);
 
   useEffect(() => {
     if (deliveryAreas.length > 0) {
@@ -84,9 +81,19 @@ const DeliveryForm = () => {
     // TODO: add request to create delivery options
 
     if (data.deliveryAreas.length === 0) return null;
+
+    const fields = data.deliveryAreas.map((area) => ({
+      price: parseFloat(area.price),
+    }));
+
+    console.log(fields);
     try {
       setLoading(true);
-      data.deliveryAreas.forEach((area, index) => {
+      const transformedData = data.deliveryAreas.map((area) => ({
+        ...area,
+        price: parseFloat(area.price),
+      }));
+      transformedData.forEach((area, index) => {
         if (fields[index]) {
           updateDeliveryArea(index, area);
         } else {
@@ -94,22 +101,27 @@ const DeliveryForm = () => {
         }
       });
       saveToLocalStorage();
-      console.log(data.deliveryAreas);
       toast({
         variant: 'sucess',
         description: 'Áreas de entrega cadastradas com sucesso!',
       });
     } catch (error) {
-      alert('Não foi possível cadastrar as áreas de entrega.');
+      toast({
+        variant: 'destructive',
+        description: 'Não foi possível cadastrar as áreas de entrega.',
+      });
       console.log(error);
     } finally {
       setLoading(false);
+      navigate(0);
     }
   };
 
   const handleRemove = (index: number) => {
     removeDeliveryArea(index);
   };
+
+  const deliveryPrice = form.watch(`deliveryAreas`);
 
   return (
     <Form {...form}>
@@ -118,7 +130,9 @@ const DeliveryForm = () => {
           {fields.map((field, index) => (
             <div
               key={field.id}
-              className="flex gap-[17px] px-[10px] py-[14px] border-b border-customMkt-gray4"
+              className="flex gap-[17px] px-[10px] py-[14px] border-b border-customMkt-gray4 cursor-pointer hover:bg-customMkt-hoverPrimary"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <div className="grid grid-cols-3 gap-[17px]">
                 <FormField
@@ -133,7 +147,7 @@ const DeliveryForm = () => {
                             disabled={loading}
                             placeholder="1"
                             {...field}
-                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
+                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0 bg-transparent"
                           />
                           <p className="text-customMkt-gray6 transition group-focus-within:text-customMkt-primary font-medium">
                             Km
@@ -153,10 +167,15 @@ const DeliveryForm = () => {
                       <FormControl>
                         <div className="flex items-center gap-4 max-h-[3.5rem] p-3 rounded-[.3125rem] border border-customMkt-gray7 focus-within:border-customMkt-primary focus-within:outline-none focus-within:ring-2 focus-visible:ring-offset-0 focus-within:ring-customMkt-primary transition-all group space-y-reverse space-y-0">
                           <Input
+                            {...field}
+                            onChange={(ev) => {
+                              formatCurrency(ev);
+                              field.onChange(ev.currentTarget.value);
+                            }}
+                            value={deliveryPrice[index].price}
                             disabled={loading}
                             placeholder="1,00"
-                            {...field}
-                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
+                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0 bg-transparent"
                           />
                           <p className="text-customMkt-gray6 transition group-focus-within:text-customMkt-primary font-medium">
                             R$
@@ -179,7 +198,7 @@ const DeliveryForm = () => {
                             disabled={loading}
                             placeholder="60"
                             {...field}
-                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
+                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0 bg-transparent"
                           />
                           <p className="text-customMkt-gray6 transition group-focus-within:text-customMkt-primary font-medium">
                             min
@@ -191,7 +210,7 @@ const DeliveryForm = () => {
                   )}
                 />
               </div>
-              <div className="flex items-center first:hidden">
+              <div className="flex items-center  mt-7 first:hidden">
                 {index !== 0 ? (
                   <FaRegTrashAlt
                     className="h-6 w-6 fill-customMkt-error cursor-pointer"

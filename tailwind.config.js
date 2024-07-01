@@ -51,6 +51,7 @@ module.exports = {
           grenLight: '#2F79584D',
           blueLight: '#5F7880',
           primaryLight: '#ED7C004D',
+          hoverPrimary: '#FFBC6E26',
         },
         statusMkt: {
           pendent: '#EEBE10',

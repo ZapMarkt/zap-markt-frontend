@@ -20,11 +20,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
 const DeliveryForm = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const addDeliveryArea = useDeliveryRadiusStore(
     (state) => state.addDeliveryArea,
   );
@@ -33,9 +35,6 @@ const DeliveryForm = () => {
   );
   const saveToLocalStorage = useDeliveryRadiusStore(
     (state) => state.saveToLocalStorage,
-  );
-  const loadFromLocalStorage = useDeliveryRadiusStore(
-    (state) => state.loadFromLocalStorage,
   );
   const deliveryAreas = useDeliveryRadiusStore((state) => state.deliveryAreas);
   const removeDeliveryArea = useDeliveryRadiusStore(
@@ -62,10 +61,6 @@ const DeliveryForm = () => {
     control: form.control,
     name: 'deliveryAreas',
   });
-
-  useEffect(() => {
-    loadFromLocalStorage();
-  }, [loadFromLocalStorage]);
 
   useEffect(() => {
     if (deliveryAreas.length > 0) {
@@ -118,6 +113,7 @@ const DeliveryForm = () => {
       console.log(error);
     } finally {
       setLoading(false);
+      navigate(0);
     }
   };
 

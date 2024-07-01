@@ -21,7 +21,6 @@ import { useEffect, useState } from 'react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { z } from 'zod';
-import { getColor } from './DeliveryMap';
 
 const DeliveryForm = () => {
   const { toast } = useToast();
@@ -136,7 +135,6 @@ const DeliveryForm = () => {
             <div
               key={field.id}
               className="flex gap-[17px] px-[10px] py-[14px] border-b border-customMkt-gray4 cursor-pointer hover:bg-customMkt-hoverPrimary"
-              style={{ borderLeft: `4px solid ${getColor(index, 1)}` }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >

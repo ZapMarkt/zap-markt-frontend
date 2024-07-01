@@ -58,17 +58,20 @@ const DeliveryMap = () => {
             let strokeWeight = 3;
             let zIndex = 0;
 
-            if (hoveredIndex === index) {
-              fillColor = '#FFBC6E';
-              fillOpacity = 0.5;
-              strokeWeight = 5;
-              zIndex = 98;
-            } else if (hoveredIndex !== null) {
-              fillColor = '#FFBC6E';
-              strokeColor = '#FFFFFF';
-              fillOpacity = 0.5;
-              strokeWeight = 2;
-              zIndex = 99;
+            if (hoveredIndex !== null) {
+              if (index < hoveredIndex) {
+                fillColor = '#FFFFFF';
+                zIndex = 100;
+                strokeWeight = 5;
+              } else if (index > hoveredIndex) {
+                fillOpacity = 0;
+                strokeWeight = 1;
+              } else if (index === hoveredIndex) {
+                fillColor = '#FFBC6E';
+                fillOpacity = 0.5;
+                strokeWeight = 5;
+                zIndex = 99;
+              }
             }
 
             return (

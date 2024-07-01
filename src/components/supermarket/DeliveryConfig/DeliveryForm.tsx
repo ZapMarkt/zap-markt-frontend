@@ -151,7 +151,7 @@ const DeliveryForm = () => {
                             disabled={loading}
                             placeholder="1"
                             {...field}
-                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
+                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0 bg-transparent"
                           />
                           <p className="text-customMkt-gray6 transition group-focus-within:text-customMkt-primary font-medium">
                             Km
@@ -179,7 +179,7 @@ const DeliveryForm = () => {
                             value={deliveryPrice[index].price}
                             disabled={loading}
                             placeholder="1,00"
-                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
+                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0 bg-transparent"
                           />
                           <p className="text-customMkt-gray6 transition group-focus-within:text-customMkt-primary font-medium">
                             R$
@@ -202,7 +202,7 @@ const DeliveryForm = () => {
                             disabled={loading}
                             placeholder="60"
                             {...field}
-                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0"
+                            className="p-0 text-lg font-normal leading-customNormal placeholder:text-customMkt-gray6 focus-visible:ring-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-inherit border-0 bg-transparent"
                           />
                           <p className="text-customMkt-gray6 transition group-focus-within:text-customMkt-primary font-medium">
                             min

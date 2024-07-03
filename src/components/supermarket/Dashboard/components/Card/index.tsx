@@ -1,4 +1,4 @@
-import { formatCurrency } from '@/utils/formatCurrency';
+import { formatCurrencyStatic } from '@/utils/formatCurrency';
 
 interface CardProps {
   icon: JSX.Element;
@@ -20,7 +20,7 @@ const Card: React.FC<CardProps> = ({
         <p className="text-lg text-customMkt-gray3 font-medium">{title}</p>
       </div>
       <span className="text-[38px] text-customMkt-primary font-bold leading-tight">
-        {isCurrency ? formatCurrency(value) : value}
+        {isCurrency ? formatCurrencyStatic(value) : value}
       </span>
     </div>
   );

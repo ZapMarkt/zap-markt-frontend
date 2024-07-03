@@ -25,3 +25,10 @@ const maskCurrency = (
   const valueWithoutSymbol = formattedValue.replace(/[^\d.,-]/g, '');
   return valueWithoutSymbol;
 };
+
+export function formatCurrencyStatic(value: number) {
+  return new Intl.NumberFormat('pt-br', {
+    style: 'currency',
+    currency: 'brl',
+  }).format(value);
+}

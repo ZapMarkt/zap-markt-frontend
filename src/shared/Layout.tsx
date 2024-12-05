@@ -64,15 +64,13 @@ export function Layout({ children, headerTitle }: LayoutProps) {
 
   const mutation = useMutation({
     mutationFn: adminService.signOut,
-    onSuccess: () => {
-      localStorage.removeItem("userSession");
-      localStorage.removeItem("currentUser");
-      navigate("/login");
-    },
   });
 
   const handleSignOut = async () => {
     await mutation.mutateAsync(userSession);
+    localStorage.removeItem("userSession");
+    localStorage.removeItem("currentUser");
+    navigate("/login");
   };
 
   return (

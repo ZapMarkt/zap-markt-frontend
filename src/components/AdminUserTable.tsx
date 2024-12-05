@@ -1,9 +1,5 @@
-import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { adminService } from "../services/AdminService";
-import { Button } from "./ui/button";
-import { BsPeopleFill } from "react-icons/bs";
-import { Input } from "./ui/input";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "./ui/table";
 import { IoMdMore } from "react-icons/io";
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "./ui/menubar";
@@ -36,18 +32,6 @@ export function AdminUserTable() {
 
   return (
     <>
-      <div className="flex justify-between items-center mt-28 mb-9">
-        <Input
-          className="w-[414px]"
-          placeholder="Buscar por usuários"
-        />
-        <Link to="/novo-usuario-administrador">
-          <Button className="gap-3">
-            <BsPeopleFill />
-            Novo usuário administrador
-          </Button>
-        </Link>
-      </div>
       <Table className="border border-stone-200">
         <TableHeader className="font-bold border border-b-stone-200">
           <TableCell>Nome</TableCell>

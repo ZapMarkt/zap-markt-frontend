@@ -57,10 +57,10 @@ export function AdminUserForm() {
   return (
     <Form {...form}>
       <form
-        className="mt-24"
+        className="p-8"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <strong className="block text-2xl mb-6 text-stone-900">Dados do usuário</strong>
+        <strong className="block text-2xl mb-8 text-stone-900">Dados do usuário</strong>
         <div className="flex items-start gap-10 mb-5">
           <FormField
             control={form.control}
